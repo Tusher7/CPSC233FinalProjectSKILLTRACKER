@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.collections.FXCollections?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PrimeController">
+   <children>
+      <Label text="GAMELIFE APP">
+         <font>
+            <Font name="Bell MT" size="29.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+         <VBox.margin>
+            <Insets left="400.0" top="10.0" />
+         </VBox.margin>
+      </Label>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <opaqueInsets>
+            <Insets top="10.0" />
+         </opaqueInsets>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+         <children>
+            <VBox prefHeight="90.0" prefWidth="231.0">
+               <children>
+                  <CheckBox fx:id="codingCheck" mnemonicParsing="false" onAction="#skillPickedCoding" text="Coding Skill">
+                     <font>
+                        <Font name="Book Antiqua Bold" size="20.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="languageCheck" mnemonicParsing="false" onAction="#skillPickedLanguage" prefHeight="30.0" prefWidth="246.0" text="Language Learning">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="musicCheck" mnemonicParsing="false" text="Musical Instruments">
+                     <font>
+                        <Font name="Book Antiqua Bold" size="20.0" />
+                     </font>
+                  </CheckBox>
+                  <Label fx:id="head" text="The Skill You Picked:">
+                     <font>
+                        <Font name="Book Antiqua Bold" size="22.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" top="10.0" />
+                     </VBox.margin></Label>
+                  <Label fx:id="skillPicked" prefHeight="125.0" prefWidth="251.0" text="You have picked .... ">
+                     <font>
+                        <Font name="Britannic Bold" size="25.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="100.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+         
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button mnemonicParsing="false" text="| Confirm |">
+               <HBox.margin>
+                  <Insets left="20.0" top="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" text="| Reset |">
+               <HBox.margin>
+                  <Insets left="20.0" top="20.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets top="30.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+</VBox>
+
