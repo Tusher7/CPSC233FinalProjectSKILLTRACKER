@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label text="Coding">
+         <font>
+            <Font name="Bauhaus 93" size="43.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="300.0" />
+         </VBox.margin>
+      </Label>
+      <HBox prefHeight="52.0" prefWidth="600.0">
+         <children>
+            <Label text="What programming languages do you want to learn?">
+               <font>
+                  <Font name="Book Antiqua" size="24.0" />
+               </font>
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <CheckBox fx:id="javaPick" mnemonicParsing="false" text="Java">
+         <font>
+            <Font name="Book Antiqua Bold" size="25.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="pythonPick" mnemonicParsing="false" text="Python">
+         <font>
+            <Font name="Book Antiqua" size="25.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="cPick" mnemonicParsing="false" text="C">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font>
+      </CheckBox>
+      <HBox prefHeight="57.0" prefWidth="600.0">
+         <children>
+            <Button mnemonicParsing="false" text="Done" />
+            <Button mnemonicParsing="false" text="&lt; Back" />
+            <Button mnemonicParsing="false" text="next &gt;" />
+         </children>
+      </HBox>
+      <HBox prefHeight="194.0" prefWidth="600.0">
+         <children>
+            <VBox prefHeight="194.0" prefWidth="483.0">
+               <children>
+                  <Label text="You have picked (no. of language)">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label text="You need to spend roughly 1700 hours">
+                     <font>
+                        <Font name="Book Antiqua" size="22.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="on each language to achieve mastery.">
+                     <font>
+                        <Font name="Book Antiqua" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label text="So, a total of (_____) hours.">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label text="if picked none. pls pick a language or sgo back" />
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+            <VBox prefHeight="194.0" prefWidth="305.0">
+               <children>
+                  <Label text="Languages Picked">
+                     <font>
+                        <Font name="Book Antiqua Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label text="J" />
+                  <Label text="P" />
+                  <Label text="C" />
+                  <Label text="Or none" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>

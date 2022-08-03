@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label text="Musical Instruments">
+         <font>
+            <Font name="Britannic Bold" size="36.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="400.0" />
+         </VBox.margin>
+      </Label>
+      <Label text="What instruments do you want to learn?">
+         <font>
+            <Font name="Book Antiqua" size="26.0" />
+         </font>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </Label>
+      <CheckBox mnemonicParsing="false" text="Guitar">
+         <font>
+            <Font name="Californian FB" size="20.0" />
+         </font>
+      </CheckBox>
+      <CheckBox mnemonicParsing="false" text="Piano">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </CheckBox>
+      <CheckBox mnemonicParsing="false" text="Drums">
+         <font>
+            <Font name="Californian FB" size="20.0" />
+         </font>
+      </CheckBox>
+      <HBox prefHeight="38.0" prefWidth="600.0">
+         <children>
+            <Button mnemonicParsing="false" text="Done">
+               <HBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </HBox.margin></Button>
+            <Button mnemonicParsing="false" text="&lt; Back" />
+            <Button mnemonicParsing="false" text="Next &gt;">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin></Button>
+         </children>
+      </HBox>
+      <HBox prefHeight="194.0" prefWidth="600.0">
+         <children>
+            <VBox prefHeight="194.0" prefWidth="483.0">
+               <children>
+                  <Label text="You have picked (no. of linstruments)">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label text="You need to spend roughly 2000 hours">
+                     <font>
+                        <Font name="Book Antiqua" size="22.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="on each language to achieve mastery.">
+                     <font>
+                        <Font name="Book Antiqua" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label text="So, a total of (_____) hours.">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label text="if picked none. pls pick a language or sgo back" />
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+            <VBox prefHeight="194.0" prefWidth="305.0">
+               <children>
+                  <Label text="Languages Picked">
+                     <font>
+                        <Font name="Book Antiqua Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label text="g" />
+                  <Label text="P" />
+                  <Label text="d" />
+                  <Label text="Or none" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>
+
