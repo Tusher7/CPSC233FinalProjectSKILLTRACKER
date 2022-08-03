@@ -78,7 +78,7 @@
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <Label text="if picked none. pls pick a language or sgo back" />
+                  <Label text="if picked none. pls pick a language or go back" />
                </children>
                <HBox.margin>
                   <Insets />
