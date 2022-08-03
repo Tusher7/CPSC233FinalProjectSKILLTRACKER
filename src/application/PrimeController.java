@@ -22,34 +22,43 @@ public class PrimeController extends UIControl{
     private ChoiceBox<String> skillChooseChoiceBox;
 	 
 	 @FXML
-	  private Label skillPicked = new Label();
+	  private Label skillPickedLabel = new Label();
 	 
 	 @FXML
-	    private ArrayList<String> skillPickedList = new ArrayList<String> (); ;
-	 
-	 @FXML
-	 private CheckBox codingCheck;
-	 @FXML
-	 private CheckBox languageCheck;
-	 @FXML
-	 private CheckBox musicCheck;
+	    private ArrayList<String> skillPickedList = new ArrayList<String> (); ;	 
 	 
 	 private String defaultText = "";
 	 
 	  @FXML
-	 public void skillPickedCoding(ActionEvent pickSkillCode) {
-		  defaultText+="Coding";
-		  skillPickedList.add("coding");
-		  skillPicked.setText(defaultText);	  			 																	 	 
+	 public void confrimButton(ActionEvent pickSkill) {
+		  defaultText="";
+		  String skillChose =  skillChooseChoiceBox.getValue();
+		  if (skillChose.equals("Coding")) {
+			  defaultText+="Coding";
+			  changeLabel(skillPickedLabel,defaultText);		  
+			  skillPickedList.add("Coding");
+			  
+		  }
+		  else if(skillChose.equals("Language Learning")) {
+			  defaultText+="Language Learning";
+			  changeLabel(skillPickedLabel,defaultText);
+			  skillPickedList.add("Language");
+			  
+		  }
+		  else if (skillChose.equals("Musical Instruments")) {
+			  defaultText += "Musical Instruments";
+			  changeLabel(skillPickedLabel,defaultText);
+			  skillPickedList.add("Musical");
+			  
+		  }		  	  		  		  		  
 	 }
-	  
-	  public void skillPickedLanguage(ActionEvent pickSkillLanguage) {
-		  defaultText+="Language Learning";
-		  skillPickedList.add("language");
-		  skillPicked.setText(defaultText);	  			 																	 	 
-	 }
-	  
-		 		 		 	 		 
+	  @FXML
+	  public void resetButton(ActionEvent resetMain) {
+		  skillPickedList.clear();
+		  changeLabel(skillPickedLabel, "");
+	  }
+	 
+		  		 		 	 		 
 	 
 	 
 	 void changeLabel(Label label, String text) {
