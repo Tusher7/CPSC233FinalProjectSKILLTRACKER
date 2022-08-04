@@ -6,9 +6,14 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+
 <?import javafx.collections.*?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CodingSkill">
+=======
+
+
+
    <children>
       <Label text="Coding">
          <font>
@@ -30,6 +35,7 @@
             </Label>
          </children>
       </HBox>
+
       <ChoiceBox fx:id="CodingLanguagePickChoiceBox" prefWidth="150.0">
       <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -42,10 +48,13 @@
             		</FXCollections>
             	</items>
             </ChoiceBox>
+
+
       <HBox prefHeight="194.0" prefWidth="600.0">
          <children>
             <VBox prefHeight="194.0" prefWidth="483.0">
                <children>
+
                   <Label fx:id="programmingLanguagePickedLabel" text="You have picked ">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="25.0" />
@@ -55,6 +64,9 @@
                      </VBox.margin>
                   </Label>
                   <Label fx:id="programmingLanguageLabelLine1" text="You need to spend roughly 1700 hours">
+
+                  
+
                      <font>
                         <Font name="Book Antiqua" size="22.0" />
                      </font>
@@ -62,17 +74,28 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Label>
+
                   <Label fx:id="programmingLanguageLabelLine2" text="on each language to achieve mastery.">
+
+                  
+
                      <font>
                         <Font name="Book Antiqua" size="22.0" />
                      </font>
                   </Label>
+
                   <Label fx:id="programmingLanguageLabelLine3" text="In how many days would you like to finish?">
+
+                  
+
                      <font>
                         <Font size="22.0" />
                      </font>
                   </Label>
+
                   <Label text="if picked none. pls pick a language or sgo back" />
+
+
                </children>
                <HBox.margin>
                   <Insets />
@@ -80,6 +103,7 @@
             </VBox>
             <VBox prefHeight="194.0" prefWidth="305.0">
                <children>
+
                   <Label text="How many months do you want to finish this in?">
                      <font>
                         <Font name="Book Antiqua Bold" size="25.0" />
@@ -89,15 +113,21 @@
                      </VBox.margin>
                   </Label>
                   <Label fx:id="CodingLearningPlanLabel" text="P" />
+
+                  
+
                </children>
             </VBox>
          </children>
       </HBox>
+
       <HBox prefHeight="57.0" prefWidth="600.0">
          <children>
             <Button mnemonicParsing="false" text="&lt; Back" />
             <Button mnemonicParsing="false" text="next &gt;" />
          </children>
       </HBox>
+
+
    </children>
 </VBox>
