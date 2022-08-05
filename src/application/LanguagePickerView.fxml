@@ -17,30 +17,29 @@
             <Insets left="400.0" />
          </VBox.margin>
       </Label>
-      <HBox prefHeight="47.0" prefWidth="600.0">
+      
+   <VBox prefHeight="108.0" prefWidth="600.0">
          <children>
             <Label text="What Languages would you like to learn?">
                <font>
                   <Font name="Book Antiqua" size="25.0" />
                </font>
             </Label>
+            <ChoiceBox prefWidth="150.0">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <items>
+            		<FXCollections fx:factory="observableArrayList">
+            			<String fx:value="English" />
+            			<String fx:value="Arabic" />
+            			<String fx:value="French" />            		           	
+            		</FXCollections>
+            	</items>
+            </ChoiceBox>
          </children>
-      </HBox>
-      <CheckBox mnemonicParsing="false" text="French">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </CheckBox>
-      <CheckBox mnemonicParsing="false" text="English">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </CheckBox>
-      <CheckBox mnemonicParsing="false" text="Arabic">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </CheckBox>
+      </VBox>
+      
       <HBox prefHeight="39.0" prefWidth="600.0">
          <children>
             <Button mnemonicParsing="false" text="Done" />
