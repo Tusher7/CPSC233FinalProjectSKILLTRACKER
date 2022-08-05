@@ -17,7 +17,6 @@
             <Insets left="400.0" />
          </VBox.margin>
       </Label>
-      
    <VBox prefHeight="108.0" prefWidth="600.0">
          <children>
             <Label text="What Languages would you like to learn?">
@@ -39,7 +38,6 @@
             </ChoiceBox>
          </children>
       </VBox>
-      
       <HBox prefHeight="39.0" prefWidth="600.0">
          <children>
             <Button mnemonicParsing="false" text="Done" />
