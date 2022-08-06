@@ -17,9 +17,10 @@
             <Insets left="400.0" />
          </VBox.margin>
       </Label>
+   <HBox>
    <VBox prefHeight="108.0" prefWidth="600.0">
          <children>
-            <Label text="What Languages would you like to learn?">
+            <Label text="How many languages would you like to learn?">
                <font>
                   <Font name="Book Antiqua" size="25.0" />
                </font>
@@ -30,14 +31,42 @@
                </VBox.margin>
                <items>
             		<FXCollections fx:factory="observableArrayList">
-            			<String fx:value="English" />
-            			<String fx:value="Arabic" />
-            			<String fx:value="French" />            		           	
+            			<String fx:value="1" />
+            			<String fx:value="2" />
+            			<String fx:value="3" />            		           	
             		</FXCollections>
             	</items>
             </ChoiceBox>
          </children>
       </VBox>
+      <VBox prefHeight="108.0" prefWidth="600.0">
+         <children>
+            <Label text="The language options you have are:">
+               <font>
+                  <Font name="Book Antiqua" size="25.0" />
+               </font>
+            </Label>
+           		<Label text="English">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label text="French">
+                     <font>
+                        <Font name="Book Antiqua" size="22.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="Arabic">
+                     <font>
+                        <Font name="Book Antiqua" size="22.0" />
+                     </font>
+                  </Label>
+         </children>
+      </VBox>
+      </HBox>
       <HBox prefHeight="39.0" prefWidth="600.0">
          <children>
             <Button mnemonicParsing="false" text="Done" />
