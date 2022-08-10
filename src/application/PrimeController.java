@@ -50,8 +50,9 @@ public class PrimeController extends UIControl{
 	  
 	 private String defaultText = "";
 	 private int nextButtonCounter = 0;
-	 String textDefaultMusic= "You chose: ";
-	 String textDefaultMusicThree="So, a total of ";
+	 
+	 private String textDefaultMusicThree="So, a total of ";
+	 private String textDefaultMusic= "You chose: ";
 	 
 	 
 	 private  ArrayList<String> instrumentPickedList = new ArrayList<String> ();
@@ -71,6 +72,10 @@ public class PrimeController extends UIControl{
 	  private int drumsCounter=0;
 	  
 	  private int hoursMusic = 0;
+	
+	private int hoursMusicCounterGuitar=0;
+	private int hoursMusicCounterPiano=0;
+	private int hoursMusicCounterDrums=0;
 	
 	  
 
@@ -184,12 +189,24 @@ public class PrimeController extends UIControl{
 	  public void musicSkillViewLogic() {	  	  
 		  
 		  if (guitarBox.isSelected()) {
-			  guitarCounter++;
+			  guitarCounter++; // 2nd time onwards always 2
+			 
 			  if(guitarCounter==1) {
 				  instrumentPickedList.add("guitar");
-				  textDefaultMusic+= " guitar";
-				  hoursMusic+=1500;
-				  textDefaultMusicThree+= hoursMusic + " hours";
+				  textDefaultMusic += "guitar ";
+				  hoursMusicCounterGuitar++;
+				  
+				  if (hoursMusicCounterGuitar==1) {
+					  hoursMusic+=1500;
+				  }
+				  if(hoursMusicCounterGuitar==2) {
+					  hoursMusicCounterGuitar=1;
+				  }
+				  
+				  
+			  }
+			  if(guitarCounter==2) {
+				  guitarCounter=1; // 2nd time onwards always becomes 1 in the end
 				  
 			  }
 		  }
@@ -198,11 +215,12 @@ public class PrimeController extends UIControl{
 				  instrumentPickedList.remove("guitar");
 			  }
 			  textRemove(textDefaultMusic, "guitar");
-			  textRemove(textDefaultMusicThree, hoursMusic + "hours");
+			  
 			 
 			  if(guitarCounter==1) {
 				  hoursMusic-=1500;
 				  guitarCounter--;
+				  hoursMusicCounterGuitar--;
 			  }
 		  }
 	 
@@ -210,11 +228,22 @@ public class PrimeController extends UIControl{
 		  
 		  if (pianoBox.isSelected()) {
 			  pianoCounter++;
+			  
 			  if(pianoCounter==1) {
 				  instrumentPickedList.add("piano");
-				  textDefaultMusic+= " piano";
-				  hoursMusic+=1500;
-				  textDefaultMusicThree+= hoursMusic + " hours";
+				  textDefaultMusic+= "piano ";
+				  
+				  hoursMusicCounterPiano++;
+				  
+				  if (hoursMusicCounterPiano==1) {
+					  hoursMusic+=1500;
+				  }
+				  if(hoursMusicCounterPiano==2) {
+					  hoursMusicCounterPiano=1;
+				  }
+			  }
+			  if(pianoCounter==2) {
+				  pianoCounter=1;
 			  }
 		  }
 		  else {
@@ -222,22 +251,34 @@ public class PrimeController extends UIControl{
 				  instrumentPickedList.remove("piano");
 			  }
 			  textRemove(textDefaultMusic, "piano");
-			  textRemove(textDefaultMusicThree, hoursMusic + "hours");
+			  
 			  if (pianoCounter==1) {
 				  hoursMusic-=1500;
 				  pianoCounter--;
+				  hoursMusicCounterPiano--;
 			  }
 		  }
 		  
 		  
 		  if (drumsBox.isSelected()) {
 			  drumsCounter++;
+			  
 			  if (drumsCounter==1) {
 				  instrumentPickedList.add("drums");
-				  textDefaultMusic+= " drums";
-				  hoursMusic+=1500;
-				  textDefaultMusicThree+= hoursMusic + " hours";
+				  textDefaultMusic+= "drums ";
+				  hoursMusicCounterDrums++;
+				  
+				  if (hoursMusicCounterDrums==1) {
+					  hoursMusic+=1500;
+				  }
+				  if(hoursMusicCounterDrums==2) {
+					  hoursMusicCounterDrums=1;
+				  }
+				  
 				
+			  }
+			  if(drumsCounter==2) {
+				  drumsCounter=1;
 			  }
 		  }
 		  else {
@@ -245,10 +286,11 @@ public class PrimeController extends UIControl{
 				  instrumentPickedList.remove("drums");
 			  }
 			  textRemove(textDefaultMusic, "drums");
-			  textRemove(textDefaultMusicThree, hoursMusic + "hours");
+			  
 			  if(drumsCounter==1) {
 				  hoursMusic-=1500;
 				  drumsCounter--;
+				  hoursMusicCounterDrums--;
 			  }
 		  }
 		  
@@ -256,12 +298,19 @@ public class PrimeController extends UIControl{
 	  }
 	  
 	  @FXML
-	  public void musicSkillDoneButton(ActionEvent event) {
-		 changeLabel(pickMusic, textDefaultMusic);
+	  public void musicSkillDoneButton(ActionEvent event) {		 
+		 textDefaultMusicThree="So a total of " + hoursMusic + " hours";
+		 changeLabel(pickMusic, textDefaultMusic);		 
 		 changeLabel(musicLabel3, textDefaultMusicThree);
-		  
-	  }
-		  		 		
+		 System.out.println(textDefaultMusicThree);
+		 textDefaultMusicThree="";
+		 System.out.println(textDefaultMusic);
+		 System.out.println(guitarCounter+" guitar");
+		 System.out.println(pianoCounter+" piano");
+		 System.out.println(drumsCounter+" drums");
+		 System.out.println(hoursMusic);
+		 System.out.println("------------------");
+	  } 		 		
 	 
 	 private void textRemove(String sentence, String toRemove) {
 		 int counter =0;
@@ -275,7 +324,7 @@ public class PrimeController extends UIControl{
 				 char c = (sentence.charAt(iIndexPrevious));
 				 if(c == ' ') {
 					 desiredIndex = sentence.indexOf(i);
-					 sentence = sentence.replaceAll(toRemove, "");
+					 sentence = sentence.replaceAll(" "+ toRemove, ""); //added a whitespace to make sure no whitespace is left behind when a word is removed.
 					 textDefaultMusic = sentence;
 				 }			  			
 				 
@@ -300,6 +349,8 @@ public class PrimeController extends UIControl{
 		
 		 
 	 }
+	 
+	 
 	 }
 	 
 	 
