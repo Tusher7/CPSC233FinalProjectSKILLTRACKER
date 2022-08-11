@@ -3,55 +3,55 @@ package application;
 import java.util.ArrayList;
 
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
+
 
 public class UIControl {
-	 private int counterOne=0;
-	  private int counterTwo=0;
-	  private int counterThree=0;
-	  private int hoursSkill = 0;
+	private int counterOne=0;
+	private int counterTwo=0;
+	private int counterThree=0;
+	private int hoursSkill = 0;
 		
-		private int hoursSkillCounterOne=0;
-		private int hoursSkillCounterTwo=0;
-		private int hoursSkillCounterThree=0;
-		private  ArrayList<String> pickedList = new ArrayList<String> ();
+	private int hoursSkillCounterOne=0;
+	private int hoursSkillCounterTwo=0;
+	private int hoursSkillCounterThree=0;
+	private  ArrayList<String> pickedList = new ArrayList<String> ();
 		
-		 private String textDefault= "You chose: ";
+	private String textDefault= "You chose: ";
 		 
-		 private CheckBox Box1;
-		 private CheckBox Box2;
-		 private CheckBox Box3;
+	private CheckBox Box1;
+	private CheckBox Box2;
+	private CheckBox Box3;
 		 
-		 public UIControl(CheckBox Box1, CheckBox Box2,CheckBox Box3) {
-			 this.Box1=Box1;
-			 this.Box2=Box2;
-			 this.Box3=Box3;
-		 }
+	public UIControl(CheckBox Box1, CheckBox Box2,CheckBox Box3) {
+		this.Box1=Box1;
+		this.Box2=Box2;
+		this.Box3=Box3;
+	}
 		
 		
 	public void PickViewCheckBoxLogic(String one, String two, String three, int hourIncrement) {
-	if (Box1.isSelected()) {
-		  counterOne++; // 2nd time onwards always 2
+		if (Box1.isSelected()) {
+			counterOne++; // 2nd time onwards always 2
 		 
-		  if(counterOne==1) {
-			  pickedList.add(one);
-			  textDefault += one+" ";
-			  hoursSkillCounterOne++;
+			if(counterOne==1) {
+			pickedList.add(one);
+			textDefault += one+" ";
+			hoursSkillCounterOne++;
 			  
-			  if (hoursSkillCounterOne==1) {
-				  hoursSkill = getHoursSkill() + hourIncrement;
-			  }
-			  if(hoursSkillCounterOne==2) {
-				  hoursSkillCounterOne=1;
-			  }
+			if (hoursSkillCounterOne==1) {
+				hoursSkill = getHoursSkill() + hourIncrement;
+			}
+			if(hoursSkillCounterOne==2) {
+				hoursSkillCounterOne=1;
+			}
 			  
 			  
-		  }
-		  if(counterOne==2) {
-			  counterOne=1; // 2nd time onwards always becomes 1 in the end
+		}
+			if(counterOne==2) {
+				counterOne=1; // 2nd time onwards always becomes 1 in the end
 			  
-		  }
-	  }
+			}
+		}
 	  else {
 		  if (listHasElement(one)) {
 			  pickedList.remove(one);
@@ -77,12 +77,12 @@ public class UIControl {
 			  
 			  hoursSkillCounterTwo++;
 			  
-			  if (hoursSkillCounterTwo==1) {
-				  hoursSkill = getHoursSkill() + hourIncrement;
-			  }
-			  if(hoursSkillCounterTwo==2) {
+		  if (hoursSkillCounterTwo==1) {
+			  hoursSkill = getHoursSkill() + hourIncrement;
+		  }
+		  if(hoursSkillCounterTwo==2) {
 				  hoursSkillCounterTwo=1;
-			  }
+		  }
 		  }
 		  if(counterTwo==2) {
 			  counterTwo=1;
@@ -179,7 +179,7 @@ public class UIControl {
 	 }
 
 
-	public int getHoursSkill() {
+	 public int getHoursSkill() {
 		return hoursSkill;
 	}
 	

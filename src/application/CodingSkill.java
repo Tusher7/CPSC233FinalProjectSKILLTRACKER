@@ -1,4 +1,4 @@
-
+/**
 package application;
 
 import java.io.IOException;
@@ -13,7 +13,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class CodingSkill extends UIControl{
+public class CodingSkill{
+	
 	private Stage applicationStage = new Stage(); 
 	private Parent root;
 	private Scene mainScene; // Make them parameters of back button
@@ -70,3 +71,4 @@ public class CodingSkill extends UIControl{
 		  applicationStage.show();
 	  }
 }
+	**/

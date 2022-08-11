@@ -116,7 +116,15 @@
 
                </HBox.margin> 
 
-            </VBox> 
+            </VBox>
+            <Label fx:id="mainViewLabelZero" textFill="#d01717">
+               <HBox.margin>
+                  <Insets left="80.0" top="100.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label> 
 
          </children> 
 

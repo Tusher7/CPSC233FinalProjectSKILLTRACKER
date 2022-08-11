@@ -42,7 +42,7 @@
       </CheckBox>
       <HBox prefHeight="38.0" prefWidth="600.0">
          <children>
-            <Button fx:id="musicalPickerBackButton" mnemonicParsing="false" onAction="#musicalPickerBackButton" text="&lt; Back">
+            <Button fx:id="musicalPickerBackButton" mnemonicParsing="false" onAction="#pickerViewBackButton" text="&lt; Back">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin></Button>

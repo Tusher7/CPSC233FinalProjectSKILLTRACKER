@@ -43,7 +43,7 @@
       </CheckBox>
       <HBox prefHeight="39.0" prefWidth="600.0">
          <children>
-            <Button fx:id="LanguagePickerBackButton" mnemonicParsing="false" onAction="#languagePickerBackButton" text="&lt; Back">
+            <Button fx:id="LanguagePickerBackButton" mnemonicParsing="false" onAction="#pickerViewBackButton" text="&lt; Back">
                <HBox.margin>
                   <Insets left="20.0" right="20.0" top="10.0" />
                </HBox.margin></Button>

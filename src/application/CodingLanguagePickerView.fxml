@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.collections.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CodingSkill">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PrimeController">
 
 
 
@@ -34,27 +34,43 @@
             </Label>
          </children>
       </HBox>
-
-      <ChoiceBox fx:id="CodingLanguagePickChoiceBox" prefWidth="150.0">
-      <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+      <CheckBox fx:id="pythonBox" mnemonicParsing="false" onAction="#CodingSkillPickLogic" text="Python">
+         <font>
+            <Font name="Book Antiqua" size="20.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="htmlBox" mnemonicParsing="false" onAction="#CodingSkillPickLogic" text="HTML">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="javaBox" mnemonicParsing="false" onAction="#CodingSkillPickLogic" text="Java">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </CheckBox>
+      <HBox prefHeight="16.0" prefWidth="600.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#pickerViewBackButton" text="&lt; Back">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin></Button>
+            <Button mnemonicParsing="false" text="Next &gt;">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin></Button>
+            <Button mnemonicParsing="false" onAction="#codingPickResetButton" text="Reset">
+               <HBox.margin>
+                  <Insets left="10.0" />
                </HBox.margin>
-            	<items>
-            		<FXCollections fx:factory="observableArrayList">
-            			<String fx:value="Java" />
-            			<String fx:value="C" />
-            			<String fx:value="Python" />            		           	
-            		</FXCollections>
-            	</items>
-            </ChoiceBox>
-
-
+            </Button>
+         </children>
+      </HBox>
       <HBox prefHeight="194.0" prefWidth="600.0">
          <children>
-            <VBox prefHeight="194.0" prefWidth="483.0">
+            <VBox prefHeight="190.0" prefWidth="664.0">
                <children>
-
-                  <Label fx:id="programmingLanguagePickedLabel" text="You have picked ">
+                  <Label fx:id="codingPick">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="25.0" />
                      </font>
@@ -62,10 +78,7 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="programmingLanguageLabelLine1" text="You need to spend roughly 1700 hours">
-
-                  
-
+                  <Label fx:id="codingLabelOne" text="You need to spend roughly 1700 hours">
                      <font>
                         <Font name="Book Antiqua" size="22.0" />
                      </font>
@@ -73,57 +86,21 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Label>
-
-                  <Label fx:id="programmingLanguageLabelLine2" text="on each language to achieve mastery.">
-
-                  
-
+                  <Label fx:id="codingLabelTwo" text="on each coding language to achieve mastery.">
                      <font>
                         <Font name="Book Antiqua" size="22.0" />
                      </font>
                   </Label>
-
-                  <Label fx:id="programmingLanguageLabelLine3" text="In how many days would you like to finish?">
-
-                  
-
+                  <Label fx:id="codingLabelThree">
                      <font>
                         <Font size="22.0" />
                      </font>
                   </Label>
-
-                  <Label text="if picked none. pls pick a language or sgo back" />
-
-
                </children>
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </VBox>
-            <VBox prefHeight="194.0" prefWidth="305.0">
-               <children>
-
-                  <Label text="How many months do you want to finish this in?">
-                     <font>
-                        <Font name="Book Antiqua Bold" size="25.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label fx:id="CodingLearningPlanLabel" text="P" />
-
-                  
-
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-
-      <HBox prefHeight="57.0" prefWidth="600.0">
-         <children>
-            <Button mnemonicParsing="false" onAction="#codingLanguagePickerBackButton" text="&lt; Back" />
-            <Button mnemonicParsing="false" text="next &gt;" />
          </children>
       </HBox>
 
