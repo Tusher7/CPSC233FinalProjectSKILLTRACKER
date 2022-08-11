@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.CheckBox;  
 
 
-public class PrimeController extends UIControl{ 	 
+public class PrimeController{ 	 
 
 	private Stage applicationStage = new Stage(); 
 	private Parent root;
@@ -51,11 +51,10 @@ public class PrimeController extends UIControl{
 	 private String defaultText = "";
 	 private int nextButtonCounter = 0;
 	 
-	 private String textDefaultMusicThree="So, a total of ";
-	 private String textDefaultMusic= "You chose: ";
+	
 	 
 	 
-	 private  ArrayList<String> instrumentPickedList = new ArrayList<String> ();
+	 
 	 @FXML 
 	private CheckBox pianoBox;
 	 @FXML
@@ -67,16 +66,26 @@ public class PrimeController extends UIControl{
 	 @FXML
 	private Label musicLabel3 ;
 	 
-	 private int guitarCounter=0;
-	  private int pianoCounter=0;
-	  private int drumsCounter=0;
-	  
-	  private int hoursMusic = 0;
+	 @FXML 
+	 private CheckBox frenchBox;
+	 
+	 @FXML 
+	 private CheckBox englishBox;
+	 
+	 @FXML 
+	 private CheckBox arabicBox;
+	 
+	 
+	 @FXML
+	 private Label pickLanguage;	 
+	 @FXML
+	 private Label languageLabelOne;
+	 @FXML
+	 private Label languageLabelTwo;
+	 @FXML
+	 private Label languageLabelThree;
 	
-	private int hoursMusicCounterGuitar=0;
-	private int hoursMusicCounterPiano=0;
-	private int hoursMusicCounterDrums=0;
-	
+
 	  
 
 	// private void changeLabel(Label label, String text) { 
@@ -141,9 +150,19 @@ public class PrimeController extends UIControl{
 		  pianoBox.setSelected(false);
 		  drumsBox.setSelected(false);
 		  changeLabel(pickMusic, " ");
-		  changeLabel(musicLabel1, ".................................... ");
-		  changeLabel(musicLabel2, ".................................... ");
-		  changeLabel(musicLabel3, ".................................... ");
+		  changeLabel(musicLabel1, "You need to spend roughly 1500 hours");
+		  changeLabel(musicLabel2, "on each instrument to achieve mastery.");
+		  changeLabel(musicLabel3, " ");
+	  }
+	  @FXML
+	  public void languagePickResetButton(ActionEvent resetMusic){
+		  guitarBox.setSelected(false);
+		  pianoBox.setSelected(false);
+		  drumsBox.setSelected(false);
+		  changeLabel(pickLanguage, " ");
+		  changeLabel(languageLabelOne, "You need to spend roughly 1500 hours");
+		  changeLabel(languageLabelTwo, "on each instrument to achieve mastery.");
+		  changeLabel(languageLabelThree, " ");
 	  }
 	//resetButtonsEnd  
 	  @FXML
@@ -173,19 +192,30 @@ public class PrimeController extends UIControl{
 	  
 	  // BackBttons Start
 	  @FXML
-	  public void MusicalPickerBackButton(ActionEvent changeScene) throws IOException { 
+	  public void musicalPickerBackButton(ActionEvent changeScene) throws IOException { 
 		  root = FXMLLoader.load(getClass().getResource("MainView.fxml"));
 		  applicationStage = (Stage)((Node)changeScene.getSource()).getScene().getWindow();
 		  mainScene = new Scene(root);
 		  applicationStage.setScene(mainScene);
 		  applicationStage.show();
 	  } 
+	  
+	  @FXML
+	  public void languagePickerBackButton(ActionEvent changeScene) throws IOException { 
+		  root = FXMLLoader.load(getClass().getResource("MainView.fxml"));
+		  applicationStage = (Stage)((Node)changeScene.getSource()).getScene().getWindow();
+		  mainScene = new Scene(root);
+		  applicationStage.setScene(mainScene);
+		  applicationStage.show();
+	  } 
+	  
+	  
 
 	  //BackButtonS End
 	  
 	  
-	  
-	  @FXML
+	 //instrument picking Logic 
+	  /**
 	  public void musicSkillViewLogic() {	  	  
 		  
 		  if (guitarBox.isSelected()) {
@@ -296,21 +326,155 @@ public class PrimeController extends UIControl{
 		  
 		  
 	  }
+	**/
+	  
 	  
 	  @FXML
-	  public void musicSkillDoneButton(ActionEvent event) {		 
-		 textDefaultMusicThree="So a total of " + hoursMusic + " hours";
+	  public void musicSkillPickLogic(ActionEvent MusicEvent) {		
+		 var musicView = new UIControl(guitarBox, pianoBox, drumsBox);
+		 musicView.PickViewCheckBoxLogic("guitar","piano","drums", 1500); 
+		 
+		 String textDefaultMusic = musicView.getTextDefault();
+		 int hoursMusic = musicView.getHoursSkill();
+		 
+		 String textDefaultMusicThree="So a total of " + hoursMusic + " hours";
 		 changeLabel(pickMusic, textDefaultMusic);		 
 		 changeLabel(musicLabel3, textDefaultMusicThree);
-		 System.out.println(textDefaultMusicThree);
+		 
 		 textDefaultMusicThree="";
-		 System.out.println(textDefaultMusic);
-		 System.out.println(guitarCounter+" guitar");
-		 System.out.println(pianoCounter+" piano");
-		 System.out.println(drumsCounter+" drums");
-		 System.out.println(hoursMusic);
-		 System.out.println("------------------");
-	  } 		 		
+	  }
+	  
+	  @FXML
+	  public void LanguageSkillPickLogic(ActionEvent LanguageEvent) {		
+		 var LanguageView = new UIControl(frenchBox, englishBox, arabicBox);
+		 LanguageView.PickViewCheckBoxLogic("french","english","arabic", 1000); 
+		 
+		 String textDefaultLanguage = LanguageView.getTextDefault();
+		 int hoursLanguage = LanguageView.getHoursSkill();
+		 
+		 String textDefaultLanguageThree="So a total of " + hoursLanguage + " hours";
+		 changeLabel(pickLanguage, textDefaultLanguage);		 
+		 changeLabel(languageLabelThree, textDefaultLanguageThree);
+		 
+		 textDefaultLanguageThree="";
+	  }
+	  
+	  //instrument picking logic ends
+	  
+	  //Language picking Logic Starts
+	/**  
+	  @FXML
+	  public void LanguageSkillViewLogic() {	  	  
+		  
+		  if (frenchBox.isSelected()) {
+			  frenchCounter++; // 2nd time onwards always 2
+			 
+			  if(frenchCounter==1) {
+				  LanguagePickedList.add("french");
+				  textDefaultLanguage += "french ";
+				  hoursLanguageCounterFrench++;
+				  
+				  if (hoursLanguageCounterFrench==1) {
+					  hoursLanguage+=1500;
+				  }
+				  if(hoursLanguageCounterFrench==2) {
+					  hoursLanguageCounterFrench=1;
+				  }
+				  
+				  
+			  }
+			  if(frenchCounter==2) {
+				  frenchCounter=1; // 2nd time onwards always becomes 1 in the end
+				  
+			  }
+		  }
+		  else {
+			  if (musicListHasElement("guitar")) {
+				  instrumentPickedList.remove("guitar");
+			  }
+			  textRemove(textDefaultMusic, "guitar");
+			  
+			 
+			  if(guitarCounter==1) {
+				  hoursMusic-=1500;
+				  guitarCounter--;
+				  hoursMusicCounterGuitar--;
+			  }
+		  }
+	 
+		 
+		  
+		  if (pianoBox.isSelected()) {
+			  pianoCounter++;
+			  
+			  if(pianoCounter==1) {
+				  instrumentPickedList.add("piano");
+				  textDefaultMusic+= "piano ";
+				  
+				  hoursMusicCounterPiano++;
+				  
+				  if (hoursMusicCounterPiano==1) {
+					  hoursMusic+=1500;
+				  }
+				  if(hoursMusicCounterPiano==2) {
+					  hoursMusicCounterPiano=1;
+				  }
+			  }
+			  if(pianoCounter==2) {
+				  pianoCounter=1;
+			  }
+		  }
+		  else {
+			  if(musicListHasElement("piano")) {
+				  instrumentPickedList.remove("piano");
+			  }
+			  textRemove(textDefaultMusic, "piano");
+			  
+			  if (pianoCounter==1) {
+				  hoursMusic-=1500;
+				  pianoCounter--;
+				  hoursMusicCounterPiano--;
+			  }
+		  }
+		  
+		  
+		  if (drumsBox.isSelected()) {
+			  drumsCounter++;
+			  
+			  if (drumsCounter==1) {
+				  instrumentPickedList.add("drums");
+				  textDefaultMusic+= "drums ";
+				  hoursMusicCounterDrums++;
+				  
+				  if (hoursMusicCounterDrums==1) {
+					  hoursMusic+=1500;
+				  }
+				  if(hoursMusicCounterDrums==2) {
+					  hoursMusicCounterDrums=1;
+				  }
+				  
+				
+			  }
+			  if(drumsCounter==2) {
+				  drumsCounter=1;
+			  }
+		  }
+		  else {
+			  if(musicListHasElement("drums")) {
+				  instrumentPickedList.remove("drums");
+			  }
+			  textRemove(textDefaultMusic, "drums");
+			  
+			  if(drumsCounter==1) {
+				  hoursMusic-=1500;
+				  drumsCounter--;
+				  hoursMusicCounterDrums--;
+			  }
+		  }
+		  
+		  
+	  }
+	  //Language Picking logic ends
 	 
 	 private void textRemove(String sentence, String toRemove) {
 		 int counter =0;
@@ -331,24 +495,13 @@ public class PrimeController extends UIControl{
 				 }
 			 }
 	 }
-	 
-	 private boolean musicListHasElement(String element) {
-		 boolean value=false;
-		 
-		 for(String i: instrumentPickedList) {
-			 if (i.equals(element)) {
-				 value =true;
-			 }
-			 else {
-				 return false;
-			 }		 
-			
-		 }
-		 return value;
-		
-		
-		 
-	 }
+	 **/
+	
+	 private void changeLabel(Label label, String text) { 		 
+
+		 label.setText(text); 
+
+} 
 	 
 	 
 	 }
