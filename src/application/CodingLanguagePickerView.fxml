@@ -55,7 +55,7 @@
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin></Button>
-            <Button mnemonicParsing="false" text="Next &gt;">
+            <Button mnemonicParsing="false" onAction="#secondSceneNextButton" text="Next &gt;">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin></Button>
@@ -91,7 +91,7 @@
                         <Font name="Book Antiqua" size="22.0" />
                      </font>
                   </Label>
-                  <Label fx:id="codingLabelThree">
+                  <Label fx:id="codingLabelThree" textFill="#dd1515">
                      <font>
                         <Font size="22.0" />
                      </font>

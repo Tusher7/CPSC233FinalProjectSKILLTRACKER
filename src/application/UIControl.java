@@ -27,6 +27,10 @@ public class UIControl {
 		this.Box2=Box2;
 		this.Box3=Box3;
 	}
+	
+	public UIControl() {
+		
+	}
 		
 		
 	public void PickViewCheckBoxLogic(String one, String two, String three, int hourIncrement) {
@@ -136,7 +140,7 @@ public class UIControl {
 		  }
 	  }
 	  
-	  
+	
 }
 	 private void textRemove(String sentence, String toRemove) {
 		 int counter =0;
@@ -183,6 +187,10 @@ public class UIControl {
 		return hoursSkill;
 	}
 	
+	 public String getPickedList(){
+		 System.out.println(pickedList.size()); 
+		 return pickedList.get(0);
+	 }
 
 }
 

@@ -33,7 +33,7 @@ public class PrimeController{
 	@FXML
 	private HBox mainViewButtonsHBox;	 
 	private Button nextButtonMainView = new Button("Next >");	    
-	private String skillPickedString ;    
+	private String skillPickedString;    
 	@FXML
 	private Button LanguagePickerBackButton;	   	   
 	@FXML 
@@ -82,11 +82,17 @@ public class PrimeController{
 	private Label codingLabelThree;	 
 	@FXML
 	private Label  mainViewLabelZero;
-
-	  
+	
+	
+	
+	private ArrayList<String> codingLanguagePickList = new ArrayList<String> ();
+	
+	  //onAction="#progressIncrement"
+	
 	@FXML 
 	public void confrimButton(ActionEvent pickSkill) { 
-		String skillChose =  skillChooseChoiceBox.getValue(); 
+		String skillChose =  skillChooseChoiceBox.getValue(); 	
+		
 		if (skillChose!=null) {
 		  defaultText=""; 
 			  
@@ -94,8 +100,9 @@ public class PrimeController{
 			  skillPickedString = ""; 
 			  defaultText+="Coding"; 
 			  changeLabel(skillPickedLabel,defaultText);		   
-			  skillPickedString = "Coding"; 
-			   } 
+			  skillPickedString = "Coding";
+			  
+			  } 
 		  else if(skillChose.equals("Language Learning")) { 
 			  skillPickedString = ""; 
 			  defaultText+="Language Learning"; 
@@ -182,6 +189,8 @@ public class PrimeController{
 			  mainScene = new Scene(root);
 			  applicationStage.setScene(mainScene);
 			  applicationStage.show();
+			  
+			  
 	  }
 		  else if((skillPickedString.equals("Language"))) {
 			  root = FXMLLoader.load(getClass().getResource("LanguagePickerView.fxml"));
@@ -197,6 +206,7 @@ public class PrimeController{
 			  applicationStage.setScene(mainScene);
 			  applicationStage.show();
 	  }
+		 
 	  }
 	  
 	  // BackBtton
@@ -223,7 +233,11 @@ public class PrimeController{
 		 changeLabel(pickMusic, textDefaultMusic);		 
 		 changeLabel(musicLabel3, textDefaultMusicThree);
 		 
+		 skillPickedString="";
+		 skillPickedString="Musical";
+		 
 		 textDefaultMusicThree="";
+		 
 	  }
 	  
 	  @FXML
@@ -237,6 +251,9 @@ public class PrimeController{
 		 String textDefaultLanguageThree="So a total of " + hoursLanguage + " hours";
 		 changeLabel(pickLanguage, textDefaultLanguage);		 
 		 changeLabel(languageLabelThree, textDefaultLanguageThree);
+		 
+		 skillPickedString="";
+		 skillPickedString="Language";
 		 
 		 textDefaultLanguageThree="";
 	  }
@@ -252,13 +269,44 @@ public class PrimeController{
 		 String textDefaultCodingThree="So a total of " + hoursCode + " hours";
 		 changeLabel(codingPick, textDefaultCode);		 
 		 changeLabel(codingLabelThree, textDefaultCodingThree);
-		 System.out.println(textDefaultCode);
 		 
+		 skillPickedString="";
+		 skillPickedString="Coding"; //skillPickedString was becoming null here.
+		 
+		 
+		 		 		 
 		 textDefaultCodingThree="";
 	  }	  	  
 	  //Second Scene CheckBox Logics end
 	  
+	 @FXML
+	 public void secondSceneNextButton(ActionEvent nextEvent) throws IOException {
+		 
+		 root = FXMLLoader.load(getClass().getResource("SkillTracker.fxml"));
+		 applicationStage = (Stage)((Node)nextEvent.getSource()).getScene().getWindow();
+		 mainScene = new Scene(root);
+		 applicationStage.setScene(mainScene);
+		 applicationStage.show();
+		 
+		 		 
+		 if (skillPickedString.equals("Coding")) {
+			 System.out.println("entered");
+			 var code = new UIControl(); // using codingSkillClass Later
+			 String one = code.getPickedList();
+			 //codingLanguagePickList = code.getPickedList();
+			 System.out.println(one);
+			 
+		 }
+		 
+		 
+	 }
 	 
+	 //Skill Tracker Logic start
+	 
+	 @FXML
+	 public void skillTrackerNextDay(ActionEvent nextDayEvent) {
+		 
+	 }
 	
 	 private void changeLabel(Label label, String text) { 		 
 
