@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PrimeController">
    <children>
       <Label text="Language Learning">
          <font>
@@ -26,39 +26,48 @@
             </Label>
          </children>
       </HBox>
-      <CheckBox mnemonicParsing="false" text="French">
+      <CheckBox fx:id="frenchBox" mnemonicParsing="false" onAction="#LanguageSkillPickLogic" text="French">
          <font>
             <Font size="20.0" />
          </font>
       </CheckBox>
-      <CheckBox mnemonicParsing="false" text="English">
+      <CheckBox fx:id="englishBox" mnemonicParsing="false" onAction="#LanguageSkillPickLogic" text="English">
          <font>
             <Font size="20.0" />
          </font>
       </CheckBox>
-      <CheckBox mnemonicParsing="false" text="Arabic">
+      <CheckBox fx:id="arabicBox" mnemonicParsing="false" onAction="#LanguageSkillPickLogic" text="Arabic">
          <font>
             <Font size="20.0" />
          </font>
       </CheckBox>
       <HBox prefHeight="39.0" prefWidth="600.0">
          <children>
-            <Button mnemonicParsing="false" text="Done" />
-            <Button mnemonicParsing="false" text="&lt; Back" />
-            <Button mnemonicParsing="false" text="next &gt;" />
-            <Label />
+            <Button fx:id="LanguagePickerBackButton" mnemonicParsing="false" onAction="#pickerViewBackButton" text="&lt; Back">
+               <HBox.margin>
+                  <Insets left="20.0" right="20.0" top="10.0" />
+               </HBox.margin></Button>
+            <Button mnemonicParsing="false" text="Next &gt;">
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin></Button>
+            <Button fx:id="languagePickReset" mnemonicParsing="false" onAction="#languagePickResetButton" text="Reset">
+               <HBox.margin>
+                  <Insets left="20.0" top="10.0" />
+               </HBox.margin>
+            </Button>
          </children>
       </HBox>
       <HBox prefHeight="194.0" prefWidth="600.0">
          <children>
-            <VBox prefHeight="194.0" prefWidth="483.0">
+            <VBox prefHeight="190.0" prefWidth="607.0">
                <children>
-                  <Label text="You have picked (no. of language)">
+                  <Label fx:id="pickLanguage">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label text="You need to spend roughly 1000 hours">
+                  <Label fx:id="languageLabelOne" text="You need to spend roughly 1000 hours">
                      <font>
                         <Font name="Book Antiqua" size="22.0" />
                      </font>
@@ -66,34 +75,20 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="on each language to achieve mastery.">
+                  <Label fx:id="languageLabelTwo" text="on each language to achieve mastery.">
                      <font>
                         <Font name="Book Antiqua" size="22.0" />
                      </font>
                   </Label>
-                  <Label text="So, a total of (_____) hours.">
+                  <Label fx:id="languageLabelThree" textFill="#dd0f0f">
                      <font>
                         <Font size="22.0" />
                      </font>
                   </Label>
-                  <Label text="if picked none. pls pick a language or sgo back" />
                </children>
                <HBox.margin>
                   <Insets />
                </HBox.margin>
-            </VBox>
-            <VBox prefHeight="194.0" prefWidth="305.0">
-               <children>
-                  <Label text="Languages Picked">
-                     <font>
-                        <Font name="Book Antiqua Bold" size="25.0" />
-                     </font>
-                  </Label>
-                  <Label text="E" />
-                  <Label text="A" />
-                  <Label text="F" />
-                  <Label text="Or none (pls pick a language" />
-               </children>
             </VBox>
          </children>
       </HBox>

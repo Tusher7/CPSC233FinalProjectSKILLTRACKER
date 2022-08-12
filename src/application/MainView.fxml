@@ -12,80 +12,172 @@
 <?import javafx.collections.FXCollections?>
 <?import javafx.collections.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PrimeController">
-   <children>
-      <Label text="GAMELIFE APP">
-         <font>
-            <Font name="Bell MT" size="29.0" />
-         </font>
-         <effect>
-            <DropShadow />
-         </effect>
-         <VBox.margin>
-            <Insets left="400.0" top="10.0" />
-         </VBox.margin>
-      </Label>
-      <ChoiceBox fx:id="skillChooseChoiceBox" prefWidth="150.0">
-      <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </HBox.margin>
-            	<items>
-            		<FXCollections fx:factory="observableArrayList">
-            			<String fx:value="Coding" />
-            			<String fx:value="Language Learning" />
-            			<String fx:value="Musical Instruments" />            		           	
-            		</FXCollections>
-            	</items>
-            </ChoiceBox>
-      <HBox prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <VBox prefHeight="90.0" prefWidth="231.0">
-               <children>
-                  <Label fx:id="head" text="The Skill You Picked:">
-                     <font>
-                        <Font name="Book Antiqua Bold" size="22.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label fx:id="skillPickedLabel" prefHeight="125.0" prefWidth="251.0" text="You have picked .... ">
-                     <font>
-                        <Font name="Britannic Bold" size="20.0" />
-                     </font>
-                     <padding>
-                        <Insets bottom="100.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets left="10.0" />
-                     </VBox.margin>
-                  </Label>
-               </children>
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PrimeController"> 
+
+   <children> 
+
+      <Label text="GAMELIFE APP"> 
+
+         <font> 
+
+            <Font name="Bell MT" size="29.0" /> 
+
+         </font> 
+
+         <effect> 
+
+            <DropShadow /> 
+
+         </effect> 
+
+         <VBox.margin> 
+
+            <Insets left="400.0" top="10.0" /> 
+
+         </VBox.margin> 
+
+      </Label> 
+
+      <ChoiceBox fx:id="skillChooseChoiceBox" prefWidth="150.0"> 
+
+      <HBox.margin> 
+
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" /> 
+
+               </HBox.margin> 
+
+            	<items> 
+
+            		<FXCollections fx:factory="observableArrayList"> 
+
+            			<String fx:value="Coding" /> 
+
+            			<String fx:value="Language Learning" /> 
+
+            			<String fx:value="Musical Instruments" />            		           	 
+
+            		</FXCollections> 
+
+            	</items> 
+
+            </ChoiceBox> 
+
+      <HBox prefHeight="100.0" prefWidth="200.0"> 
+
+         <children> 
+
+            <VBox prefHeight="90.0" prefWidth="231.0"> 
+
+               <children> 
+
+                  <Label fx:id="head" text="The Skill You Picked:"> 
+
+                     <font> 
+
+                        <Font name="Book Antiqua Bold" size="22.0" /> 
+
+                     </font> 
+
+                     <VBox.margin> 
+
+                        <Insets bottom="10.0" left="10.0" top="10.0" /> 
+
+                     </VBox.margin> 
+
+                  </Label> 
+
+                  <Label fx:id="skillPickedLabel" prefHeight="125.0" prefWidth="251.0" text=""> 
+
+                     <font> 
+
+                        <Font name="Britannic Bold" size="20.0" /> 
+
+                     </font> 
+
+                     <padding> 
+
+                        <Insets bottom="100.0" /> 
+
+                     </padding> 
+
+                     <VBox.margin> 
+
+                        <Insets left="10.0" /> 
+
+                     </VBox.margin> 
+
+                  </Label> 
+
+               </children> 
+
+               <HBox.margin> 
+
+                  <Insets right="10.0" /> 
+
+               </HBox.margin> 
+
             </VBox>
-         </children>
-         <opaqueInsets>
-            <Insets top="10.0" />
-         </opaqueInsets>
-         <padding>
-            <Insets top="10.0" />
-         </padding>
-      </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Button fx:id="confrimButtonClick" mnemonicParsing="false" onAction="#confrimButton" text="| Confirm |">
+            <Label fx:id="mainViewLabelZero" textFill="#d01717">
                <HBox.margin>
-                  <Insets left="20.0" top="20.0" />
+                  <Insets left="80.0" top="100.0" />
                </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#resetButton" text="| Reset |">
-               <HBox.margin>
-                  <Insets left="20.0" top="20.0" />
-               </HBox.margin>
-            </Button>
-         </children>
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label> 
+
+         </children> 
+
+         <opaqueInsets> 
+
+            <Insets top="10.0" /> 
+
+         </opaqueInsets> 
+
+         <padding> 
+
+            <Insets top="10.0" /> 
+
+         </padding> 
+
+      </HBox> 
+
+      <HBox fx:id="mainViewButtonsHBox" prefHeight="52.0" prefWidth="600.0"> 
+
+         <children> 
+
+            <Button fx:id="confirmButtonMainView" mnemonicParsing="false" onAction="#confrimButton" text="| Confirm |"> 
+
+               <HBox.margin> 
+
+                  <Insets left="20.0" top="20.0" /> 
+
+               </HBox.margin> 
+
+            </Button> 
+
+            <Button mnemonicParsing="false" onAction="#resetButtonMain" text="| Reset |"> 
+
+               <HBox.margin> 
+
+                  <Insets left="20.0" top="20.0" /> 
+
+               </HBox.margin> 
+
+            </Button> 
+
+         </children> 
+
       </HBox>
-   </children>
+      <Label fx:id="label001" textFill="#da1919">
+         <VBox.margin>
+            <Insets left="30.0" />
+         </VBox.margin>
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label> 
+
+   </children> 
+
 </VBox>
