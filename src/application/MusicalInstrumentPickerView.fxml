@@ -46,7 +46,7 @@
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin></Button>
-            <Button mnemonicParsing="false" onAction="#secondSceneNextButton" text="Next &gt;">
+            <Button mnemonicParsing="false" onAction="#musicPickNextButtonPress" text="Next &gt;">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin></Button>

@@ -2,7 +2,12 @@ package application;
 
 import java.util.ArrayList;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 
 public class UIControl {
@@ -139,6 +144,7 @@ public class UIControl {
 			  hoursSkillCounterThree--;
 		  }
 	  }
+	
 	  
 	
 }
@@ -174,22 +180,73 @@ public class UIControl {
 			
 		 }
 		 return value;
-		
-		
+	 }
+	
+		 
+	public void makeTracker(HBox sOC, HBox sTC, HBox sThC, Label sOL, Label sTL, Label sThL, ProgressBar bO, 
+			ProgressBar bT,ProgressBar bTh, Button iO, Button iT, Button iTh, VBox tC, Button r, Button nD) {
+		 int counter=0; // skillNumber
+		 for (String element : pickedList) {			 
+			 
+			Object firstSkill = null;
+			Object secondSkill = null;
+			Object thirdSkill = null;
+			if((element.equals(firstSkill) || element.equals(secondSkill) ||  element.equals(thirdSkill)) && counter == 0) { //skill One				 
+				 sOC.getChildren().addAll(sOL,bO,iO);
+				 changeLabel(sOL, element);
+				 tC.getChildren().add(sOC);
+				 					 
+			 }
+			 else if((element.equals(firstSkill) || element.equals(secondSkill) ||  element.equals(thirdSkill)) && counter == 1) { //skill Two
+				 sTC.getChildren().addAll(sTL,bT,iT);
+				 changeLabel(sTL, element);
+				 tC.getChildren().add(sTC);
+			 }
+			 else if((element.equals(firstSkill) || element.equals(secondSkill) ||  element.equals(thirdSkill)) && counter == 2) { //skillThree
+				 sThC.getChildren().addAll(sThL,bTh,iTh);
+				 changeLabel(sThL, element);
+				 tC.getChildren().add(sThC);
+			 }
+			 counter++;
+			
+		}	
+		 tC.getChildren().addAll(r, nD);
 		 
 	 }
 	 public String getTextDefault() {
 		 return textDefault;
 	 }
 
-
 	 public int getHoursSkill() {
 		return hoursSkill;
 	}
 	
-	 public String getPickedList(){
-		 System.out.println(pickedList.size()); 
-		 return pickedList.get(0);
+	 public ArrayList<String> getPickedList(){
+		 
+		 return new ArrayList<String> (pickedList);
+	 }
+	 public void changeLabel(Label label, String text) { 		 
+		 
+		 label.setText(text); 
+
+} 
+	 public void clearAllInfo() {
+		 counterOne=0;
+		 counterTwo=0;
+		 counterThree=0;
+		 hoursSkill = 0;
+				
+		 hoursSkillCounterOne=0;
+		 hoursSkillCounterTwo=0;
+		 hoursSkillCounterThree=0;
+		 pickedList = null;
+				
+		 textDefault= "You chose: ";
+				 
+		 Box1.setSelected(false);
+		 Box2.setSelected(false);
+		 Box3.setSelected(false);
+		 
 	 }
 
 }

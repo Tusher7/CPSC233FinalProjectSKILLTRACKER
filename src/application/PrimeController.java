@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button; 
 import javafx.scene.control.ChoiceBox; 
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.Node;
@@ -82,10 +83,31 @@ public class PrimeController{
 	private Label codingLabelThree;	 
 	@FXML
 	private Label  mainViewLabelZero;
+	@FXML
+	private Label skillOne = new Label();
+	@FXML
+	private Label skillThree = new Label();
+	@FXML
+	private Label skillTwo= new Label();
+	
+	private UIControl codingView;
+	private UIControl languageView;
+	private UIControl musicView;
+	
+	@FXML
+	private HBox skillOneHBox;
+	@FXML
+	private HBox skillTwoHBox;
+	@FXML
+	private HBox skillThreeHBox;
 	
 	
 	
 	private ArrayList<String> codingLanguagePickList = new ArrayList<String> ();
+	private ArrayList<String> LanguagePickList;
+	private ArrayList<String> musicPickList;
+	
+	
 	
 	  //onAction="#progressIncrement"
 	
@@ -223,7 +245,7 @@ public class PrimeController{
 	 //Second Scene CheckBox Logics 	  
 	  @FXML
 	  public void musicSkillPickLogic(ActionEvent MusicEvent) {		
-		 var musicView = new UIControl(guitarBox, pianoBox, drumsBox);
+		 musicView = new MusicSkill(guitarBox, pianoBox, drumsBox);
 		 musicView.PickViewCheckBoxLogic("guitar","piano","drums", 1500); 
 		 
 		 String textDefaultMusic = musicView.getTextDefault();
@@ -242,7 +264,7 @@ public class PrimeController{
 	  
 	  @FXML
 	  public void LanguageSkillPickLogic(ActionEvent LanguageEvent) {		
-		 var languageView = new UIControl(frenchBox, englishBox, arabicBox);
+		 languageView = new LanguageSkill(frenchBox, englishBox, arabicBox);
 		 languageView.PickViewCheckBoxLogic("french","english","arabic", 1000); 
 		 
 		 String textDefaultLanguage = languageView.getTextDefault();
@@ -260,7 +282,7 @@ public class PrimeController{
 	  
 	  @FXML
 	  public void CodingSkillPickLogic(ActionEvent codingEvent) {		
-		 var codingView = new UIControl(pythonBox, htmlBox, javaBox);
+		 codingView = new CodingSkill(pythonBox, htmlBox, javaBox);
 		 codingView.PickViewCheckBoxLogic("python","html","java", 1700); 
 		 
 		 String textDefaultCode = codingView.getTextDefault();
@@ -269,6 +291,7 @@ public class PrimeController{
 		 String textDefaultCodingThree="So a total of " + hoursCode + " hours";
 		 changeLabel(codingPick, textDefaultCode);		 
 		 changeLabel(codingLabelThree, textDefaultCodingThree);
+		 
 		 
 		 skillPickedString="";
 		 skillPickedString="Coding"; //skillPickedString was becoming null here.
@@ -280,36 +303,252 @@ public class PrimeController{
 	  //Second Scene CheckBox Logics end
 	  
 	 @FXML
-	 public void secondSceneNextButton(ActionEvent nextEvent) throws IOException {
+	 public void codePickNextButton(ActionEvent nextEventSecondScene) throws IOException {	
+		 codingLanguagePickList = codingView.getPickedList(); //Getting the list
 		 
-		 root = FXMLLoader.load(getClass().getResource("SkillTracker.fxml"));
-		 applicationStage = (Stage)((Node)nextEvent.getSource()).getScene().getWindow();
-		 mainScene = new Scene(root);
-		 applicationStage.setScene(mainScene);
-		 applicationStage.show();
+		 VBox trackerContainer = new VBox();
+		 Label topLabel = new Label("TRACKER");
 		 
-		 		 
-		 if (skillPickedString.equals("Coding")) {
-			 System.out.println("entered");
-			 var code = new UIControl(); // using codingSkillClass Later
-			 String one = code.getPickedList();
-			 //codingLanguagePickList = code.getPickedList();
-			 System.out.println(one);
+		 HBox skillOneContainer = new HBox();			 
+		 Label skillOneLabel = new Label();
+		 ProgressBar barOne = new ProgressBar();
+		 
+		 Button inputOne = new Button("Input");
+		 inputOne.setOnAction(inputOneEvent -> hoursPracticed(10));
+		 
+		 
+		 HBox skillTwoContainer = new HBox();
+		 Label skillTwoLabel = new Label();
+		 ProgressBar barTwo = new ProgressBar();
+		 
+		 Button inputTwo = new Button("Input");
+		 //
+		 
+		 HBox skillThreeContainer = new HBox();
+		 Label skillThreeLabel = new Label();
+		 ProgressBar barThree = new ProgressBar();
+		 
+		 Button inputThree = new Button("Input");
+		 //add logic of input button
+		 
+		 HBox buttons = new HBox();
+		 
+		 Button restart = new Button("Restart");			
+		 restart.setOnAction(restartEvent -> {
+			try {
+				pickerViewBackButton(nextEventSecondScene);	
+				codingView.clearAllInfo();
+				
+			} catch (IOException e) {			
+				System.out.println("Restart Button not working");
+				e.printStackTrace();
+			}
+		 });	
 			 
-		 }
+		 Button nextDay = new Button("Next Day");
+		 //nextDay.setOnAction(nextDayEvent -> //progress back to 0;
+		 buttons.getChildren().addAll(restart, nextDay);
 		 
+		 HBox labels = new HBox();	
+		 Label nextDayErrorLabel = new Label();
+		 		 		 			 			 			 			 
+		 Scene trackerScene = new Scene(trackerContainer);
+		 applicationStage.setScene(trackerScene);
+		 applicationStage.show();		 
+		 
+		 trackerContainer.getChildren().add(topLabel);
+		 
+		 codingView.makeTracker(skillOneContainer,skillTwoContainer, 
+				 skillThreeContainer,skillOneLabel,skillTwoLabel, skillThreeLabel, barOne,barTwo, barThree, inputOne,
+				 inputTwo, inputThree, trackerContainer, restart, nextDay);
 		 
 	 }
 	 
-	 //Skill Tracker Logic start
+	 @FXML
+	 public void languagePickNextButtonPress(ActionEvent nextEventSecondScene) throws IOException {	
+		 LanguagePickList = languageView.getPickedList(); //Getting the list
+		 
+		 VBox trackerContainer = new VBox();
+		 Label topLabel = new Label("TRACKER");
+		 
+		 HBox skillOneContainer = new HBox();			 
+		 Label skillOneLabel = new Label();
+		 ProgressBar barOne = new ProgressBar();
+		 
+		 Button inputOne = new Button("Input");
+		 inputOne.setOnAction(inputOneEvent -> hoursPracticed(10));
+		 
+		 
+		 HBox skillTwoContainer = new HBox();
+		 Label skillTwoLabel = new Label();
+		 ProgressBar barTwo = new ProgressBar();
+		 
+		 Button inputTwo = new Button("Input");
+		 //
+		 
+		 HBox skillThreeContainer = new HBox();
+		 Label skillThreeLabel = new Label();
+		 ProgressBar barThree = new ProgressBar();
+		 
+		 Button inputThree = new Button("Input");
+		 //add logic of input button
+		 
+		 HBox buttons = new HBox();
+		 
+		 Button restart = new Button("Restart");			
+		 restart.setOnAction(restartEvent -> {
+			try {
+				pickerViewBackButton(nextEventSecondScene);		
+				languageView.clearAllInfo();
+			} catch (IOException e) {			
+				System.out.println("Restart Button not working");
+				e.printStackTrace();
+			}
+		 });	
+			 
+		 Button nextDay = new Button("Next Day");
+		 //nextDay.setOnAction(nextDayEvent -> //progress back to 0;
+		 buttons.getChildren().addAll(restart, nextDay);
+		 
+		 HBox labels = new HBox();	
+		 Label nextDayErrorLabel = new Label();
+		 		 		 			 			 			 			 
+		 Scene trackerScene = new Scene(trackerContainer);
+		 applicationStage.setScene(trackerScene);
+		 applicationStage.show();		 
+		 
+		 trackerContainer.getChildren().add(topLabel);
+		 
+		 languageView.makeTracker(skillOneContainer,skillTwoContainer, skillThreeContainer,
+				 skillOneLabel,skillTwoLabel, skillThreeLabel, barOne,barTwo, barThree, inputOne,
+				 inputTwo, inputThree, trackerContainer, restart, nextDay);
+		 
+	 }
+	 @FXML
+	 public void musicPickNextButtonPress(ActionEvent nextEventSecondScene) throws IOException {	
+		 musicPickList = musicView.getPickedList(); //Getting the list
+		 
+		 VBox trackerContainer = new VBox();
+		 Label topLabel = new Label("TRACKER");
+		 
+		 HBox skillOneContainer = new HBox();			 
+		 Label skillOneLabel = new Label();
+		 ProgressBar barOne = new ProgressBar();
+		 
+		 Button inputOne = new Button("Input");
+		 inputOne.setOnAction(inputOneEvent -> hoursPracticed(10));
+		 
+		 
+		 HBox skillTwoContainer = new HBox();
+		 Label skillTwoLabel = new Label();
+		 ProgressBar barTwo = new ProgressBar();
+		 
+		 Button inputTwo = new Button("Input");
+		 //
+		 
+		 HBox skillThreeContainer = new HBox();
+		 Label skillThreeLabel = new Label();
+		 ProgressBar barThree = new ProgressBar();
+		 
+		 Button inputThree = new Button("Input");
+		 //add logic of input button
+		 
+		 HBox buttons = new HBox();
+		 
+		 Button restart = new Button("Restart");			
+		 restart.setOnAction(restartEvent -> {
+			try {
+				pickerViewBackButton(nextEventSecondScene);	
+				musicView.clearAllInfo();
+				
+			} catch (IOException e) {			
+				System.out.println("Restart Button not working");
+				e.printStackTrace();
+			}
+		 });	
+			 
+		 Button nextDay = new Button("Next Day");
+		 //nextDay.setOnAction(nextDayEvent -> //progress back to 0;
+		 buttons.getChildren().addAll(restart, nextDay);
+		 
+		 HBox labels = new HBox();	
+		 Label nextDayErrorLabel = new Label();
+		 		 		 			 			 			 			 
+		 Scene trackerScene = new Scene(trackerContainer);
+		 applicationStage.setScene(trackerScene);
+		 applicationStage.show();		 
+		 
+		 trackerContainer.getChildren().add(topLabel);
+		 
+		 musicView.makeTracker(skillOneContainer,skillTwoContainer, skillThreeContainer
+				 ,skillOneLabel,skillTwoLabel, skillThreeLabel, barOne,barTwo, barThree, inputOne,
+				 inputTwo, inputThree, trackerContainer, restart, nextDay);
+		 
+	 }
+		 
+		 
+		 
+	 
+	 
+	 private Object hoursPracticed(int rate) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	 /**
+	@FXML
+	 public void languagePickNextButton(ActionEvent nextEvent) throws IOException {		 
+		 root = FXMLLoader.load(getClass().getResource("SkillTrackerLanguage.fxml"));
+		 applicationStage = (Stage)((Node)nextEvent.getSource()).getScene().getWindow();
+		 mainScene = new Scene(root);
+		 applicationStage.setScene(mainScene);
+		 applicationStage.show();		 		 		 		 		 		 
+	 }
+	 
+	 
+	 @FXML
+	 public void musicPickNextButton(ActionEvent nextEvent) throws IOException {		 
+		 root = FXMLLoader.load(getClass().getResource("SkillTrackerMusic.fxml"));
+		 applicationStage = (Stage)((Node)nextEvent.getSource()).getScene().getWindow();
+		 mainScene = new Scene(root);
+		 applicationStage.setScene(mainScene);
+		 applicationStage.show();		 		 		 		 		 		 
+	 }
+	 
+	 
+	 @FXML
+	 public void startSkillCoding(ActionEvent startCode) {	  
+		 if (skillPickedString.equals("Coding")) {	 						 
+			 codingLanguagePickList = codingView.getPickedList(); //Getting the list
+			 int counter=0;
+			 for (String element : codingLanguagePickList) {
+				 
+				 if((element.equals("python") || element.equals("html") ||  element.equals("java")) && counter == 0) {		
+					 
+					 changeLabel(skillOne, element);
+					 
+				 }
+				 else if((element.equals("python") || element.equals("html") ||  element.equals("java")) && counter == 1) {
+					changeLabel(skillTwo,element);
+				 }
+				 else if((element.equals("python") || element.equals("html") ||  element.equals("java")) && counter == 2) {
+					changeLabel(skillThree,element);
+				 }
+				 counter++;
+				
+			}
+			 
+		 }
+		 
+	 }
+	 	 	 	 	 	 
 	 
 	 @FXML
 	 public void skillTrackerNextDay(ActionEvent nextDayEvent) {
 		 
 	 }
-	
+	**/
 	 private void changeLabel(Label label, String text) { 		 
-
+		 
 		 label.setText(text); 
 
 } 

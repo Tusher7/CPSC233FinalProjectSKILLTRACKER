@@ -19,7 +19,7 @@
       </Label>
       <HBox prefHeight="55.0" prefWidth="417.0">
          <children>
-            <Label fx:id="skillOne" text="Skill1">
+            <Label fx:id="skillOne" text="I1" textFill="#5017e1">
                <font>
                   <Font size="25.0" />
                </font>
@@ -32,7 +32,7 @@
                   <Insets left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </ProgressBar>
-            <Button fx:id="buttonOne" mnemonicParsing="false"  text="Input Stuff">
+            <Button fx:id="buttonOne" mnemonicParsing="false" text="Input Stuff">
                <HBox.margin>
                   <Insets top="15.0" />
                </HBox.margin>
@@ -42,7 +42,7 @@
       <Label text="XP Earned" textFill="RED" fx:id="xpChangeOne" />
       <HBox prefHeight="55.0" prefWidth="600.0">
          <children>
-            <Label text="Skill1">
+            <Label fx:id="skillTwo" text="I2">
                <font>
                   <Font size="25.0" />
                </font>
@@ -65,7 +65,7 @@
       <Label text="XP Earned" textFill="RED" />
       <HBox prefHeight="55.0" prefWidth="392.0">
          <children>
-            <Label text="Skill1">
+            <Label fx:id="skillThree" text="I3">
                <font>
                   <Font size="25.0" />
                </font>
