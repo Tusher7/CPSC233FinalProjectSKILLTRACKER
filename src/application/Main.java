@@ -27,9 +27,9 @@ public class Main extends Application {
 			//Scene languageScene = new Scene(languagePV,1000,1000);
 			//Scene musicalScene = new Scene(musicalInstrumentPV,1000,1000);
 			//Scene trackerScene = new Scene(skillTrackerBox,1000,1000);
-			//PrimeController controller = (PrimeController)loader.getController();
-			
-			//controller.applicationStage = primaryStage;
+			//FXMLLoader loader = new FXMLLoader();			
+			//PrimeController controller = new PrimeController();			
+			//controller.setApplicationStage(primaryStage);
 			
 			
 			primaryStage.setTitle("Khondaker and Favour's Final Rpoject");

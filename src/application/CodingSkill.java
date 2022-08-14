@@ -14,34 +14,39 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class CodingSkill extends UIControl{
-	
+	HBox sOC = new HBox();
+	HBox sTC = new HBox();
+	HBox sThC = new HBox();
+	private int XP;
 	public CodingSkill(CheckBox Box1, CheckBox Box2,CheckBox Box3) {
 		super(Box1, Box2, Box3);
 	}
 	//Overriding // Polymorphism
 	public void makeTracker(HBox sOC, HBox sTC, HBox sThC, Label sOL, Label sTL, Label sThL, ProgressBar bO, 
-			ProgressBar bT,ProgressBar bTh, Button iO, Button iT, Button iTh, VBox tC, Button r, Button nD) {
+			ProgressBar bT,ProgressBar bTh, Button iO, Button iT, Button iTh, VBox tC, Button r, Button nD, TextField tO, Label mO, TextField tT, Label mT, 
+			TextField tTh, Label mTh) {
 		 int counter=0; // skillNumber
 		 for (String element : getPickedList()) {			 
 			 
 			 if((element.equals("python") || element.equals("html") ||  element.equals("java")) && counter == 0) { //skill One				 
-				 sOC.getChildren().addAll(sOL,bO,iO);
+				 sOC.getChildren().addAll(sOL,bO,iO, tO, mO);
 				 changeLabel(sOL, element);
 				 tC.getChildren().add(sOC);
 				 					 
 			 }
 			 else if((element.equals("python") || element.equals("html") ||  element.equals("java")) && counter == 1) { //skill Two
-				 sTC.getChildren().addAll(sTL,bT,iT);
+				 sTC.getChildren().addAll(sTL,bT,iT, tT, mT);
 				 changeLabel(sTL, element);
 				 tC.getChildren().add(sTC);
 			 }
 			 else if((element.equals("python") || element.equals("html") ||  element.equals("java")) && counter == 2) { //skillThree
-				 sThC.getChildren().addAll(sThL,bTh,iTh);
+				 sThC.getChildren().addAll(sThL,bTh,iTh, tTh, mTh);
 				 changeLabel(sThL, element);
 				 tC.getChildren().add(sThC);
 			 }
@@ -51,5 +56,26 @@ public class CodingSkill extends UIControl{
 		 tC.getChildren().addAll(r, nD);
 		 
 	 }
+	
+	public void calculateXP(String textOneString, Label messageOne) {
+		int XP = 0;
+		 boolean ErrorOne = oneError(textOneString);
+		 if(ErrorOne==false && textOneString != "") {
+			 int textOneValue = (int) Double.parseDouble(textOneString);
+			 messageOne.setText("XP earned: 5");
+			 
+		 }
+		 else {
+			 messageOne.setText("Enter valid value");
+		 }
+		System.out.print(XP);
+	}
+	
+	
+	public int getXP() {
+		return XP;
+	}
+	
+	
 	
 }

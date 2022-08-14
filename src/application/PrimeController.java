@@ -2,7 +2,9 @@ package application;
 
 import java.io.IOException;
 import java.lang.reflect.Array;
-import java.util.ArrayList;  
+import java.util.ArrayList;
+import java.util.EventObject;
+
 import javafx.event.ActionEvent; 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox; 
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.Node;
@@ -106,6 +109,7 @@ public class PrimeController{
 	private ArrayList<String> codingLanguagePickList = new ArrayList<String> ();
 	private ArrayList<String> LanguagePickList;
 	private ArrayList<String> musicPickList;
+	
 	
 	
 	
@@ -242,6 +246,7 @@ public class PrimeController{
 		  applicationStage.show();
 	  } 
 	 
+	 
 	 //Second Scene CheckBox Logics 	  
 	  @FXML
 	  public void musicSkillPickLogic(ActionEvent MusicEvent) {		
@@ -302,7 +307,8 @@ public class PrimeController{
 	  }	  	  
 	  //Second Scene CheckBox Logics end
 	  
-	 @FXML
+	 
+	@FXML
 	 public void codePickNextButton(ActionEvent nextEventSecondScene) throws IOException {	
 		 codingLanguagePickList = codingView.getPickedList(); //Getting the list
 		 
@@ -313,23 +319,29 @@ public class PrimeController{
 		 Label skillOneLabel = new Label();
 		 ProgressBar barOne = new ProgressBar();
 		 
-		 Button inputOne = new Button("Input");
-		 inputOne.setOnAction(inputOneEvent -> hoursPracticed(10));
-		 
+		 TextField textOne = new TextField();
+		 Button inputOne = new Button("INPUT");		
+		 Label messageOne = new Label();
+		 inputOne.setOnAction(oneEvent-> codingView.calculateXP(textOne.getText(), messageOne)); 
+		 		 		 		 
 		 
 		 HBox skillTwoContainer = new HBox();
 		 Label skillTwoLabel = new Label();
 		 ProgressBar barTwo = new ProgressBar();
 		 
-		 Button inputTwo = new Button("Input");
-		 //
+		 Button inputTwo = new Button("INPUT");
+		 TextField textTwo = new TextField();		 	
+		 Label messageTwo = new Label();
+		 inputTwo.setOnAction(oneEvent-> codingView.calculateXP(textTwo.getText(), messageTwo)); 
 		 
 		 HBox skillThreeContainer = new HBox();
 		 Label skillThreeLabel = new Label();
 		 ProgressBar barThree = new ProgressBar();
 		 
-		 Button inputThree = new Button("Input");
-		 //add logic of input button
+		 Button inputThree = new Button("Input");		
+		 TextField textThree = new TextField();		 	
+		 Label messageThree = new Label();
+		 inputThree.setOnAction(oneEvent-> codingView.calculateXP(textThree.getText(), messageThree)); 
 		 
 		 HBox buttons = new HBox();
 		 
@@ -351,20 +363,37 @@ public class PrimeController{
 		 
 		 HBox labels = new HBox();	
 		 Label nextDayErrorLabel = new Label();
-		 		 		 			 			 			 			 
+		 
+		 //applicationStage.setScene(mainScene);
 		 Scene trackerScene = new Scene(trackerContainer);
+		 
 		 applicationStage.setScene(trackerScene);
-		 applicationStage.show();		 
+		 applicationStage.show();	
+		 
 		 
 		 trackerContainer.getChildren().add(topLabel);
 		 
 		 codingView.makeTracker(skillOneContainer,skillTwoContainer, 
 				 skillThreeContainer,skillOneLabel,skillTwoLabel, skillThreeLabel, barOne,barTwo, barThree, inputOne,
-				 inputTwo, inputThree, trackerContainer, restart, nextDay);
+				 inputTwo, inputThree, trackerContainer, restart, nextDay, textOne, messageOne, textTwo, messageTwo, textThree, messageThree);
+		 
+			 
 		 
 	 }
+			 
 	 
-	 @FXML
+	 
+	
+	
+    	
+    	 
+    	 
+    	// if (value < 0 || value > maxValue) {
+	    	//	errorMessage = String.format("Grade should be between 0 and %d.", maxValue);
+	    		//value = 0;
+	    	//}
+    	
+	@FXML
 	 public void languagePickNextButtonPress(ActionEvent nextEventSecondScene) throws IOException {	
 		 LanguagePickList = languageView.getPickedList(); //Getting the list
 		 
@@ -375,23 +404,28 @@ public class PrimeController{
 		 Label skillOneLabel = new Label();
 		 ProgressBar barOne = new ProgressBar();
 		 
-		 Button inputOne = new Button("Input");
-		 inputOne.setOnAction(inputOneEvent -> hoursPracticed(10));
-		 
+		 TextField textOne = new TextField();
+		 Button inputOne = new Button("INPUT");		
+		 Label messageOne = new Label();
+		 inputOne.setOnAction(oneEvent-> languageView.calculateXP(textOne.getText(), messageOne)); 						 
 		 
 		 HBox skillTwoContainer = new HBox();
 		 Label skillTwoLabel = new Label();
 		 ProgressBar barTwo = new ProgressBar();
 		 
-		 Button inputTwo = new Button("Input");
-		 //
+		 Button inputTwo = new Button("INPUT");
+		 TextField textTwo = new TextField();		 	
+		 Label messageTwo = new Label();
+		 inputTwo.setOnAction(oneEvent-> languageView.calculateXP(textTwo.getText(), messageTwo)); 		 
 		 
 		 HBox skillThreeContainer = new HBox();
 		 Label skillThreeLabel = new Label();
 		 ProgressBar barThree = new ProgressBar();
 		 
-		 Button inputThree = new Button("Input");
-		 //add logic of input button
+		 Button inputThree = new Button("Input");		
+		 TextField textThree = new TextField();		 	
+		 Label messageThree = new Label();
+		 inputThree.setOnAction(oneEvent-> languageView.calculateXP(textThree.getText(), messageThree)); 	 
 		 
 		 HBox buttons = new HBox();
 		 
@@ -414,14 +448,15 @@ public class PrimeController{
 		 Label nextDayErrorLabel = new Label();
 		 		 		 			 			 			 			 
 		 Scene trackerScene = new Scene(trackerContainer);
+		 
 		 applicationStage.setScene(trackerScene);
 		 applicationStage.show();		 
 		 
 		 trackerContainer.getChildren().add(topLabel);
 		 
-		 languageView.makeTracker(skillOneContainer,skillTwoContainer, skillThreeContainer,
-				 skillOneLabel,skillTwoLabel, skillThreeLabel, barOne,barTwo, barThree, inputOne,
-				 inputTwo, inputThree, trackerContainer, restart, nextDay);
+		 languageView.makeTracker(skillOneContainer,skillTwoContainer, 
+				 skillThreeContainer,skillOneLabel,skillTwoLabel, skillThreeLabel, barOne,barTwo, barThree, inputOne,
+				 inputTwo, inputThree, trackerContainer, restart, nextDay, textOne, messageOne, textTwo, messageTwo, textThree, messageThree);
 		 
 	 }
 	 @FXML
@@ -435,23 +470,28 @@ public class PrimeController{
 		 Label skillOneLabel = new Label();
 		 ProgressBar barOne = new ProgressBar();
 		 
-		 Button inputOne = new Button("Input");
-		 inputOne.setOnAction(inputOneEvent -> hoursPracticed(10));
-		 
+		 TextField textOne = new TextField();
+		 Button inputOne = new Button("INPUT");		
+		 Label messageOne = new Label();
+		 inputOne.setOnAction(oneEvent-> musicView.calculateXP(textOne.getText(), messageOne)); 		 				 
 		 
 		 HBox skillTwoContainer = new HBox();
 		 Label skillTwoLabel = new Label();
 		 ProgressBar barTwo = new ProgressBar();
 		 
-		 Button inputTwo = new Button("Input");
-		 //
-		 
+		 Button inputTwo = new Button("INPUT");
+		 TextField textTwo = new TextField();		 	
+		 Label messageTwo = new Label();
+		 inputTwo.setOnAction(oneEvent-> musicView.calculateXP(textTwo.getText(), messageTwo));		 
+		 		 
 		 HBox skillThreeContainer = new HBox();
 		 Label skillThreeLabel = new Label();
 		 ProgressBar barThree = new ProgressBar();
 		 
-		 Button inputThree = new Button("Input");
-		 //add logic of input button
+		 Button inputThree = new Button("Input");		
+		 TextField textThree = new TextField();		 	
+		 Label messageThree = new Label();
+		 inputThree.setOnAction(oneEvent-> musicView.calculateXP(textThree.getText(), messageThree)); 	
 		 
 		 HBox buttons = new HBox();
 		 
@@ -480,20 +520,17 @@ public class PrimeController{
 		 
 		 trackerContainer.getChildren().add(topLabel);
 		 
-		 musicView.makeTracker(skillOneContainer,skillTwoContainer, skillThreeContainer
-				 ,skillOneLabel,skillTwoLabel, skillThreeLabel, barOne,barTwo, barThree, inputOne,
-				 inputTwo, inputThree, trackerContainer, restart, nextDay);
+		 musicView.makeTracker(skillOneContainer,skillTwoContainer, skillThreeContainer,
+				 skillOneLabel, skillTwoLabel, skillThreeLabel, barOne,barTwo, barThree, inputOne,
+				 inputTwo, inputThree, trackerContainer, restart, nextDay, textOne, 
+				 messageOne, textTwo, messageTwo, textThree, messageThree);
 		 
 	 }
 		 
-		 
-		 
+		
 	 
 	 
-	 private Object hoursPracticed(int rate) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	 
 	 /**
 	@FXML
 	 public void languagePickNextButton(ActionEvent nextEvent) throws IOException {		 
@@ -552,6 +589,9 @@ public class PrimeController{
 		 label.setText(text); 
 
 } 
+	 public void setApplicationStage(Stage primaryStage) {
+		 this.applicationStage=primaryStage;
+	 }
 	 
 	 
 	 }

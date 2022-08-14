@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -26,6 +27,10 @@ public class UIControl {
 	private CheckBox Box1;
 	private CheckBox Box2;
 	private CheckBox Box3;
+	
+	private HBox sOC;
+	private HBox sTC;
+	private HBox sThC;
 		 
 	public UIControl(CheckBox Box1, CheckBox Box2,CheckBox Box3) {
 		this.Box1=Box1;
@@ -184,7 +189,12 @@ public class UIControl {
 	
 		 
 	public void makeTracker(HBox sOC, HBox sTC, HBox sThC, Label sOL, Label sTL, Label sThL, ProgressBar bO, 
-			ProgressBar bT,ProgressBar bTh, Button iO, Button iT, Button iTh, VBox tC, Button r, Button nD) {
+			ProgressBar bT,ProgressBar bTh, Button iO, Button iT, Button iTh, VBox tC, Button r, Button nD, 
+			TextField tO, Label mO, TextField tT, Label mT,TextField tTh, Label mTh ) {
+		this.sOC=sOC;
+		this.sTC=sTC;
+		this.sThC=sThC;
+		
 		 int counter=0; // skillNumber
 		 for (String element : pickedList) {			 
 			 
@@ -192,18 +202,18 @@ public class UIControl {
 			Object secondSkill = null;
 			Object thirdSkill = null;
 			if((element.equals(firstSkill) || element.equals(secondSkill) ||  element.equals(thirdSkill)) && counter == 0) { //skill One				 
-				 sOC.getChildren().addAll(sOL,bO,iO);
+				 sOC.getChildren().addAll(sOL,bO,iO, tO, mO);
 				 changeLabel(sOL, element);
 				 tC.getChildren().add(sOC);
 				 					 
 			 }
 			 else if((element.equals(firstSkill) || element.equals(secondSkill) ||  element.equals(thirdSkill)) && counter == 1) { //skill Two
-				 sTC.getChildren().addAll(sTL,bT,iT);
+				 sTC.getChildren().addAll(sTL,bT,iT,tT, mT);
 				 changeLabel(sTL, element);
 				 tC.getChildren().add(sTC);
 			 }
 			 else if((element.equals(firstSkill) || element.equals(secondSkill) ||  element.equals(thirdSkill)) && counter == 2) { //skillThree
-				 sThC.getChildren().addAll(sThL,bTh,iTh);
+				 sThC.getChildren().addAll(sThL,bTh,iTh,tTh, mTh);
 				 changeLabel(sThL, element);
 				 tC.getChildren().add(sThC);
 			 }
@@ -211,6 +221,7 @@ public class UIControl {
 			
 		}	
 		 tC.getChildren().addAll(r, nD);
+		 
 		 
 	 }
 	 public String getTextDefault() {
@@ -248,6 +259,28 @@ public class UIControl {
 		 Box3.setSelected(false);
 		 
 	 }
+	
+
+	public void calculateXP(String textOneString, Label messageOne) {	
+		
+	}
+	public boolean oneError(String textOneString) {
+		boolean Error=false;		
+        	
+    	for(char c : textOneString.toCharArray()){  		
+   		
+    		if (!Character.isDigit(c) || (c=='.')) {
+    			Error = true;    			
+    		}
+    		else {
+    			Error = false;
+    		}
+    	}
+    	return Error;
+		
+	}
+
+	
 
 }
 
