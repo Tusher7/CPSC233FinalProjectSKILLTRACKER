@@ -312,13 +312,14 @@ public class PrimeController{
 	 public void codePickNextButton(ActionEvent nextEventSecondScene) throws IOException {	
 		 codingLanguagePickList = codingView.getPickedList(); //Getting the list
 		 
+		 
 		 VBox trackerContainer = new VBox();
 		 Label topLabel = new Label("TRACKER");
 		 
 		 HBox skillOneContainer = new HBox();			 
 		 Label skillOneLabel = new Label();
-		 ProgressBar barOne = new ProgressBar();
-		 
+		 ProgressBar barOne = new ProgressBar();		 
+				 
 		 TextField textOne = new TextField();
 		 Button inputOne = new Button("INPUT");		
 		 Label messageOne = new Label();
@@ -332,7 +333,7 @@ public class PrimeController{
 		 Button inputTwo = new Button("INPUT");
 		 TextField textTwo = new TextField();		 	
 		 Label messageTwo = new Label();
-		 inputTwo.setOnAction(oneEvent-> codingView.calculateXP(textTwo.getText(), messageTwo)); 
+		 //inputTwo.setOnAction(oneEvent-> codingView.calculateXP(textTwo.getText(), messageTwo)); 
 		 
 		 HBox skillThreeContainer = new HBox();
 		 Label skillThreeLabel = new Label();
@@ -341,11 +342,11 @@ public class PrimeController{
 		 Button inputThree = new Button("Input");		
 		 TextField textThree = new TextField();		 	
 		 Label messageThree = new Label();
-		 inputThree.setOnAction(oneEvent-> codingView.calculateXP(textThree.getText(), messageThree)); 
+		 //inputThree.setOnAction(oneEvent-> codingView.calculateXP(textThree.getText(), messageThree)); 
 		 
-		 HBox buttons = new HBox();
+		 HBox buttonsHBox = new HBox();
 		 
-		 Button restart = new Button("Restart");			
+		 Button restart = new Button("Restart EVERYTHING");			
 		 restart.setOnAction(restartEvent -> {
 			try {
 				pickerViewBackButton(nextEventSecondScene);	
@@ -356,13 +357,16 @@ public class PrimeController{
 				e.printStackTrace();
 			}
 		 });	
-			 
+		 Label dayCounter = new Label();
 		 Button nextDay = new Button("Next Day");
-		 //nextDay.setOnAction(nextDayEvent -> //progress back to 0;
-		 buttons.getChildren().addAll(restart, nextDay);
+		 nextDay.setOnAction(nextDayEvent -> codingView.progressUpdate(barOne, dayCounter)); 
+		 Button restartCurrent = new Button("Restart Progress for Current Skill");
 		 
-		 HBox labels = new HBox();	
+		 HBox labelsHBox = new HBox();	
 		 Label nextDayErrorLabel = new Label();
+		 
+		 
+		 
 		 
 		 //applicationStage.setScene(mainScene);
 		 Scene trackerScene = new Scene(trackerContainer);
@@ -374,8 +378,11 @@ public class PrimeController{
 		 trackerContainer.getChildren().add(topLabel);
 		 
 		 codingView.makeTracker(skillOneContainer,skillTwoContainer, 
-				 skillThreeContainer,skillOneLabel,skillTwoLabel, skillThreeLabel, barOne,barTwo, barThree, inputOne,
-				 inputTwo, inputThree, trackerContainer, restart, nextDay, textOne, messageOne, textTwo, messageTwo, textThree, messageThree);
+				 skillThreeContainer,skillOneLabel,skillTwoLabel, 
+				 skillThreeLabel, barOne,barTwo, barThree, inputOne,
+				 inputTwo, inputThree, trackerContainer, restart, nextDay,
+				 textOne, messageOne, textTwo, messageTwo, textThree, messageThree,
+				 buttonsHBox,restartCurrent, labelsHBox, dayCounter);
 		 
 			 
 		 
@@ -407,7 +414,7 @@ public class PrimeController{
 		 TextField textOne = new TextField();
 		 Button inputOne = new Button("INPUT");		
 		 Label messageOne = new Label();
-		 inputOne.setOnAction(oneEvent-> languageView.calculateXP(textOne.getText(), messageOne)); 						 
+		 //inputOne.setOnAction(oneEvent-> languageView.calculateXP(textOne.getText(), messageOne)); 						 
 		 
 		 HBox skillTwoContainer = new HBox();
 		 Label skillTwoLabel = new Label();
@@ -416,7 +423,7 @@ public class PrimeController{
 		 Button inputTwo = new Button("INPUT");
 		 TextField textTwo = new TextField();		 	
 		 Label messageTwo = new Label();
-		 inputTwo.setOnAction(oneEvent-> languageView.calculateXP(textTwo.getText(), messageTwo)); 		 
+		 //inputTwo.setOnAction(oneEvent-> languageView.calculateXP(textTwo.getText(), messageTwo)); 		 
 		 
 		 HBox skillThreeContainer = new HBox();
 		 Label skillThreeLabel = new Label();
@@ -425,7 +432,7 @@ public class PrimeController{
 		 Button inputThree = new Button("Input");		
 		 TextField textThree = new TextField();		 	
 		 Label messageThree = new Label();
-		 inputThree.setOnAction(oneEvent-> languageView.calculateXP(textThree.getText(), messageThree)); 	 
+		 //inputThree.setOnAction(oneEvent-> languageView.calculateXP(textThree.getText(), messageThree)); 	 
 		 
 		 HBox buttons = new HBox();
 		 
@@ -441,10 +448,11 @@ public class PrimeController{
 		 });	
 			 
 		 Button nextDay = new Button("Next Day");
-		 //nextDay.setOnAction(nextDayEvent -> //progress back to 0;
+		 //nextDay.setOnAction(nextDayEvent -> settingProgress(barOne)); //progress back to 0;
+		 
 		 buttons.getChildren().addAll(restart, nextDay);
 		 
-		 HBox labels = new HBox();	
+		 HBox labelsHBox = new HBox();	
 		 Label nextDayErrorLabel = new Label();
 		 		 		 			 			 			 			 
 		 Scene trackerScene = new Scene(trackerContainer);
@@ -454,9 +462,10 @@ public class PrimeController{
 		 
 		 trackerContainer.getChildren().add(topLabel);
 		 
-		 languageView.makeTracker(skillOneContainer,skillTwoContainer, 
-				 skillThreeContainer,skillOneLabel,skillTwoLabel, skillThreeLabel, barOne,barTwo, barThree, inputOne,
-				 inputTwo, inputThree, trackerContainer, restart, nextDay, textOne, messageOne, textTwo, messageTwo, textThree, messageThree);
+		// languageView.makeTracker(skillOneContainer,skillTwoContainer, 
+			//	 skillThreeContainer,skillOneLabel,skillTwoLabel, skillThreeLabel, 
+			//	 barOne,barTwo, barThree, inputOne, inputTwo, inputThree, trackerContainer, 
+			//	 restart, nextDay, textOne, messageOne, textTwo, messageTwo, textThree, messageThree);
 		 
 	 }
 	 @FXML
@@ -470,10 +479,12 @@ public class PrimeController{
 		 Label skillOneLabel = new Label();
 		 ProgressBar barOne = new ProgressBar();
 		 
+	
+		 
 		 TextField textOne = new TextField();
 		 Button inputOne = new Button("INPUT");		
 		 Label messageOne = new Label();
-		 inputOne.setOnAction(oneEvent-> musicView.calculateXP(textOne.getText(), messageOne)); 		 				 
+		 //inputOne.setOnAction(oneEvent-> musicView.calculateXP(textOne.getText(), messageOne)); 		 				 
 		 
 		 HBox skillTwoContainer = new HBox();
 		 Label skillTwoLabel = new Label();
@@ -482,7 +493,7 @@ public class PrimeController{
 		 Button inputTwo = new Button("INPUT");
 		 TextField textTwo = new TextField();		 	
 		 Label messageTwo = new Label();
-		 inputTwo.setOnAction(oneEvent-> musicView.calculateXP(textTwo.getText(), messageTwo));		 
+		 //inputTwo.setOnAction(oneEvent-> musicView.calculateXP(textTwo.getText(), messageTwo));		 
 		 		 
 		 HBox skillThreeContainer = new HBox();
 		 Label skillThreeLabel = new Label();
@@ -491,7 +502,7 @@ public class PrimeController{
 		 Button inputThree = new Button("Input");		
 		 TextField textThree = new TextField();		 	
 		 Label messageThree = new Label();
-		 inputThree.setOnAction(oneEvent-> musicView.calculateXP(textThree.getText(), messageThree)); 	
+		 //inputThree.setOnAction(oneEvent-> musicView.calculateXP(textThree.getText(), messageThree)); 	
 		 
 		 HBox buttons = new HBox();
 		 
@@ -520,10 +531,10 @@ public class PrimeController{
 		 
 		 trackerContainer.getChildren().add(topLabel);
 		 
-		 musicView.makeTracker(skillOneContainer,skillTwoContainer, skillThreeContainer,
-				 skillOneLabel, skillTwoLabel, skillThreeLabel, barOne,barTwo, barThree, inputOne,
-				 inputTwo, inputThree, trackerContainer, restart, nextDay, textOne, 
-				 messageOne, textTwo, messageTwo, textThree, messageThree);
+		// musicView.makeTracker(skillOneContainer,skillTwoContainer, skillThreeContainer,
+			//	 skillOneLabel, skillTwoLabel, skillThreeLabel, barOne,barTwo, barThree, inputOne,
+				// inputTwo, inputThree, trackerContainer, restart, nextDay, textOne, 
+				 //messageOne, textTwo, messageTwo, textThree, messageThree);
 		 
 	 }
 		 
@@ -584,6 +595,7 @@ public class PrimeController{
 		 
 	 }
 	**/
+	
 	 private void changeLabel(Label label, String text) { 		 
 		 
 		 label.setText(text); 

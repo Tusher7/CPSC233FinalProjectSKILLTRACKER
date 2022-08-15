@@ -31,6 +31,8 @@ public class UIControl {
 	private HBox sOC;
 	private HBox sTC;
 	private HBox sThC;
+	
+	private int day = 0;
 		 
 	public UIControl(CheckBox Box1, CheckBox Box2,CheckBox Box3) {
 		this.Box1=Box1;
@@ -165,7 +167,7 @@ public class UIControl {
 				 char c = (sentence.charAt(iIndexPrevious));
 				 if(c == ' ') {
 					 desiredIndex = sentence.indexOf(i);
-					 sentence = sentence.replaceAll(" "+ toRemove, ""); //added a whitespace to make sure no whitespace is left behind when a word is removed.
+					 sentence = sentence.replaceAll(" "+ toRemove, ""); //deleted a whitespace to make sure no whitespace is left behind when a word is removed.
 					 textDefault = sentence;
 				 }			  			
 				 
@@ -190,7 +192,7 @@ public class UIControl {
 		 
 	public void makeTracker(HBox sOC, HBox sTC, HBox sThC, Label sOL, Label sTL, Label sThL, ProgressBar bO, 
 			ProgressBar bT,ProgressBar bTh, Button iO, Button iT, Button iTh, VBox tC, Button r, Button nD, 
-			TextField tO, Label mO, TextField tT, Label mT,TextField tTh, Label mTh ) {
+			TextField tO, Label mO, TextField tT, Label mT,TextField tTh, Label mTh, HBox bH, Button rCu, HBox lH, Label dC ) {
 		this.sOC=sOC;
 		this.sTC=sTC;
 		this.sThC=sThC;
@@ -220,7 +222,9 @@ public class UIControl {
 			 counter++;
 			
 		}	
-		 tC.getChildren().addAll(r, nD);
+		 bH.getChildren().addAll(r, nD, rCu);
+		 lH.getChildren().add(dC);
+		 tC.getChildren().addAll(bH, lH);
 		 
 		 
 	 }
@@ -261,24 +265,49 @@ public class UIControl {
 	 }
 	
 
-	public void calculateXP(String textOneString, Label messageOne) {	
+	public void calculateXP(String textString, Label message) {	
 		
 	}
-	public boolean oneError(String textOneString) {
+	
+	public double setProgressXP(int textValue) {				
+		
+		return (textValue/250.0);
+	}
+
+	
+	
+	public boolean oneError(String textString) {
 		boolean Error=false;		
         	
-    	for(char c : textOneString.toCharArray()){  		
+    	for(char c : textString.toCharArray()){  		
    		
     		if (!Character.isDigit(c) || (c=='.')) {
     			Error = true;    			
     		}
-    		else {
-    			Error = false;
+    		else {  			
+    			int textValue = (int) Double.parseDouble(textString);
+    			if (textValue < 0 || textValue >20) {
+    				Error=true;
+    			}
+    			else {
+    				Error = false;   
+    			}   							    			
     		}
     	}
     	return Error;
 		
 	}
+	public void progressUpdate(ProgressBar bar, Label dayCounter) {
+		
+	}
+	
+	public int getDay() {
+		return day;
+	}
+	public void setDay(int num) {
+		day = num;
+	}
+	
 
 	
 
