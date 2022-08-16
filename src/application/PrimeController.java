@@ -36,7 +36,7 @@ public class PrimeController{
 	//private ArrayList<String> skillPickedList = new ArrayList<String> (); 
 	@FXML
 	private HBox mainViewButtonsHBox;	 
-	private Button nextButtonMainView = new Button("Next >");	    
+	private Button nextButtonMainView = new Button("Next >");	   
 	private String skillPickedString;    
 	@FXML
 	private Button LanguagePickerBackButton;	   	   
@@ -117,7 +117,7 @@ public class PrimeController{
 	
 	@FXML 
 	public void confrimButton(ActionEvent pickSkill) { 
-		String skillChose =  skillChooseChoiceBox.getValue(); 	
+		String skillChose =  skillChooseChoiceBox.getValue();	
 		
 		if (skillChose!=null) {
 		  defaultText=""; 
@@ -271,7 +271,7 @@ public class PrimeController{
 		 
 		 textDefaultMusicThree="";
 		 
-	  }
+   }
 	  
 	  @FXML
 	  public void LanguageSkillPickLogic(ActionEvent LanguageEvent) {		
@@ -367,17 +367,13 @@ public class PrimeController{
 		 Label dayCounter = new Label();
 		 Button nextDay = new Button("Next Day");
 		 nextDay.setOnAction(nextDayEvent -> codingView.progressUpdate(barOne, barTwo, barThree, dayCounter)); 
-		// Button restartCurrent = new Button("Restart Progress for Current Skill");
-		 //restartCurrent.setOnAction(restartCutrrentEvent -> codingView.resetAllCurrent(barOne, barTwo, barThree, textOne, textTwo, textThree, skillOneLabel, 
-				// skillTwoLabel, skillThreeLabel, dayCounter));
+		
 		 
 		 HBox labelsHBox = new HBox();	
 		 Label nextDayErrorLabel = new Label();
+		 		 		 
 		 
 		 
-		 
-		 
-		 //applicationStage.setScene(mainScene);
 		 Scene trackerScene = new Scene(trackerContainer);
 		 
 		 applicationStage.setScene(trackerScene);
@@ -402,10 +398,7 @@ public class PrimeController{
 	 }
 			 	 	 		   	    	 
     	 
-    	// if (value < 0 || value > maxValue) {
-	    	//	errorMessage = String.format("Grade should be between 0 and %d.", maxValue);
-	    		//value = 0;
-	    	//}
+    	
     	
 	@FXML
 	 public void languagePickNextButtonPress(ActionEvent nextEventSecondScene) throws IOException {	
@@ -423,7 +416,7 @@ public class PrimeController{
 		 TextField textOne = new TextField();
 		 Button inputOne = new Button("INPUT Hours Practiced");		
 		 Label messageOne = new Label();
-		 //inputOne.setOnAction(oneEvent-> languageView.calculateXP(textOne.getText(), messageOne)); 						 
+		 inputOne.setOnAction(oneEvent-> languageView.calculateXPOne(textOne.getText(), messageOne)); 						 
 		 
 		 HBox skillTwoContainer = new HBox();
 		 Label skillTwoLabel = new Label();
@@ -432,7 +425,7 @@ public class PrimeController{
 		 Button inputTwo = new Button("INPUT Hours Practiced");
 		 TextField textTwo = new TextField();		 	
 		 Label messageTwo = new Label();
-		 //inputTwo.setOnAction(oneEvent-> languageView.calculateXP(textTwo.getText(), messageTwo)); 		 
+		 inputTwo.setOnAction(oneEvent-> languageView.calculateXPTwo(textTwo.getText(), messageTwo)); 		 
 		 
 		 HBox skillThreeContainer = new HBox();
 		 Label skillThreeLabel = new Label();
@@ -441,11 +434,11 @@ public class PrimeController{
 		 Button inputThree = new Button("INPUT Hours Practiced");		
 		 TextField textThree = new TextField();		 	
 		 Label messageThree = new Label();
-		 //inputThree.setOnAction(oneEvent-> languageView.calculateXP(textThree.getText(), messageThree)); 	 
+		 inputThree.setOnAction(oneEvent-> languageView.calculateXPThree(textThree.getText(), messageThree)); 	 
 		 
-		 HBox buttons = new HBox();
+		 HBox buttonsHBox = new HBox();
 		 
-		 Button restart = new Button("Restart");			
+		 Button restart = new Button("Restart EVERYTHING");			
 		 restart.setOnAction(restartEvent -> {
 			try {
 				pickerViewBackButton(nextEventSecondScene);		
@@ -455,11 +448,11 @@ public class PrimeController{
 				e.printStackTrace();
 			}
 		 });	
-			 
+		 Label dayCounter = new Label();
 		 Button nextDay = new Button("Next Day");
-		 //nextDay.setOnAction(nextDayEvent -> settingProgress(barOne)); //progress back to 0;
+		 nextDay.setOnAction(nextDayEvent -> languageView.progressUpdate(barOne, barTwo, barThree, dayCounter));
 		 
-		 buttons.getChildren().addAll(restart, nextDay);
+		 
 		 
 		 HBox labelsHBox = new HBox();	
 		 Label nextDayErrorLabel = new Label();
@@ -472,10 +465,12 @@ public class PrimeController{
 		 
 		 trackerContainer.getChildren().add(topLabel);
 		 
-		// languageView.makeTracker(skillOneContainer,skillTwoContainer, 
-			//	 skillThreeContainer,skillOneLabel,skillTwoLabel, skillThreeLabel, 
-			//	 barOne,barTwo, barThree, inputOne, inputTwo, inputThree, trackerContainer, 
-			//	 restart, nextDay, textOne, messageOne, textTwo, messageTwo, textThree, messageThree);
+		languageView.makeTracker(skillOneContainer,skillTwoContainer, 
+				 skillThreeContainer,skillOneLabel,skillTwoLabel, 
+				 skillThreeLabel, barOne,barTwo, barThree, inputOne,
+				 inputTwo, inputThree, trackerContainer, restart, nextDay,
+				 textOne, messageOne, textTwo, messageTwo, textThree, messageThree,
+				 buttonsHBox,labelsHBox, dayCounter);
 		}
 		 else {
 				changeLabel(pickLanguage, "Please check a Box to pick a skill.");
@@ -498,31 +493,31 @@ public class PrimeController{
 	
 		 
 		 TextField textOne = new TextField();
-		 Button inputOne = new Button("INPUT");		
+		 Button inputOne = new Button("INPUT Hours Practiced");		
 		 Label messageOne = new Label();
-		 //inputOne.setOnAction(oneEvent-> musicView.calculateXP(textOne.getText(), messageOne)); 		 				 
+		 inputOne.setOnAction(oneEvent-> musicView.calculateXPOne(textOne.getText(), messageOne)); 		 				 
 		 
 		 HBox skillTwoContainer = new HBox();
 		 Label skillTwoLabel = new Label();
 		 ProgressBar barTwo = new ProgressBar();
 		 
-		 Button inputTwo = new Button("INPUT");
+		 Button inputTwo = new Button("INPUT Hours Practiced");
 		 TextField textTwo = new TextField();		 	
 		 Label messageTwo = new Label();
-		 //inputTwo.setOnAction(oneEvent-> musicView.calculateXP(textTwo.getText(), messageTwo));		 
+		 inputTwo.setOnAction(oneEvent-> musicView.calculateXPTwo(textTwo.getText(), messageTwo));		 
 		 		 
 		 HBox skillThreeContainer = new HBox();
 		 Label skillThreeLabel = new Label();
 		 ProgressBar barThree = new ProgressBar();
 		 
-		 Button inputThree = new Button("Input");		
+		 Button inputThree = new Button("INPUT Hours Practiced");		
 		 TextField textThree = new TextField();		 	
 		 Label messageThree = new Label();
-		 //inputThree.setOnAction(oneEvent-> musicView.calculateXP(textThree.getText(), messageThree)); 	
+		 inputThree.setOnAction(oneEvent-> musicView.calculateXPThree(textThree.getText(), messageThree)); 	
 		 
-		 HBox buttons = new HBox();
+		 HBox buttonsHBox = new HBox();
 		 
-		 Button restart = new Button("Restart");			
+		 Button restart = new Button("Restart EVERYTHING");			
 		 restart.setOnAction(restartEvent -> {
 			try {
 				pickerViewBackButton(nextEventSecondScene);	
@@ -533,12 +528,12 @@ public class PrimeController{
 				e.printStackTrace();
 			}
 		 });	
-			 
+		 Label dayCounter = new Label();
 		 Button nextDay = new Button("Next Day");
-		 //nextDay.setOnAction(nextDayEvent -> //progress back to 0;
-		 buttons.getChildren().addAll(restart, nextDay);
+		 nextDay.setOnAction(nextDayEvent -> musicView.progressUpdate(barOne, barTwo, barThree, dayCounter));
+		 
 	
-		 HBox labels = new HBox();	
+		 HBox labelsHBox = new HBox();	
 		 Label nextDayErrorLabel = new Label();
 		 		 		 			 			 			 			 
 		 Scene trackerScene = new Scene(trackerContainer);
@@ -548,10 +543,12 @@ public class PrimeController{
 		 
 		 trackerContainer.getChildren().add(topLabel);
 		 
-		// musicView.makeTracker(skillOneContainer,skillTwoContainer, skillThreeContainer,
-			//	 skillOneLabel, skillTwoLabel, skillThreeLabel, barOne,barTwo, barThree, inputOne,
-				// inputTwo, inputThree, trackerContainer, restart, nextDay, textOne, 
-				 //messageOne, textTwo, messageTwo, textThree, messageThree);
+		musicView.makeTracker(skillOneContainer,skillTwoContainer, 
+				 skillThreeContainer,skillOneLabel,skillTwoLabel, 
+				 skillThreeLabel, barOne,barTwo, barThree, inputOne,
+				 inputTwo, inputThree, trackerContainer, restart, nextDay,
+				 textOne, messageOne, textTwo, messageTwo, textThree, messageThree,
+				 buttonsHBox,labelsHBox, dayCounter);
 		 }
 		 else {
 				changeLabel(pickMusic, "Please check a Box to pick a skill.");

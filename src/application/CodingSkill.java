@@ -108,7 +108,7 @@ public class CodingSkill extends UIControl{
 			 
 		 }
 		 else {
-			 messageOne.setText("Enter valid number without alphabets or decimals that is between 0 and 20.");
+			 messageOne.setText("Enter valid number without alphabets or decimals that is between 0 and 24.");
 		 }
 		 System.out.println(textValueOne);
 	}
@@ -130,7 +130,7 @@ public class CodingSkill extends UIControl{
 			 }			 			 
 		 }
 		 else {
-			 messageTwo.setText("Enter valid number without alphabets or decimals that is between 0 and 20.");
+			 messageTwo.setText("Enter valid number without alphabets or decimals that is between 0 and 24.");
 		 }
 		 System.out.println(textValueTwo);
 	}
@@ -152,14 +152,14 @@ public class CodingSkill extends UIControl{
 			 }			 			 
 		 }
 		 else {
-			 messageThree.setText("Enter valid number without alphabets or decimals that is between 0 and 20.");
+			 messageThree.setText("Enter valid number without alphabets or decimals that is between 0 and 24.");
 		 }
 		 System.out.println(textValueThree);
 	}
 	
 	public void progressUpdate(ProgressBar barOne, ProgressBar barTwo, ProgressBar barThree, Label dayCounter) {	
 		
-		if(inputButtonCounter>0) {
+		if(inputButtonCounter>0 && (textValueOne + textValueTwo + textValueThree) <=24) {
 			
 		
 			if (!(progressOne>=1) && !( progressTwo>=1) && !(progressThree>=1) && textStringOne!="" && textStringTwo!="" && textStringThree!=""  && ErrorOne==false && ErrorTwo==false && ErrorThree==false ){ //day will not increase when all learning is finished
@@ -241,30 +241,18 @@ public class CodingSkill extends UIControl{
 			
 			
 		}
-		else {
+		else { 
+			if (inputButtonCounter==0) {
 			dayCounter.setText("Input a value first ");
+			}
+			if((textValueOne + textValueTwo + textValueThree) >24) {
+				dayCounter.setText("Total time spent on all skills must be less than 24 hours");
+			}
+			
 		}
 		
 	}
 	
-	public void resetAllCurrent(ProgressBar barOne, ProgressBar barTwo, ProgressBar barThree, TextField textOne, TextField textTwo,  TextField textThree, Label skillOneLabel, 
-			Label skillTwoLabel, Label skillThreeLabel, Label dayCounter) {
-		
-		barOne.setProgress(0.0);
-		barTwo.setProgress(0.0);
-		barThree.setProgress(0.0);
-		skillOneLabel.setText("");
-		skillTwoLabel.setText("");
-		skillThreeLabel.setText("");
-		textOne.setText("");
-		textTwo.setText("");
-		textThree.setText("");
-		dayCounter.setText("");
-		
-		
-		
-		
-	}
 	
 	
 

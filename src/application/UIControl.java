@@ -294,7 +294,7 @@ public class UIControl {
     		}
     		else {  			
     			int textValue = (int) Double.parseDouble(textString);
-    			if (textValue < 0 || textValue >20) {
+    			if (textValue < 0 || textValue >25) {
     				Error=true;
     			}
     			else {
