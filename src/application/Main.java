@@ -22,7 +22,7 @@ public class Main extends Application {
 			//VBox musicalInstrumentPV = loader.load(new FileInputStream("src/application/MusicalInstrumentPickerView.fxml"));
 			//VBox skillTrackerBox = loader.load(new FileInputStream("src/application/Skill Tracker.fxml"));
 			
-			Scene mainScene = new Scene(root,1000,1000);
+			Scene mainScene = new Scene(root,500,350);
 			//Scene codingScene = new Scene(codingLPV,1000,1000);
 			//Scene languageScene = new Scene(languagePV,1000,1000);
 			//Scene musicalScene = new Scene(musicalInstrumentPV,1000,1000);

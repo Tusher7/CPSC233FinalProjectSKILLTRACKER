@@ -67,7 +67,7 @@
                         <Font name="Berlin Sans FB Demi Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label fx:id="languageLabelOne" text="You need to spend roughly 1000 hours">
+                  <Label fx:id="languageLabelOne" text="You need to spend roughly 300 hours">
                      <font>
                         <Font name="Book Antiqua" size="22.0" />
                      </font>
@@ -75,7 +75,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="languageLabelTwo" text="on each language to achieve mastery.">
+                  <Label fx:id="languageLabelTwo" text="on each language to achieve basic understanding.">
                      <font>
                         <Font name="Book Antiqua" size="22.0" />
                      </font>

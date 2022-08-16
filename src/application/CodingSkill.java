@@ -44,6 +44,9 @@ public class CodingSkill extends UIControl{
 	private String sOL;
 	private String sTL;
 	private String sThL;
+	private boolean ErrorOne;
+	private boolean ErrorTwo;
+	private boolean ErrorThree;
 	
 	public CodingSkill(CheckBox Box1, CheckBox Box2,CheckBox Box3) {
 		super(Box1, Box2, Box3);
@@ -89,8 +92,8 @@ public class CodingSkill extends UIControl{
 		inputButtonCounter++;
 		 XP = 0;
 		 this.textStringOne = textStringOne;
-		 boolean Error = oneError(textStringOne);//checks for error
-		 if(Error==false && textStringOne != "") {
+		 ErrorOne = oneError(textStringOne);//checks for error
+		 if(ErrorOne==false && textStringOne != "") {
 			 textValueOne = (int) Double.parseDouble(textStringOne);		// got the textValue from the input button	 	
 			 if (textValueOne ==0) {
 				 XP = 200;
@@ -114,8 +117,8 @@ public class CodingSkill extends UIControl{
 		inputButtonCounter++;
 		 XP = 0;
 		 this.textStringTwo= textStringTwo;
-		 boolean ErrorOne = oneError(textStringTwo);//checks for error
-		 if(ErrorOne==false && textStringTwo != "") {
+		 ErrorTwo = oneError(textStringTwo);//checks for error
+		 if(ErrorTwo==false && textStringTwo != "") {
 			 textValueTwo = (int) Double.parseDouble(textStringTwo);		// got the textValue from the input button	 	
 			 if (textValueTwo ==0) {
 				 XP = 200;
@@ -136,8 +139,8 @@ public class CodingSkill extends UIControl{
 		inputButtonCounter++;
 		 XP = 0;
 		 this.textStringThree=textStringThree;
-		 boolean ErrorOne = oneError(textStringThree);//checks for error
-		 if(ErrorOne==false && textStringThree != "") {
+		 ErrorThree = oneError(textStringThree);//checks for error
+		 if(ErrorThree==false && textStringThree != "") {
 			 textValueThree = (int) Double.parseDouble(textStringThree);		// got the textValue from the input button	 	
 			 if (textValueThree ==0) {
 				 XP = 200;
@@ -159,27 +162,27 @@ public class CodingSkill extends UIControl{
 		if(inputButtonCounter>0) {
 			
 		
-			if (!(progressOne>=1) && !( progressTwo>=1) && !(progressThree>=1) && textStringOne!="" && textStringTwo!="" && textStringThree!=""){ //day will not increase when all learning is finished
+			if (!(progressOne>=1) && !( progressTwo>=1) && !(progressThree>=1) && textStringOne!="" && textStringTwo!="" && textStringThree!=""  && ErrorOne==false && ErrorTwo==false && ErrorThree==false ){ //day will not increase when all learning is finished
 				day++;//day increments as nextDay button is pressed
 			}
 			
-			if (textValueOne==0 && progressOne > 0 && progressOne<1 && textStringOne!="" && textStringTwo!="" && textStringThree!="") {
+			if (textValueOne==0 && progressOne > 0 && progressOne<1 && textStringOne!="" && textStringTwo!="" && textStringThree!="" && ErrorOne==false && ErrorTwo==false && ErrorThree==false ) {
 				progressOne -= .03; //decrementing progress for not practicing;
 				barOne.setProgress(progressOne); // actual XP that is lost.
 			}
 			else {
-				if(progressOne < 1 && textStringOne!="" && textStringTwo!="" && textStringThree!="") {
+				if(progressOne < 1 && textStringOne!="" && textStringTwo!="" && textStringThree!="" && ErrorOne==false && ErrorTwo==false && ErrorThree==false) {
 					progressOne += setProgressXP(textValueOne); // using the textValue for setting progress.
 					barOne.setProgress(progressOne); // actual XP that is earned visually.
 				}
 			}
 				
-			if (textValueTwo==0 && progressTwo>0 && progressTwo<1 && textStringOne!="" && textStringTwo!="" && textStringThree!="")  {
+			if (textValueTwo==0 && progressTwo>0 && progressTwo<1 && textStringOne!="" && textStringTwo!="" && textStringThree!="" && ErrorOne==false && ErrorTwo==false && ErrorThree==false)  {
 				progressTwo -= .03; //decrementing progress for not practicing;
 				barTwo.setProgress(progressTwo); // actual XP that is lost.
 			}
 			else {
-				if(progressTwo < 1 && textStringOne!="" && textStringTwo!="" && textStringThree!="") {
+				if(progressTwo < 1 && textStringOne!="" && textStringTwo!="" && textStringThree!="" && ErrorOne==false && ErrorTwo==false && ErrorThree==false) {
 					progressTwo += setProgressXP(textValueTwo); // using the textValue for setting progress.
 					System.out.println("enetred");
 					barTwo.setProgress(progressTwo); // actual XP that is earned visually.
@@ -187,12 +190,12 @@ public class CodingSkill extends UIControl{
 			}
 				
 			
-			if (textValueThree==0 && progressThree>0 && progressThree<1 && textStringOne!="" && textStringTwo!="" && textStringThree!="") {
+			if (textValueThree==0 && progressThree>0 && progressThree<1 && textStringOne!="" && textStringTwo!="" && textStringThree!="" && ErrorOne==false && ErrorTwo==false && ErrorThree==false) {
 				progressThree -= .03; //decrementing progress for not practicing;
 				barThree.setProgress(progressThree); // actual XP that is lost.
 			}
 			else {
-				if(progressThree < 1 && textStringOne!="" && textStringTwo!="" && textStringThree!="") {
+				if(progressThree < 1 && textStringOne!="" && textStringTwo!="" && textStringThree!="" && ErrorOne==false && ErrorTwo==false && ErrorThree==false) {
 					progressThree += setProgressXP(textValueThree); // using the textValue for setting progress.
 					barThree.setProgress(progressThree); // actual XP that is earned visually.
 				}

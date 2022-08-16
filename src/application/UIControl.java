@@ -33,6 +33,7 @@ public class UIControl {
 	private HBox sThC;
 	
 	
+	
 		 
 	public UIControl(CheckBox Box1, CheckBox Box2,CheckBox Box3) {
 		this.Box1=Box1;
@@ -306,6 +307,9 @@ public class UIControl {
 	}
 	public void progressUpdate(ProgressBar barOne,ProgressBar barTwo, ProgressBar barThree, Label dayCounter) {
 		
+	}
+	public void clearPickedList() {
+		pickedList.clear();
 	}
 /**
 	public void resetAllCurrent(ProgressBar barOne, ProgressBar barTwo,

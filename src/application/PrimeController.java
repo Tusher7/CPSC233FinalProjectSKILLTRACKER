@@ -178,9 +178,10 @@ public class PrimeController{
 		  pianoBox.setSelected(false);
 		  drumsBox.setSelected(false);
 		  changeLabel(pickMusic, " ");
-		  changeLabel(musicLabel1, "You need to spend roughly 1500 hours");
+		  changeLabel(musicLabel1, "You need to spend roughly 230 hours");
 		  changeLabel(musicLabel2, "on each instrument to achieve mastery.");
 		  changeLabel(musicLabel3, " ");
+		  musicView.clearPickedList();
 	  }
 	  @FXML
 	  public void languagePickResetButton(ActionEvent resetMusic){
@@ -188,9 +189,10 @@ public class PrimeController{
 		  englishBox.setSelected(false);
 		  arabicBox.setSelected(false);
 		  changeLabel(pickLanguage, " ");
-		  changeLabel(languageLabelOne, "You need to spend roughly 1000 hours");
-		  changeLabel(languageLabelTwo, "on each language to achieve mastery.");
-		  changeLabel(languageLabelThree, " ");	  
+		  changeLabel(languageLabelOne, "You need to spend roughly 300 hours");
+		  changeLabel(languageLabelTwo, "on each language to achieve basic understanding.");
+		  changeLabel(languageLabelThree, " ");	 
+		  languageView.clearPickedList();
 	  	  
 	  }
 	  
@@ -201,9 +203,10 @@ public class PrimeController{
 		  htmlBox.setSelected(false);
 		  javaBox.setSelected(false);
 		  changeLabel(codingPick, " ");
-		  changeLabel(codingLabelOne, "You need to spend roughly 1700 hours");
-		  changeLabel(codingLabelTwo, "on each coding language to achieve mastery.");
+		  changeLabel(codingLabelOne, "You need to spend roughly 250 hours");
+		  changeLabel(codingLabelTwo, "on each coding language to achieve basic knowledge.");
 		  changeLabel(codingLabelThree, " ");
+		  codingView.clearPickedList();
 	  }
 		  	  
 	//resetButtonsEnd  
@@ -244,6 +247,9 @@ public class PrimeController{
 		  mainScene = new Scene(root);
 		  applicationStage.setScene(mainScene);
 		  applicationStage.show();
+		  codingView.clearPickedList();
+		  languageView.clearPickedList();
+		  musicView.clearPickedList();
 	  } 
 	 
 	 
@@ -251,7 +257,7 @@ public class PrimeController{
 	  @FXML
 	  public void musicSkillPickLogic(ActionEvent MusicEvent) {		
 		 musicView = new MusicSkill(guitarBox, pianoBox, drumsBox);
-		 musicView.PickViewCheckBoxLogic("guitar","piano","drums", 1500); 
+		 musicView.PickViewCheckBoxLogic("guitar","piano","drums", 230); 
 		 
 		 String textDefaultMusic = musicView.getTextDefault();
 		 int hoursMusic = musicView.getHoursSkill();
@@ -270,7 +276,7 @@ public class PrimeController{
 	  @FXML
 	  public void LanguageSkillPickLogic(ActionEvent LanguageEvent) {		
 		 languageView = new LanguageSkill(frenchBox, englishBox, arabicBox);
-		 languageView.PickViewCheckBoxLogic("french","english","arabic", 1000); 
+		 languageView.PickViewCheckBoxLogic("french","english","arabic", 300); 
 		 
 		 String textDefaultLanguage = languageView.getTextDefault();
 		 int hoursLanguage = languageView.getHoursSkill();
@@ -288,7 +294,7 @@ public class PrimeController{
 	  @FXML
 	  public void CodingSkillPickLogic(ActionEvent codingEvent) {		
 		 codingView = new CodingSkill(pythonBox, htmlBox, javaBox);
-		 codingView.PickViewCheckBoxLogic("python","html","java", 1700); 
+		 codingView.PickViewCheckBoxLogic("python","html","java", 250); 
 		 
 		 String textDefaultCode = codingView.getTextDefault();
 		 int hoursCode = codingView.getHoursSkill();
@@ -310,11 +316,12 @@ public class PrimeController{
 	 
 	@FXML
 	 public void codePickNextButton(ActionEvent nextEventSecondScene) throws IOException {	
+		if (pythonBox.isSelected() || htmlBox.isSelected() || javaBox.isSelected()) {
 		 codingLanguagePickList = codingView.getPickedList(); //Getting the list
 		 
 		 
 		 VBox trackerContainer = new VBox();
-		 Label topLabel = new Label("TRACKER ");
+		 Label topLabel = new Label(" CODING SKILL TRACKER ");
 		 
 		 HBox skillOneContainer = new HBox();			 
 		 Label skillOneLabel = new Label();
@@ -374,6 +381,7 @@ public class PrimeController{
 		 Scene trackerScene = new Scene(trackerContainer);
 		 
 		 applicationStage.setScene(trackerScene);
+		 applicationStage.setTitle("CODING SKILL TRACKER");
 		 applicationStage.show();	
 		 
 		 
@@ -385,7 +393,10 @@ public class PrimeController{
 				 inputTwo, inputThree, trackerContainer, restart, nextDay,
 				 textOne, messageOne, textTwo, messageTwo, textThree, messageThree,
 				 buttonsHBox,labelsHBox, dayCounter);
-		 
+		}
+		else {
+			changeLabel(codingPick, "Please check a Box to pick a skill.");
+		}
 			 
 		 
 	 }
@@ -398,10 +409,12 @@ public class PrimeController{
     	
 	@FXML
 	 public void languagePickNextButtonPress(ActionEvent nextEventSecondScene) throws IOException {	
+		
+		if(frenchBox.isSelected() || englishBox.isSelected() || arabicBox.isSelected()) {
 		 LanguagePickList = languageView.getPickedList(); //Getting the list
 		 
 		 VBox trackerContainer = new VBox();
-		 Label topLabel = new Label("TRACKER");
+		 Label topLabel = new Label("LANGUAGE SKILL TRACKER");
 		 
 		 HBox skillOneContainer = new HBox();			 
 		 Label skillOneLabel = new Label();
@@ -454,7 +467,8 @@ public class PrimeController{
 		 Scene trackerScene = new Scene(trackerContainer);
 		 
 		 applicationStage.setScene(trackerScene);
-		 applicationStage.show();		 
+		 applicationStage.show();	
+		 applicationStage.setTitle("LANGUAGE SKILL TRACKER");
 		 
 		 trackerContainer.getChildren().add(topLabel);
 		 
@@ -462,14 +476,20 @@ public class PrimeController{
 			//	 skillThreeContainer,skillOneLabel,skillTwoLabel, skillThreeLabel, 
 			//	 barOne,barTwo, barThree, inputOne, inputTwo, inputThree, trackerContainer, 
 			//	 restart, nextDay, textOne, messageOne, textTwo, messageTwo, textThree, messageThree);
+		}
+		 else {
+				changeLabel(pickLanguage, "Please check a Box to pick a skill.");
+			}
 		 
 	 }
 	 @FXML
 	 public void musicPickNextButtonPress(ActionEvent nextEventSecondScene) throws IOException {	
+		 
+		 if(guitarBox.isSelected() || pianoBox.isSelected() || drumsBox.isSelected()) {
 		 musicPickList = musicView.getPickedList(); //Getting the list
 		 
 		 VBox trackerContainer = new VBox();
-		 Label topLabel = new Label("TRACKER");
+		 Label topLabel = new Label("MUSIC SKILL TRACKER");
 		 
 		 HBox skillOneContainer = new HBox();			 
 		 Label skillOneLabel = new Label();
@@ -517,13 +537,14 @@ public class PrimeController{
 		 Button nextDay = new Button("Next Day");
 		 //nextDay.setOnAction(nextDayEvent -> //progress back to 0;
 		 buttons.getChildren().addAll(restart, nextDay);
-		 
+	
 		 HBox labels = new HBox();	
 		 Label nextDayErrorLabel = new Label();
 		 		 		 			 			 			 			 
 		 Scene trackerScene = new Scene(trackerContainer);
 		 applicationStage.setScene(trackerScene);
-		 applicationStage.show();		 
+		 applicationStage.show();	
+		 applicationStage.setTitle("MUSIC SKILL TRACKER");
 		 
 		 trackerContainer.getChildren().add(topLabel);
 		 
@@ -531,6 +552,11 @@ public class PrimeController{
 			//	 skillOneLabel, skillTwoLabel, skillThreeLabel, barOne,barTwo, barThree, inputOne,
 				// inputTwo, inputThree, trackerContainer, restart, nextDay, textOne, 
 				 //messageOne, textTwo, messageTwo, textThree, messageThree);
+		 }
+		 else {
+				changeLabel(pickMusic, "Please check a Box to pick a skill.");
+			}
+		 
 		 
 	 }
 		 
