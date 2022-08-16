@@ -314,35 +314,35 @@ public class PrimeController{
 		 
 		 
 		 VBox trackerContainer = new VBox();
-		 Label topLabel = new Label("TRACKER");
+		 Label topLabel = new Label("TRACKER ");
 		 
 		 HBox skillOneContainer = new HBox();			 
 		 Label skillOneLabel = new Label();
 		 ProgressBar barOne = new ProgressBar();		 
 				 
 		 TextField textOne = new TextField();
-		 Button inputOne = new Button("INPUT");		
+		 Button inputOne = new Button("INPUT Hours Practiced");		
 		 Label messageOne = new Label();
-		 inputOne.setOnAction(oneEvent-> codingView.calculateXP(textOne.getText(), messageOne)); 
+		 inputOne.setOnAction(oneEvent-> codingView.calculateXPOne(textOne.getText(), messageOne)); 
 		 		 		 		 
 		 
 		 HBox skillTwoContainer = new HBox();
 		 Label skillTwoLabel = new Label();
 		 ProgressBar barTwo = new ProgressBar();
 		 
-		 Button inputTwo = new Button("INPUT");
+		 Button inputTwo = new Button("INPUT Hours Practiced");
 		 TextField textTwo = new TextField();		 	
 		 Label messageTwo = new Label();
-		 //inputTwo.setOnAction(oneEvent-> codingView.calculateXP(textTwo.getText(), messageTwo)); 
+		 inputTwo.setOnAction(oneEvent-> codingView.calculateXPTwo(textTwo.getText(), messageTwo)); 
 		 
 		 HBox skillThreeContainer = new HBox();
 		 Label skillThreeLabel = new Label();
 		 ProgressBar barThree = new ProgressBar();
 		 
-		 Button inputThree = new Button("Input");		
+		 Button inputThree = new Button("INPUT Hours Practiced");		
 		 TextField textThree = new TextField();		 	
 		 Label messageThree = new Label();
-		 //inputThree.setOnAction(oneEvent-> codingView.calculateXP(textThree.getText(), messageThree)); 
+		 inputThree.setOnAction(oneEvent-> codingView.calculateXPThree(textThree.getText(), messageThree)); 
 		 
 		 HBox buttonsHBox = new HBox();
 		 
@@ -359,8 +359,10 @@ public class PrimeController{
 		 });	
 		 Label dayCounter = new Label();
 		 Button nextDay = new Button("Next Day");
-		 nextDay.setOnAction(nextDayEvent -> codingView.progressUpdate(barOne, dayCounter)); 
-		 Button restartCurrent = new Button("Restart Progress for Current Skill");
+		 nextDay.setOnAction(nextDayEvent -> codingView.progressUpdate(barOne, barTwo, barThree, dayCounter)); 
+		// Button restartCurrent = new Button("Restart Progress for Current Skill");
+		 //restartCurrent.setOnAction(restartCutrrentEvent -> codingView.resetAllCurrent(barOne, barTwo, barThree, textOne, textTwo, textThree, skillOneLabel, 
+				// skillTwoLabel, skillThreeLabel, dayCounter));
 		 
 		 HBox labelsHBox = new HBox();	
 		 Label nextDayErrorLabel = new Label();
@@ -382,18 +384,12 @@ public class PrimeController{
 				 skillThreeLabel, barOne,barTwo, barThree, inputOne,
 				 inputTwo, inputThree, trackerContainer, restart, nextDay,
 				 textOne, messageOne, textTwo, messageTwo, textThree, messageThree,
-				 buttonsHBox,restartCurrent, labelsHBox, dayCounter);
+				 buttonsHBox,labelsHBox, dayCounter);
 		 
 			 
 		 
 	 }
-			 
-	 
-	 
-	
-	
-    	
-    	 
+			 	 	 		   	    	 
     	 
     	// if (value < 0 || value > maxValue) {
 	    	//	errorMessage = String.format("Grade should be between 0 and %d.", maxValue);
@@ -412,7 +408,7 @@ public class PrimeController{
 		 ProgressBar barOne = new ProgressBar();
 		 
 		 TextField textOne = new TextField();
-		 Button inputOne = new Button("INPUT");		
+		 Button inputOne = new Button("INPUT Hours Practiced");		
 		 Label messageOne = new Label();
 		 //inputOne.setOnAction(oneEvent-> languageView.calculateXP(textOne.getText(), messageOne)); 						 
 		 
@@ -420,7 +416,7 @@ public class PrimeController{
 		 Label skillTwoLabel = new Label();
 		 ProgressBar barTwo = new ProgressBar();
 		 
-		 Button inputTwo = new Button("INPUT");
+		 Button inputTwo = new Button("INPUT Hours Practiced");
 		 TextField textTwo = new TextField();		 	
 		 Label messageTwo = new Label();
 		 //inputTwo.setOnAction(oneEvent-> languageView.calculateXP(textTwo.getText(), messageTwo)); 		 
@@ -429,7 +425,7 @@ public class PrimeController{
 		 Label skillThreeLabel = new Label();
 		 ProgressBar barThree = new ProgressBar();
 		 
-		 Button inputThree = new Button("Input");		
+		 Button inputThree = new Button("INPUT Hours Practiced");		
 		 TextField textThree = new TextField();		 	
 		 Label messageThree = new Label();
 		 //inputThree.setOnAction(oneEvent-> languageView.calculateXP(textThree.getText(), messageThree)); 	 

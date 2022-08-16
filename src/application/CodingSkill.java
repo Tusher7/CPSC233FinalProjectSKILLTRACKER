@@ -20,13 +20,30 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class CodingSkill extends UIControl{
-	HBox sOC = new HBox();
-	HBox sTC = new HBox();
-	HBox sThC = new HBox();
+	private HBox sOC = new HBox();
+	private HBox sTC = new HBox();
+	private HBox sThC = new HBox();
+	
+	
 	private int XP;
-	private int textValue;
-	private double progress=0;
-	private int num = 0;
+	private int textValueOne;
+	private double progressOne=0.0;
+	
+	private int textValueTwo;
+	private int textValueThree;
+	private double progressTwo=0.0;
+	private double progressThree=0.0;
+	private int day = 0;
+	private String textStringOne;
+	private String textStringTwo;
+	private String textStringThree;
+	private int inputButtonCounter=0;
+	private Label messageOne;
+	private Label messageTwo;
+	private Label messageThree;
+	private String sOL;
+	private String sTL;
+	private String sThL;
 	
 	public CodingSkill(CheckBox Box1, CheckBox Box2,CheckBox Box3) {
 		super(Box1, Box2, Box3);
@@ -35,76 +52,217 @@ public class CodingSkill extends UIControl{
 	public void makeTracker(HBox sOC, HBox sTC, HBox sThC, Label sOL, Label sTL, Label sThL, ProgressBar bO, 
 			ProgressBar bT,ProgressBar bTh, Button iO, Button iT, Button iTh, VBox tC, Button r, Button nD, 
 			TextField tO, Label mO, TextField tT, Label mT, 
-			TextField tTh, Label mTh, HBox bH, Button rCu, HBox lH, Label dC) {
+			TextField tTh, Label mTh, HBox bH, HBox lH, Label dC) {
 		 int counter=0; // skillNumber
 		 for (String element : getPickedList()) {			 
 			 
-			 if((element.equals("python") || element.equals("html") ||  element.equals("java")) && counter == 0) { //skill One				 
+			 if((element.equals("python") || element.equals("html") ||  element.equals("java")) && counter == 0) { //skill One	
+				 this.sOL = element;
 				 sOC.getChildren().addAll(sOL,bO,iO, tO, mO);
-				 changeLabel(sOL, element);
+				 changeLabel(sOL," "+ element+" ");
 				 tC.getChildren().add(sOC);
 				 					 
 			 }
 			 else if((element.equals("python") || element.equals("html") ||  element.equals("java")) && counter == 1) { //skill Two
+				 this.sTL=element;
 				 sTC.getChildren().addAll(sTL,bT,iT, tT, mT);
-				 changeLabel(sTL, element);
+				 changeLabel(sTL," "+ element+" ");
 				 tC.getChildren().add(sTC);
 			 }
 			 else if((element.equals("python") || element.equals("html") ||  element.equals("java")) && counter == 2) { //skillThree
+				 this.sThL=element;
 				 sThC.getChildren().addAll(sThL,bTh,iTh, tTh, mTh);
-				 changeLabel(sThL, element);
+				 changeLabel(sThL, " "+ element+" ");
 				 tC.getChildren().add(sThC);
 			 }
 			 counter++;
 			
 		}	
-		 bH.getChildren().addAll(r, nD, rCu);
+		 bH.getChildren().addAll(r, nD);
 		 lH.getChildren().add(dC);
 		 tC.getChildren().addAll(bH, lH);
 		 
 	 }
 	
-	public void calculateXP(String textString, Label message) {
+	public void calculateXPOne(String textStringOne, Label messageOne) {
+		this.messageOne=messageOne;
+		inputButtonCounter++;
 		 XP = 0;
-		 boolean ErrorOne = oneError(textString);
-		 if(ErrorOne==false && textString != "") {
-			 textValue = (int) Double.parseDouble(textString);		// got the textValue from the input button	 	
-			 if (textValue ==0) {
+		 this.textStringOne = textStringOne;
+		 boolean Error = oneError(textStringOne);//checks for error
+		 if(Error==false && textStringOne != "") {
+			 textValueOne = (int) Double.parseDouble(textStringOne);		// got the textValue from the input button	 	
+			 if (textValueOne ==0) {
 				 XP = 200;
-				 message.setText("XP lost today: " + XP );
+				 messageOne.setText("XP lost today: " + XP );
 			 }
 			 else {
-				 XP = (int)(setProgressXP(textValue) * 10000); // a proper XP to show.
-				 message.setText("XP earned today: " + XP);
+				 XP = (int)(setProgressXP(textValueOne) * 10000); // a proper XP to show.
+				 messageOne.setText("XP earned today: " + XP);
+				 
 			 }
 			 
 			 
 		 }
 		 else {
-			 message.setText("Enter valid number without alphabets or decimals that is between 0 and 20.");
+			 messageOne.setText("Enter valid number without alphabets or decimals that is between 0 and 20.");
 		 }
-		System.out.print(XP);
+		 System.out.println(textValueOne);
+	}
+	public void calculateXPTwo(String textStringTwo, Label messageTwo) {
+		this.messageTwo=messageTwo;
+		inputButtonCounter++;
+		 XP = 0;
+		 this.textStringTwo= textStringTwo;
+		 boolean ErrorOne = oneError(textStringTwo);//checks for error
+		 if(ErrorOne==false && textStringTwo != "") {
+			 textValueTwo = (int) Double.parseDouble(textStringTwo);		// got the textValue from the input button	 	
+			 if (textValueTwo ==0) {
+				 XP = 200;
+				 messageTwo.setText("XP lost today: " + XP );
+			 }
+			 else {
+				 XP = (int)(setProgressXP(textValueTwo) * 10000); // a proper XP to show.
+				 messageTwo.setText("XP earned today: " + XP);
+			 }			 			 
+		 }
+		 else {
+			 messageTwo.setText("Enter valid number without alphabets or decimals that is between 0 and 20.");
+		 }
+		 System.out.println(textValueTwo);
+	}
+	public void calculateXPThree(String textStringThree, Label messageThree) {
+		this.messageThree=messageThree;
+		inputButtonCounter++;
+		 XP = 0;
+		 this.textStringThree=textStringThree;
+		 boolean ErrorOne = oneError(textStringThree);//checks for error
+		 if(ErrorOne==false && textStringThree != "") {
+			 textValueThree = (int) Double.parseDouble(textStringThree);		// got the textValue from the input button	 	
+			 if (textValueThree ==0) {
+				 XP = 200;
+				 messageThree.setText("XP lost today: " + XP );
+			 }
+			 else {
+				 XP = (int)(setProgressXP(textValueThree) * 10000); // a proper XP to show.
+				 messageThree.setText("XP earned today: " + XP);
+			 }			 			 
+		 }
+		 else {
+			 messageThree.setText("Enter valid number without alphabets or decimals that is between 0 and 20.");
+		 }
+		 System.out.println(textValueThree);
 	}
 	
-	public void progressUpdate(ProgressBar bar, Label dayCounter) {			
-		num = num+1;
-		setDay(num);	//day increments as nextDay button is pressed
-		if (textValue==0) {
-			progress -= .03; //decrementing progress for not practicing;
-			bar.setProgress(progress); // actual XP that is lost.
+	public void progressUpdate(ProgressBar barOne, ProgressBar barTwo, ProgressBar barThree, Label dayCounter) {	
+		
+		if(inputButtonCounter>0) {
+			
+		
+			if (!(progressOne>=1) && !( progressTwo>=1) && !(progressThree>=1) && textStringOne!="" && textStringTwo!="" && textStringThree!=""){ //day will not increase when all learning is finished
+				day++;//day increments as nextDay button is pressed
+			}
+			
+			if (textValueOne==0 && progressOne > 0 && progressOne<1 && textStringOne!="" && textStringTwo!="" && textStringThree!="") {
+				progressOne -= .03; //decrementing progress for not practicing;
+				barOne.setProgress(progressOne); // actual XP that is lost.
+			}
+			else {
+				if(progressOne < 1 && textStringOne!="" && textStringTwo!="" && textStringThree!="") {
+					progressOne += setProgressXP(textValueOne); // using the textValue for setting progress.
+					barOne.setProgress(progressOne); // actual XP that is earned visually.
+				}
+			}
+				
+			if (textValueTwo==0 && progressTwo>0 && progressTwo<1 && textStringOne!="" && textStringTwo!="" && textStringThree!="")  {
+				progressTwo -= .03; //decrementing progress for not practicing;
+				barTwo.setProgress(progressTwo); // actual XP that is lost.
+			}
+			else {
+				if(progressTwo < 1 && textStringOne!="" && textStringTwo!="" && textStringThree!="") {
+					progressTwo += setProgressXP(textValueTwo); // using the textValue for setting progress.
+					System.out.println("enetred");
+					barTwo.setProgress(progressTwo); // actual XP that is earned visually.
+				}
+			}
+				
+			
+			if (textValueThree==0 && progressThree>0 && progressThree<1 && textStringOne!="" && textStringTwo!="" && textStringThree!="") {
+				progressThree -= .03; //decrementing progress for not practicing;
+				barThree.setProgress(progressThree); // actual XP that is lost.
+			}
+			else {
+				if(progressThree < 1 && textStringOne!="" && textStringTwo!="" && textStringThree!="") {
+					progressThree += setProgressXP(textValueThree); // using the textValue for setting progress.
+					barThree.setProgress(progressThree); // actual XP that is earned visually.
+				}
+				
+			}
+			
+			dayCounter.setText("DAY: "+day);
+			
+			if (progressOne>=1) {
+				dayCounter.setText("DAY: "+day +"     Red means finished learning"); //
+				messageOne.setText(" Congratulations! Learning "+sOL+" is finished . No more losing XP");
+				barOne.setStyle("-fx-accent:red;");
+			}
+			else {
+				barOne.setStyle("-fx-accent:blue;");
+			}
+			if (progressTwo>=1) {
+				messageTwo.setText(" Congratulations! Learning "+sTL+" is finished. No more losing XP");
+				dayCounter.setText("DAY: "+day +"     Red means finished learning"); //
+				barTwo.setStyle("-fx-accent:red;");
+			}
+			else {
+				barTwo.setStyle("-fx-accent:purple;");
+			}
+			if (progressThree>=1) {
+				messageThree.setText(" Congratulations! Learning "+sThL+" is finished. No more losing XP");
+				dayCounter.setText("DAY: "+day +"     Red means finished learning"); //
+				barThree.setStyle("-fx-accent:red;");
+			}
+			else {
+				barThree.setStyle("-fx-accent:brown;");
+			}
+			
+			if (progressOne>=1 &&  progressTwo>=1 && progressThree>=1) {
+				
+				dayCounter.setText("DAY: "+day+"   Congratulations! ALL FINISHED AT DAY-->" +day +"."+" (Red means finished learning) ");
+			}
+			
+			
+			//System.out.println(progressOne);
+			//System.out.println(progressTwo);
+			//System.out.println(progressThree);
+			
+			
 		}
 		else {
-			progress += setProgressXP(textValue); // using the textValue for setting progress.
-			bar.setProgress(progress); // actual XP that is earned.
+			dayCounter.setText("Input a value first ");
 		}
 		
-		
-		dayCounter.setText("DAY: "+num);
-		
-		if (progress>=1) {
-			dayCounter.setText("DAY: "+num +"      Basic Learning finished at day "+num);
-		}
 	}
+	
+	public void resetAllCurrent(ProgressBar barOne, ProgressBar barTwo, ProgressBar barThree, TextField textOne, TextField textTwo,  TextField textThree, Label skillOneLabel, 
+			Label skillTwoLabel, Label skillThreeLabel, Label dayCounter) {
+		
+		barOne.setProgress(0.0);
+		barTwo.setProgress(0.0);
+		barThree.setProgress(0.0);
+		skillOneLabel.setText("");
+		skillTwoLabel.setText("");
+		skillThreeLabel.setText("");
+		textOne.setText("");
+		textTwo.setText("");
+		textThree.setText("");
+		dayCounter.setText("");
+		
+		
+		
+		
+	}
+	
 	
 
 	public int getXP() {

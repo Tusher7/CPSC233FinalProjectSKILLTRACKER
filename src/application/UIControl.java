@@ -32,7 +32,7 @@ public class UIControl {
 	private HBox sTC;
 	private HBox sThC;
 	
-	private int day = 0;
+	
 		 
 	public UIControl(CheckBox Box1, CheckBox Box2,CheckBox Box3) {
 		this.Box1=Box1;
@@ -192,7 +192,7 @@ public class UIControl {
 		 
 	public void makeTracker(HBox sOC, HBox sTC, HBox sThC, Label sOL, Label sTL, Label sThL, ProgressBar bO, 
 			ProgressBar bT,ProgressBar bTh, Button iO, Button iT, Button iTh, VBox tC, Button r, Button nD, 
-			TextField tO, Label mO, TextField tT, Label mT,TextField tTh, Label mTh, HBox bH, Button rCu, HBox lH, Label dC ) {
+			TextField tO, Label mO, TextField tT, Label mT,TextField tTh, Label mTh, HBox bH, HBox lH, Label dC ) {
 		this.sOC=sOC;
 		this.sTC=sTC;
 		this.sThC=sThC;
@@ -222,7 +222,7 @@ public class UIControl {
 			 counter++;
 			
 		}	
-		 bH.getChildren().addAll(r, nD, rCu);
+		 bH.getChildren().addAll(r, nD);
 		 lH.getChildren().add(dC);
 		 tC.getChildren().addAll(bH, lH);
 		 
@@ -265,12 +265,19 @@ public class UIControl {
 	 }
 	
 
-	public void calculateXP(String textString, Label message) {	
+	public void calculateXPOne(String textStringOne, Label message) {	
+		
+	}
+	public void calculateXPTwo(String textStringTwo, Label message) {	
+		
+	}
+	public void calculateXPThree(String textStringThree, Label message) {	
 		
 	}
 	
+	
 	public double setProgressXP(int textValue) {				
-		
+		//polymorphism on other classes. this one purely used by codingSkill class
 		return (textValue/250.0);
 	}
 
@@ -297,19 +304,23 @@ public class UIControl {
     	return Error;
 		
 	}
-	public void progressUpdate(ProgressBar bar, Label dayCounter) {
+	public void progressUpdate(ProgressBar barOne,ProgressBar barTwo, ProgressBar barThree, Label dayCounter) {
+		
+	}
+/**
+	public void resetAllCurrent(ProgressBar barOne, ProgressBar barTwo,
+	ProgressBar barThree, TextField textOne, TextField textTwo,  TextField textThree, Label skillOneLabel, 
+			Label skillTwoLabel, Label skillThreeLabel, Label dayCounter) {
+		**/
 		
 	}
 	
-	public int getDay() {
-		return day;
-	}
-	public void setDay(int num) {
-		day = num;
-	}
+	
+
+	
 	
 
 	
 
-}
+
 
