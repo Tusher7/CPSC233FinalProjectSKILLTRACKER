@@ -28,9 +28,6 @@ public class UIControl {
 	private CheckBox Box2;
 	private CheckBox Box3;
 	
-	private HBox sOC;
-	private HBox sTC;
-	private HBox sThC;
 	
 	
 	
@@ -194,9 +191,7 @@ public class UIControl {
 	public void makeTracker(HBox sOC, HBox sTC, HBox sThC, Label sOL, Label sTL, Label sThL, ProgressBar bO, 
 			ProgressBar bT,ProgressBar bTh, Button iO, Button iT, Button iTh, VBox tC, Button r, Button nD, 
 			TextField tO, Label mO, TextField tT, Label mT,TextField tTh, Label mTh, HBox bH, HBox lH, Label dC ) {
-		this.sOC=sOC;
-		this.sTC=sTC;
-		this.sThC=sThC;
+		
 		
 		 int counter=0; // skillNumber
 		 for (String element : pickedList) {			 
@@ -311,11 +306,7 @@ public class UIControl {
 	public void clearPickedList() {
 		pickedList.clear();
 	}
-/**
-	public void resetAllCurrent(ProgressBar barOne, ProgressBar barTwo,
-	ProgressBar barThree, TextField textOne, TextField textTwo,  TextField textThree, Label skillOneLabel, 
-			Label skillTwoLabel, Label skillThreeLabel, Label dayCounter) {
-		**/
+
 		
 	}
 	
