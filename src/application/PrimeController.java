@@ -33,7 +33,7 @@ public class PrimeController{
     private ChoiceBox<String> skillChooseChoiceBox; 	  
 	@FXML 
 	private Label skillPickedLabel = new Label(); 	  	 
-	//private ArrayList<String> skillPickedList = new ArrayList<String> (); 
+	
 	@FXML
 	private HBox mainViewButtonsHBox;	 
 	private Button nextButtonMainView = new Button("Next >");	   
@@ -106,15 +106,14 @@ public class PrimeController{
 	
 	
 	
-	private ArrayList<String> codingLanguagePickList = new ArrayList<String> ();
+	private ArrayList<String> codingLanguagePickList = new ArrayList<String> (); //these are needed.
 	private ArrayList<String> LanguagePickList;
 	private ArrayList<String> musicPickList;
 	
 	
 	
 	
-	  //onAction="#progressIncrement"
-	
+	 
 	@FXML 
 	public void confrimButton(ActionEvent pickSkill) { 
 		String skillChose =  skillChooseChoiceBox.getValue();	
@@ -247,9 +246,18 @@ public class PrimeController{
 		  mainScene = new Scene(root);
 		  applicationStage.setScene(mainScene);
 		  applicationStage.show();
-		  codingView.clearPickedList();
-		  languageView.clearPickedList();
-		  musicView.clearPickedList();
+		  if (codingView!=null) {
+			  codingView.clearPickedList();
+		  }
+		  if (musicView!=null) {
+			  musicView.clearPickedList();
+		  }
+		  if (languageView!=null) {
+			  languageView.clearPickedList();
+		  }
+		  
+		  
+		 
 	  } 
 	 
 	 
@@ -560,69 +568,13 @@ public class PrimeController{
 		
 	 
 	 
-	 
-	 /**
-	@FXML
-	 public void languagePickNextButton(ActionEvent nextEvent) throws IOException {		 
-		 root = FXMLLoader.load(getClass().getResource("SkillTrackerLanguage.fxml"));
-		 applicationStage = (Stage)((Node)nextEvent.getSource()).getScene().getWindow();
-		 mainScene = new Scene(root);
-		 applicationStage.setScene(mainScene);
-		 applicationStage.show();		 		 		 		 		 		 
-	 }
-	 
-	 
-	 @FXML
-	 public void musicPickNextButton(ActionEvent nextEvent) throws IOException {		 
-		 root = FXMLLoader.load(getClass().getResource("SkillTrackerMusic.fxml"));
-		 applicationStage = (Stage)((Node)nextEvent.getSource()).getScene().getWindow();
-		 mainScene = new Scene(root);
-		 applicationStage.setScene(mainScene);
-		 applicationStage.show();		 		 		 		 		 		 
-	 }
-	 
-	 
-	 @FXML
-	 public void startSkillCoding(ActionEvent startCode) {	  
-		 if (skillPickedString.equals("Coding")) {	 						 
-			 codingLanguagePickList = codingView.getPickedList(); //Getting the list
-			 int counter=0;
-			 for (String element : codingLanguagePickList) {
-				 
-				 if((element.equals("python") || element.equals("html") ||  element.equals("java")) && counter == 0) {		
-					 
-					 changeLabel(skillOne, element);
-					 
-				 }
-				 else if((element.equals("python") || element.equals("html") ||  element.equals("java")) && counter == 1) {
-					changeLabel(skillTwo,element);
-				 }
-				 else if((element.equals("python") || element.equals("html") ||  element.equals("java")) && counter == 2) {
-					changeLabel(skillThree,element);
-				 }
-				 counter++;
-				
-			}
-			 
-		 }
-		 
-	 }
-	 	 	 	 	 	 
-	 
-	 @FXML
-	 public void skillTrackerNextDay(ActionEvent nextDayEvent) {
-		 
-	 }
-	**/
 	
 	 private void changeLabel(Label label, String text) { 		 
 		 
 		 label.setText(text); 
 
 } 
-	 public void setApplicationStage(Stage primaryStage) {
-		 this.applicationStage=primaryStage;
-	 }
+	
 	 
 	 
 	 }

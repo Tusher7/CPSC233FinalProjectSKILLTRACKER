@@ -1,13 +1,6 @@
 package application;
 
-import java.io.IOException;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -15,13 +8,10 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 public class LanguageSkill extends UIControl{
 	
-	private HBox sOC = new HBox();
-	private HBox sTC = new HBox();
-	private HBox sThC = new HBox();
+	
 	
 	
 	private int XP;
@@ -112,7 +102,7 @@ public class LanguageSkill extends UIControl{
 		 else {
 			 messageOne.setText("Enter valid number without alphabets or decimals that is between 0 and 24.");
 		 }
-		 System.out.println(textValueOne);
+		 
 	}
 	public void calculateXPTwo(String textStringTwo, Label messageTwo) {
 		this.messageTwo=messageTwo;
@@ -134,7 +124,7 @@ public class LanguageSkill extends UIControl{
 		 else {
 			 messageTwo.setText("Enter valid number without alphabets or decimals that is between 0 and 24.");
 		 }
-		 System.out.println(textValueTwo);
+		
 	}
 	
 	public void calculateXPThree(String textStringThree, Label messageThree) {
@@ -182,7 +172,7 @@ public class LanguageSkill extends UIControl{
 			else {
 				if(progressTwo < 1 && textStringOne!="" && textStringTwo!="" && textStringThree!="" && ErrorOne==false && ErrorTwo==false && ErrorThree==false) {
 					progressTwo += setProgressXP(textValueTwo); // using the textValue for setting progress.
-					System.out.println("enetred");
+					
 					barTwo.setProgress(progressTwo); // actual XP that is earned visually.
 				}
 			}
@@ -231,12 +221,6 @@ public class LanguageSkill extends UIControl{
 				
 				dayCounter.setText("DAY: "+day+"   Congratulations! ALL FINISHED AT DAY-->" +day +"."+" (Red means finished learning) ");
 			}
-			
-			
-			//System.out.println(progressOne);
-			//System.out.println(progressTwo);
-			//System.out.println(progressThree);
-			
 			
 		}
 		else { 

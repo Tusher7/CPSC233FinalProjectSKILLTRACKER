@@ -10,9 +10,7 @@ import javafx.scene.layout.VBox;
 
 public class MusicSkill extends UIControl{
 	
-	private HBox sOC = new HBox();
-	private HBox sTC = new HBox();
-	private HBox sThC = new HBox();
+	
 	
 	
 	private int XP;
@@ -102,7 +100,7 @@ public class MusicSkill extends UIControl{
 		 else {
 			 messageOne.setText("Enter valid number without alphabets or decimals that is between 0 and 24.");
 		 }
-		 System.out.println(textValueOne);
+		 
 	}
 	public void calculateXPTwo(String textStringTwo, Label messageTwo) {
 		this.messageTwo=messageTwo;
@@ -124,7 +122,7 @@ public class MusicSkill extends UIControl{
 		 else {
 			 messageTwo.setText("Enter valid number without alphabets or decimals that is between 0 and 24.");
 		 }
-		 System.out.println(textValueTwo);
+		 
 	}
 	
 	public void calculateXPThree(String textStringThree, Label messageThree) {
@@ -172,7 +170,7 @@ public class MusicSkill extends UIControl{
 			else {
 				if(progressTwo < 1 && textStringOne!="" && textStringTwo!="" && textStringThree!="" && ErrorOne==false && ErrorTwo==false && ErrorThree==false) {
 					progressTwo += setProgressXP(textValueTwo); // using the textValue for setting progress.
-					System.out.println("enetred");
+					
 					barTwo.setProgress(progressTwo); // actual XP that is earned visually.
 				}
 			}
@@ -221,13 +219,7 @@ public class MusicSkill extends UIControl{
 				
 				dayCounter.setText("DAY: "+day+"   Congratulations! ALL FINISHED AT DAY-->" +day +"."+" (Red means finished learning) ");
 			}
-			
-			
-			//System.out.println(progressOne);
-			//System.out.println(progressTwo);
-			//System.out.println(progressThree);
-			
-			
+														
 		}
 		else { 
 			if (inputButtonCounter==0) {
