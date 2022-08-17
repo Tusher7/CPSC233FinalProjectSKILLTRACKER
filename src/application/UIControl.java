@@ -182,7 +182,7 @@ public class UIControl {
 	
 		 
 	public void makeTracker(HBox sOC, HBox sTC, HBox sThC, Label sOL, Label sTL, Label sThL, ProgressBar bO, 
-			ProgressBar bT,ProgressBar bTh, Button iO, Button iT, Button iTh, VBox tC, Button r, Button nD, 
+			ProgressBar bT,ProgressBar bTh, Label iO, Label iT, Label iTh, VBox tC, Button r, Button nD, 
 			TextField tO, Label mO, TextField tT, Label mT,TextField tTh, Label mTh, HBox bH, HBox lH, Label dC ) {
 		
 		
@@ -273,27 +273,34 @@ public class UIControl {
 	
 	
 	public boolean oneError(String textString) {
-		boolean Error=false;		
+		boolean error=false;		
         	
     	for(char c : textString.toCharArray()){  		
    		
     		if (!Character.isDigit(c) || (c=='.')) {
-    			Error = true;    			
+    			error = true;    			
     		}
-    		else {  			
-    			int textValue = (int) Double.parseDouble(textString);
-    			if (textValue < 0 || textValue >25) {
-    				Error=true;
-    			}
-    			else {
-    				Error = false;   
-    			}   							    			
-    		}
+    		
     	}
-    	return Error;
+  		if(error==false && textString!="")	{	
+  			
+			int textValue = (int) Double.parseDouble(textString);
+			if (textValue < 0 || textValue >25) {
+				error=true;
+			}
+			else {
+				error = false;   
+			}  
+    	  	}
+  		if(textString=="") {
+  			error=true;
+  		}
+		
+    	return error;
 		
 	}
-	public void progressUpdate(ProgressBar barOne,ProgressBar barTwo, ProgressBar barThree, Label dayCounter) {
+	public void progressUpdate(ProgressBar barOne, ProgressBar barTwo, ProgressBar barThree, Label dayCounter, String textStringOne, Label messageOne,
+			String textStringTwo, Label messageTwo, String textStringThree, Label messageThree) {
 		
 	}
 	

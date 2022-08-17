@@ -23,32 +23,26 @@ public class CodingSkill extends UIControl{
 	private double progressTwo=0.0;
 	private double progressThree=0.0;
 	private int day = 0;
-	private String textStringOne;
-	private String textStringTwo;
-	private String textStringThree;
-	private int inputButtonCounterOne=0; //
-	private int inputButtonCounterTwo=0;//
-	private int inputButtonCounterThree=0;//
-	private Label messageOne;
-	private Label messageTwo;
-	private Label messageThree;
+	
 	private String sOL;
 	private String sTL;
 	private String sThL;
-	private boolean ErrorOne;
-	private boolean ErrorTwo;
-	private boolean ErrorThree;
-	private int inputRequired;
+	private boolean errorOne;
+	private boolean errorTwo;
+	private boolean errorThree;
+	
+	
 	
 	public CodingSkill(CheckBox Box1, CheckBox Box2,CheckBox Box3) {
 		super(Box1, Box2, Box3);
 	}
 	//Overriding // Polymorphism
 	public void makeTracker(HBox sOC, HBox sTC, HBox sThC, Label sOL, Label sTL, Label sThL, ProgressBar bO, 
-			ProgressBar bT,ProgressBar bTh, Button iO, Button iT, Button iTh, VBox tC, Button r, Button nD, 
+			ProgressBar bT,ProgressBar bTh, Label iO, Label iT, Label iTh, VBox tC, Button r, Button nD, 
 			TextField tO, Label mO, TextField tT, Label mT, 
 			TextField tTh, Label mTh, HBox bH, HBox lH, Label dC) {
 		 int counter=0; // skillNumber
+		 
 		 for (String element : getPickedList()) {			 
 			 
 			 if((element.equals("python") || element.equals("html") ||  element.equals("java")) && counter == 0) { //skill One	
@@ -77,22 +71,24 @@ public class CodingSkill extends UIControl{
 		 lH.getChildren().add(dC);
 		 tC.getChildren().addAll(bH, lH);
 		 
+		
+		 
 	 }
 	
 	public void calculateXPOne(String textStringOne, Label messageOne) {
 		if(progressOne <1) {
-			this.messageOne=messageOne;
-			inputButtonCounterOne++;
+			
+			
 			XP = 0;
-			this.textStringOne = textStringOne;
-			ErrorOne = oneError(textStringOne);//checks for error
-			if(ErrorOne==false && textStringOne != "") {
+			
+			errorOne = oneError(textStringOne);//checks for error
+			if(errorOne==false) {
 				textValueOne = (int) Double.parseDouble(textStringOne);		// got the textValue from the input button	 	
-				if (textValueOne ==0 && progressOne!=0) {
+				if (textValueOne ==0 && progressOne>0) {
 					XP = 200;
 					messageOne.setText("XP lost today: " + XP );
 				}
-				else if(progressOne==0) {
+				else if(progressOne==0 && textValueOne==0) {
 					messageOne.setText("Learning not started. No XP loss or gain.");
 				}
 				else if(progressOne>=1) {
@@ -106,7 +102,7 @@ public class CodingSkill extends UIControl{
 				 
 				 
 			 }
-			 else {
+			 else{
 				 messageOne.setText("Enter valid number without alphabets or decimals that is between 0 and 24.");
 			 }
 		}
@@ -114,21 +110,22 @@ public class CodingSkill extends UIControl{
 			textValueOne=0;
 			messageOne.setText("Learning is finished");
 		}
+		
 	}
 	public void calculateXPTwo(String textStringTwo, Label messageTwo) {
 		if (progressTwo<1) {
-		this.messageTwo=messageTwo;
-		inputButtonCounterTwo++;
+		
+		
 		XP = 0;
-		this.textStringTwo= textStringTwo;
-		ErrorTwo = oneError(textStringTwo);//checks for error
-		if(ErrorTwo==false && textStringTwo != "") {
+		
+		errorTwo = oneError(textStringTwo);//checks for error
+		if(errorTwo==false) {
 			textValueTwo = (int) Double.parseDouble(textStringTwo);		// got the textValue from the input button	 	
-			if (textValueTwo ==0 && progressTwo!=0) {
+			if (textValueTwo ==0 && progressTwo>0) {
 				XP = 200;
 				messageTwo.setText("XP lost today: " + XP );
 			}
-			else if(progressTwo==0) {
+			else if(progressTwo==0 && textValueTwo==0) {
 				messageTwo.setText("Learning not started. No XP loss or gain.");
 			}
 			else if(progressTwo>=1) {
@@ -147,21 +144,22 @@ public class CodingSkill extends UIControl{
 			textValueTwo=0;
 			messageTwo.setText("Learning is finished");
 		}
+		
 	}
 	public void calculateXPThree(String textStringThree, Label messageThree) {
 		if(progressThree<1) {
-		this.messageThree=messageThree;
-		inputButtonCounterThree++;
+		
+		
 		XP = 0;
-		this.textStringThree=textStringThree;
-		ErrorThree = oneError(textStringThree);//checks for error
-		if(ErrorThree==false && textStringThree != "") {
+		
+		errorThree = oneError(textStringThree);//checks for error
+		if(errorThree==false ) {
 			textValueThree = (int) Double.parseDouble(textStringThree);		// got the textValue from the input button	 	
-			if (textValueThree ==0 && progressThree!=0) {
+			if (textValueThree ==0 && progressThree>0) {
 				XP = 200;
 				messageThree.setText("XP lost today: " + XP );
 			}
-			else if(progressThree==0 ) {
+			else if(progressThree==0 && textValueThree==0) {
 				messageThree.setText("Learning not started. No XP loss or gain.");
 			}
 			else if(progressThree>=1) {
@@ -180,36 +178,54 @@ public class CodingSkill extends UIControl{
 			textValueThree=0;
 			messageThree.setText("Learning is finished");
 		}
-		 
 	}
+
+
 	
-	public void progressUpdate(ProgressBar barOne, ProgressBar barTwo, ProgressBar barThree, Label dayCounter) {
-		inputRequired = (inputButtonCounterOne + inputButtonCounterTwo + inputButtonCounterThree);
+
+	
+	public void progressUpdate(ProgressBar barOne, ProgressBar barTwo, ProgressBar barThree, Label dayCounter, String textStringOne, Label messageOne,
+			String textStringTwo, Label messageTwo, String textStringThree, Label messageThree) {
 		
-		if((textValueOne + textValueTwo + textValueThree) <=24 && inputRequired>=3) {
+		if (sOL!=null) {
+			calculateXPOne(textStringOne,messageOne);
+			
+		}
+		if  (sTL!=null) {
+			calculateXPTwo(textStringTwo,messageTwo);
+			
+		}
+		if  (sThL!=null) {
+			calculateXPThree(textStringThree, messageThree);
+			
+		}
+		
+		
+		if (sOL!=null && sTL!=null && sThL!=null) { // // If a;; three sub-skills are picked by user.
+		if((textValueOne + textValueTwo + textValueThree) <=24 && errorOne==false && errorTwo==false && errorThree==false ) {
 			
 		
-			if (!(progressOne>=1) && !( progressTwo>=1) && !(progressThree>=1) && textStringOne!="" && textStringTwo!="" && textStringThree!=""  && ErrorOne==false && ErrorTwo==false && ErrorThree==false ){ //day will not increase when all learning is finished
+			if (!(progressOne>=1) && !( progressTwo>=1) && !(progressThree>=1) && textStringOne!="" && textStringTwo!="" && textStringThree!=""  ){ //day will not increase when all learning is finished
 				day++;//day increments as nextDay button is pressed
 			}
 			
-			if (textValueOne==0 && progressOne > 0 && progressOne<1 && textStringOne!="" && textStringTwo!="" && textStringThree!="" && ErrorOne==false && ErrorTwo==false && ErrorThree==false ) {
+			if (textValueOne==0 && progressOne > 0 && progressOne<1 && textStringOne!="" && textStringTwo!="" && textStringThree!="" ) {
 				progressOne -= .03; //decrementing progress for not practicing;
 				barOne.setProgress(progressOne); // actual XP that is lost.
 			}
 			else {
-				if(progressOne < 1 && textStringOne!="" && textStringTwo!="" && textStringThree!="" && ErrorOne==false && ErrorTwo==false && ErrorThree==false) {
+				if(progressOne < 1 && textStringOne!="" && textStringTwo!="" && textStringThree!="" ) {
 					progressOne += setProgressXP(textValueOne); // using the textValue for setting progress.
 					barOne.setProgress(progressOne); // actual XP that is earned visually.
 				}
 			}
 				
-			if (textValueTwo==0 && progressTwo>0 && progressTwo<1 && textStringOne!="" && textStringTwo!="" && textStringThree!="" && ErrorOne==false && ErrorTwo==false && ErrorThree==false)  {
+			if (textValueTwo==0 && progressTwo>0 && progressTwo<1 && textStringOne!="" && textStringTwo!="" && textStringThree!="" )  {
 				progressTwo -= .03; //decrementing progress for not practicing;
 				barTwo.setProgress(progressTwo); // actual XP that is lost.
 			}
 			else {
-				if(progressTwo < 1 && textStringOne!="" && textStringTwo!="" && textStringThree!="" && ErrorOne==false && ErrorTwo==false && ErrorThree==false) {
+				if(progressTwo < 1 && textStringOne!="" && textStringTwo!="" && textStringThree!="") {
 					progressTwo += setProgressXP(textValueTwo); // using the textValue for setting progress.
 					
 					barTwo.setProgress(progressTwo); // actual XP that is earned visually.
@@ -217,12 +233,12 @@ public class CodingSkill extends UIControl{
 			}
 				
 			
-			if (textValueThree==0 && progressThree>0 && progressThree<1 && textStringOne!="" && textStringTwo!="" && textStringThree!="" && ErrorOne==false && ErrorTwo==false && ErrorThree==false) {
+			if (textValueThree==0 && progressThree>0 && progressThree<1 && textStringOne!="" && textStringTwo!="" && textStringThree!="" ) {
 				progressThree -= .03; //decrementing progress for not practicing;
 				barThree.setProgress(progressThree); // actual XP that is lost.
 			}
 			else {
-				if(progressThree < 1 && textStringOne!="" && textStringTwo!="" && textStringThree!="" && ErrorOne==false && ErrorTwo==false && ErrorThree==false) {
+				if(progressThree < 1 && textStringOne!="" && textStringTwo!="" && textStringThree!="") {
 					progressThree += setProgressXP(textValueThree); // using the textValue for setting progress.
 					barThree.setProgress(progressThree); // actual XP that is earned visually.
 				}
@@ -236,7 +252,7 @@ public class CodingSkill extends UIControl{
 				messageOne.setText(" Congratulations! Learning "+sOL+" is finished . No more losing XP");
 				barOne.setStyle("-fx-accent:red;");
 				textValueOne = 0;///
-				inputRequired--;
+				
 			}
 			else {
 				barOne.setStyle("-fx-accent:blue;");
@@ -246,7 +262,7 @@ public class CodingSkill extends UIControl{
 				dayCounter.setText("DAY: "+day +"     Red means finished learning"); //
 				barTwo.setStyle("-fx-accent:red;");
 				textValueTwo = 0; ///
-				inputRequired--;
+				
 			}
 			else {
 				barTwo.setStyle("-fx-accent:purple;");
@@ -256,7 +272,7 @@ public class CodingSkill extends UIControl{
 				dayCounter.setText("DAY: "+day +"     Red means finished learning"); //
 				barThree.setStyle("-fx-accent:red;");
 				textValueThree=0;///
-				inputRequired--;
+				
 			}
 			else {
 				barThree.setStyle("-fx-accent:brown;");
@@ -269,38 +285,152 @@ public class CodingSkill extends UIControl{
 			
 			
 		}
-		else { 
-			if (inputRequired<3) {
-			dayCounter.setText("Enter the values and Press INPUT on all three skills for TODAY. ");
-			if (messageOne!=null && progressOne<1) {
-				messageOne.setText("Enter the values again and press input button.");
-			}
-			if (messageTwo!=null && progressTwo <1) {
-				messageTwo.setText("Enter the values again and press input button.");
-			}
-			if (messageThree!=null &&progressThree<1) {
-				messageThree.setText("Enter the values again and press input button.");
-			}
-								
-			}
-			if((textValueOne + textValueTwo + textValueThree) >24) {
-				dayCounter.setText("ERROR! Total time spent on all skills must be less than 24 hours. Input aall three values again.");
+		else if((textValueOne + textValueTwo + textValueThree)>24){ 					
+				dayCounter.setText("ERROR! Total time spent on all skills must be less than or equal to24 hours. Enter values again.");
 				if (messageOne!=null) {
-					messageOne.setText("Enter the values again and press input button.");
+					messageOne.setText("");
 				}
 				if (messageTwo!=null) {
-					messageTwo.setText("Enter the values again and press input button.");
+					messageTwo.setText("");
 				}
 				if (messageThree!=null) {
-					messageThree.setText("Enter the values again and press input button.");
+					messageThree.setText("");
 				}
-			}
+			
 			
 		}
-		inputButtonCounterOne=0; /// reseting input button counters to 0 so that they have to clicked again before they move on to the next day.
-		inputButtonCounterTwo=0; ///
-		inputButtonCounterThree=0; ///
 		
+		
+	}
+	
+		else if (sOL!=null && sTL!=null && sThL==null) { // If two sub-skills are picked by user.
+		if((textValueOne + textValueTwo) <=24 && errorOne==false && errorTwo==false) {
+			
+		
+			if (!(progressOne>=1) && !( progressTwo>=1) && textStringOne!="" && textStringTwo!="" ){ //day will not increase when all learning is finished
+				day++;//day increments as nextDay button is pressed
+			}
+			
+			if (textValueOne==0 && progressOne > 0 && progressOne<1 && textStringOne!="" && textStringTwo!="") {
+				progressOne -= .03; //decrementing progress for not practicing;
+				barOne.setProgress(progressOne); // actual XP that is lost.
+			}
+			else {
+				if(progressOne < 1 && textStringOne!="" && textStringTwo!="") {
+					progressOne += setProgressXP(textValueOne); // using the textValue for setting progress.
+					barOne.setProgress(progressOne); // actual XP that is earned visually.
+				}
+			}
+				
+			if (textValueTwo==0 && progressTwo>0 && progressTwo<1 && textStringOne!="" && textStringTwo!="")  {
+				progressTwo -= .03; //decrementing progress for not practicing;
+				barTwo.setProgress(progressTwo); // actual XP that is lost.
+			}
+			else {
+				if(progressTwo < 1 && textStringOne!="" && textStringTwo!="") {
+					progressTwo += setProgressXP(textValueTwo); // using the textValue for setting progress.
+					
+					barTwo.setProgress(progressTwo); // actual XP that is earned visually.
+				}
+			}
+									
+			
+			dayCounter.setText("DAY: "+day);
+			
+			if (progressOne>=1) {
+				dayCounter.setText("DAY: "+day +"     Red means finished learning"); //
+				messageOne.setText(" Congratulations! Learning "+sOL+" is finished . No more losing XP");
+				barOne.setStyle("-fx-accent:red;");
+				textValueOne = 0;///
+				
+			}
+			else {
+				barOne.setStyle("-fx-accent:blue;");
+			}
+			if (progressTwo>=1) {
+				messageTwo.setText(" Congratulations! Learning "+sTL+" is finished. No more losing XP");
+				dayCounter.setText("DAY: "+day +"     Red means finished learning"); //
+				barTwo.setStyle("-fx-accent:red;");
+				textValueTwo = 0; ///
+				
+			}
+			else {
+				barTwo.setStyle("-fx-accent:purple;");
+			}			
+			
+			if (progressOne>=1 &&  progressTwo>=1) {
+				
+				dayCounter.setText("DAY: "+day+"   Congratulations! ALL FINISHED AT DAY-->" +day +"."+" (Red means finished learning) ");
+			}							
+			
+			
+		}
+		else if((textValueOne + textValueTwo)>24) { 					
+				dayCounter.setText("ERROR! Total time spent on all skills must be less than or equal to 24 hours. Enter values again.");
+				if (messageOne!=null) {
+					messageOne.setText("");
+				}
+				if (messageTwo!=null) {
+					messageTwo.setText("");
+				}						
+			
+		}
+		
+		
+	}
+	
+	else if (sOL!=null && sTL==null && sThL==null) { // If only 1 sub-skill is picked by user.
+		if((textValueOne + textValueTwo + textValueThree) <=24 && errorOne==false && errorTwo==false && errorThree==false ) {
+			
+		
+			if (!(progressOne>=1) && textStringOne!="" ){ //day will not increase when all learning is finished
+				day++;//day increments as nextDay button is pressed
+			}
+			
+			if (textValueOne==0 && progressOne > 0 && progressOne<1 && textStringOne!="" ) {
+				progressOne -= .03; //decrementing progress for not practicing;
+				barOne.setProgress(progressOne); // actual XP that is lost.
+			}
+			else {
+				if(progressOne < 1 && textStringOne!="") {
+					progressOne += setProgressXP(textValueOne); // using the textValue for setting progress.
+					barOne.setProgress(progressOne); // actual XP that is earned visually.
+				}
+			}
+							
+			
+			dayCounter.setText("DAY: "+day);
+			
+			if (progressOne>=1) {
+				dayCounter.setText("DAY: "+day +"     Red means finished learning"); //
+				messageOne.setText(" Congratulations! Learning "+sOL+" is finished . No more losing XP");
+				barOne.setStyle("-fx-accent:red;");
+				textValueOne = 0;///
+				
+			}
+			else {
+				barOne.setStyle("-fx-accent:blue;");
+			}
+						
+			
+			if (progressOne>=1) {
+				
+				dayCounter.setText("DAY: "+day+"   Congratulations! FINISHED AT DAY-->" +day +"."+" (Red means finished learning) ");
+			}							
+			
+			
+		}
+		else if((textValueOne)>24) { 					
+				dayCounter.setText("ERROR! Total time spent on all skills must be less than or equal to 24 hours. Enter values again.");
+				if (messageOne!=null) {
+					messageOne.setText("");
+				}							
+			
+		}
+		
+		
+	}
+	}
 	}
 	
 	
@@ -309,4 +439,9 @@ public class CodingSkill extends UIControl{
 	
 	
 	
-}
+	
+
+
+	
+
+	
