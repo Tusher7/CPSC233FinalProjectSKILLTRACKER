@@ -18,9 +18,9 @@ public class Main extends Application {
 			
 			Parent root = FXMLLoader.load(getClass().getResource("MainView.fxml"));
 			
-			Scene mainScene = new Scene(root,500,350);
+			Scene mainScene = new Scene(root,700,300);
 									
-			primaryStage.setTitle("Khondaker and Favour's Final Rpoject");
+			primaryStage.setTitle("Khondaker and Favour's Final project");
 			primaryStage.setScene(mainScene);
 			primaryStage.show();
 		} catch(Exception e) {

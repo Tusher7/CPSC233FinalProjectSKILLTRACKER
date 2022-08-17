@@ -26,14 +26,11 @@ public class PrimeController{
 
 	private Stage applicationStage = new Stage(); 
 	private Parent root;
-	private Scene mainScene;
-					 
-
+	private Scene mainScene;					 
 	@FXML 
     private ChoiceBox<String> skillChooseChoiceBox; 	  
 	@FXML 
-	private Label skillPickedLabel = new Label(); 	  	 
-	
+	private Label skillPickedLabel = new Label(); 	  	 	
 	@FXML
 	private HBox mainViewButtonsHBox;	 
 	private Button nextButtonMainView = new Button("Next >");	   
@@ -91,21 +88,16 @@ public class PrimeController{
 	@FXML
 	private Label skillThree = new Label();
 	@FXML
-	private Label skillTwo= new Label();
-	
+	private Label skillTwo= new Label();	
 	private UIControl codingView;
 	private UIControl languageView;
-	private UIControl musicView;
-	
+	private UIControl musicView;	
 	@FXML
 	private HBox skillOneHBox;
 	@FXML
 	private HBox skillTwoHBox;
 	@FXML
-	private HBox skillThreeHBox;
-	
-	
-	
+	private HBox skillThreeHBox;			
 	private ArrayList<String> codingLanguagePickList = new ArrayList<String> (); //these are needed.
 	private ArrayList<String> LanguagePickList;
 	private ArrayList<String> musicPickList;

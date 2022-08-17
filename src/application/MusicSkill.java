@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
 public class MusicSkill extends UIControl{
 	
 	
-	
+
 	
 	private int XP;
 	private int textValueOne;

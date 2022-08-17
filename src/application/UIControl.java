@@ -15,22 +15,16 @@ public class UIControl {
 	private int counterOne=0;
 	private int counterTwo=0;
 	private int counterThree=0;
-	private int hoursSkill = 0;
-		
+	private int hoursSkill = 0;		
 	private int hoursSkillCounterOne=0;
 	private int hoursSkillCounterTwo=0;
 	private int hoursSkillCounterThree=0;
-	private  ArrayList<String> pickedList = new ArrayList<String> ();
-		
-	private String textDefault= "You chose: ";
-		 
+	private  ArrayList<String> pickedList = new ArrayList<String> ();		
+	private String textDefault= "You chose: ";	 
 	private CheckBox Box1;
 	private CheckBox Box2;
 	private CheckBox Box3;
-	
-	
-	
-	
+
 		 
 	public UIControl(CheckBox Box1, CheckBox Box2,CheckBox Box3) {
 		this.Box1=Box1;
@@ -41,8 +35,7 @@ public class UIControl {
 	public UIControl() {
 		
 	}
-		
-		
+				
 	public void PickViewCheckBoxLogic(String one, String two, String three, int hourIncrement) {
 		if (Box1.isSelected()) {
 			counterOne++; // 2nd time onwards always 2
@@ -91,12 +84,12 @@ public class UIControl {
 			  
 			  hoursSkillCounterTwo++;
 			  
-		  if (hoursSkillCounterTwo==1) {
+			  if (hoursSkillCounterTwo==1) {
 			  hoursSkill = getHoursSkill() + hourIncrement;
-		  }
-		  if(hoursSkillCounterTwo==2) {
+			  }
+			  if(hoursSkillCounterTwo==2) {
 				  hoursSkillCounterTwo=1;
-		  }
+			  }
 		  }
 		  if(counterTwo==2) {
 			  counterTwo=1;
@@ -158,7 +151,7 @@ public class UIControl {
 		 int desiredIndex=0;
 		 char[] array = sentence.toCharArray();
 		 for(Character i : array) {
-			 int iIndex = sentence.indexOf(i);
+		 int iIndex = sentence.indexOf(i);
 			 
 			 if(i.equals(toRemove.charAt(counter))) {
 				 int iIndexPrevious = iIndex-1;
@@ -205,16 +198,16 @@ public class UIControl {
 				 tC.getChildren().add(sOC);
 				 					 
 			 }
-			 else if((element.equals(firstSkill) || element.equals(secondSkill) ||  element.equals(thirdSkill)) && counter == 1) { //skill Two
-				 sTC.getChildren().addAll(sTL,bT,iT,tT, mT);
-				 changeLabel(sTL, element);
-				 tC.getChildren().add(sTC);
-			 }
-			 else if((element.equals(firstSkill) || element.equals(secondSkill) ||  element.equals(thirdSkill)) && counter == 2) { //skillThree
-				 sThC.getChildren().addAll(sThL,bTh,iTh,tTh, mTh);
-				 changeLabel(sThL, element);
-				 tC.getChildren().add(sThC);
-			 }
+			else if((element.equals(firstSkill) || element.equals(secondSkill) ||  element.equals(thirdSkill)) && counter == 1) { //skill Two
+				sTC.getChildren().addAll(sTL,bT,iT,tT, mT);
+				changeLabel(sTL, element);
+				tC.getChildren().add(sTC);
+			}
+			else if((element.equals(firstSkill) || element.equals(secondSkill) ||  element.equals(thirdSkill)) && counter == 2) { //skillThree
+				sThC.getChildren().addAll(sThL,bTh,iTh,tTh, mTh);
+				changeLabel(sThL, element);
+				tC.getChildren().add(sThC);
+			 }	
 			 counter++;
 			
 		}	
@@ -303,6 +296,7 @@ public class UIControl {
 	public void progressUpdate(ProgressBar barOne,ProgressBar barTwo, ProgressBar barThree, Label dayCounter) {
 		
 	}
+	
 	public void clearPickedList() {
 		pickedList.clear();
 	}

@@ -13,8 +13,7 @@ import javafx.scene.layout.VBox;
 
 
 public class CodingSkill extends UIControl{
-	
-	
+		
 	private int XP;
 	private int textValueOne;
 	private double progressOne=0.0;
@@ -27,7 +26,9 @@ public class CodingSkill extends UIControl{
 	private String textStringOne;
 	private String textStringTwo;
 	private String textStringThree;
-	private int inputButtonCounter=0;
+	private int inputButtonCounterOne=0; //
+	private int inputButtonCounterTwo=0;//
+	private int inputButtonCounterThree=0;//
 	private Label messageOne;
 	private Label messageTwo;
 	private Label messageThree;
@@ -37,6 +38,7 @@ public class CodingSkill extends UIControl{
 	private boolean ErrorOne;
 	private boolean ErrorTwo;
 	private boolean ErrorThree;
+	private int inputRequired;
 	
 	public CodingSkill(CheckBox Box1, CheckBox Box2,CheckBox Box3) {
 		super(Box1, Box2, Box3);
@@ -78,78 +80,113 @@ public class CodingSkill extends UIControl{
 	 }
 	
 	public void calculateXPOne(String textStringOne, Label messageOne) {
-		this.messageOne=messageOne;
-		inputButtonCounter++;
-		 XP = 0;
-		 this.textStringOne = textStringOne;
-		 ErrorOne = oneError(textStringOne);//checks for error
-		 if(ErrorOne==false && textStringOne != "") {
-			 textValueOne = (int) Double.parseDouble(textStringOne);		// got the textValue from the input button	 	
-			 if (textValueOne ==0) {
-				 XP = 200;
-				 messageOne.setText("XP lost today: " + XP );
-			 }
-			 else {
-				 XP = (int)(setProgressXP(textValueOne) * 10000); // a proper XP to show.
-				 messageOne.setText("XP earned today: " + XP);
+		if(progressOne <1) {
+			this.messageOne=messageOne;
+			inputButtonCounterOne++;
+			XP = 0;
+			this.textStringOne = textStringOne;
+			ErrorOne = oneError(textStringOne);//checks for error
+			if(ErrorOne==false && textStringOne != "") {
+				textValueOne = (int) Double.parseDouble(textStringOne);		// got the textValue from the input button	 	
+				if (textValueOne ==0 && progressOne!=0) {
+					XP = 200;
+					messageOne.setText("XP lost today: " + XP );
+				}
+				else if(progressOne==0) {
+					messageOne.setText("Learning not started. No XP loss or gain.");
+				}
+				else if(progressOne>=1) {
+					messageOne.setText("Learning finished. No XP loss or gain.");
+				}
+				else {
+					XP = (int)(setProgressXP(textValueOne) * 10000); // a proper XP to show.
+					messageOne.setText("XP earned today: " + XP);
+					 
+				}
+				 
 				 
 			 }
-			 
-			 
-		 }
-		 else {
-			 messageOne.setText("Enter valid number without alphabets or decimals that is between 0 and 24.");
-		 }
-		
+			 else {
+				 messageOne.setText("Enter valid number without alphabets or decimals that is between 0 and 24.");
+			 }
+		}
+		else {
+			textValueOne=0;
+			messageOne.setText("Learning is finished");
+		}
 	}
 	public void calculateXPTwo(String textStringTwo, Label messageTwo) {
+		if (progressTwo<1) {
 		this.messageTwo=messageTwo;
-		inputButtonCounter++;
-		 XP = 0;
-		 this.textStringTwo= textStringTwo;
-		 ErrorTwo = oneError(textStringTwo);//checks for error
-		 if(ErrorTwo==false && textStringTwo != "") {
-			 textValueTwo = (int) Double.parseDouble(textStringTwo);		// got the textValue from the input button	 	
-			 if (textValueTwo ==0) {
-				 XP = 200;
-				 messageTwo.setText("XP lost today: " + XP );
-			 }
-			 else {
-				 XP = (int)(setProgressXP(textValueTwo) * 10000); // a proper XP to show.
-				 messageTwo.setText("XP earned today: " + XP);
-			 }			 			 
-		 }
-		 else {
+		inputButtonCounterTwo++;
+		XP = 0;
+		this.textStringTwo= textStringTwo;
+		ErrorTwo = oneError(textStringTwo);//checks for error
+		if(ErrorTwo==false && textStringTwo != "") {
+			textValueTwo = (int) Double.parseDouble(textStringTwo);		// got the textValue from the input button	 	
+			if (textValueTwo ==0 && progressTwo!=0) {
+				XP = 200;
+				messageTwo.setText("XP lost today: " + XP );
+			}
+			else if(progressTwo==0) {
+				messageTwo.setText("Learning not started. No XP loss or gain.");
+			}
+			else if(progressTwo>=1) {
+				messageTwo.setText("Learning finished. No XP loss or gain.");
+			}
+			else {
+				XP = (int)(setProgressXP(textValueTwo) * 10000); // a proper XP to show.
+				messageTwo.setText("XP earned today: " + XP);
+			}			 			 
+		}
+		else {
 			 messageTwo.setText("Enter valid number without alphabets or decimals that is between 0 and 24.");
-		 }
-		
+		}
+		}
+		else {
+			textValueTwo=0;
+			messageTwo.setText("Learning is finished");
+		}
 	}
 	public void calculateXPThree(String textStringThree, Label messageThree) {
+		if(progressThree<1) {
 		this.messageThree=messageThree;
-		inputButtonCounter++;
-		 XP = 0;
-		 this.textStringThree=textStringThree;
-		 ErrorThree = oneError(textStringThree);//checks for error
-		 if(ErrorThree==false && textStringThree != "") {
-			 textValueThree = (int) Double.parseDouble(textStringThree);		// got the textValue from the input button	 	
-			 if (textValueThree ==0) {
-				 XP = 200;
-				 messageThree.setText("XP lost today: " + XP );
-			 }
-			 else {
-				 XP = (int)(setProgressXP(textValueThree) * 10000); // a proper XP to show.
-				 messageThree.setText("XP earned today: " + XP);
-			 }			 			 
-		 }
-		 else {
-			 messageThree.setText("Enter valid number without alphabets or decimals that is between 0 and 24.");
-		 }
+		inputButtonCounterThree++;
+		XP = 0;
+		this.textStringThree=textStringThree;
+		ErrorThree = oneError(textStringThree);//checks for error
+		if(ErrorThree==false && textStringThree != "") {
+			textValueThree = (int) Double.parseDouble(textStringThree);		// got the textValue from the input button	 	
+			if (textValueThree ==0 && progressThree!=0) {
+				XP = 200;
+				messageThree.setText("XP lost today: " + XP );
+			}
+			else if(progressThree==0 ) {
+				messageThree.setText("Learning not started. No XP loss or gain.");
+			}
+			else if(progressThree>=1) {
+				messageThree.setText("Learning finished. No XP loss or gain.");
+			}
+			else {
+				XP = (int)(setProgressXP(textValueThree) * 10000); // a proper XP to show.
+				messageThree.setText("XP earned today: " + XP);
+			}			 			 
+		}
+	 	else {
+	 		messageThree.setText("Enter valid number without alphabets or decimals that is between 0 and 24.");
+	 	}
+		}
+		else {
+			textValueThree=0;
+			messageThree.setText("Learning is finished");
+		}
 		 
 	}
 	
-	public void progressUpdate(ProgressBar barOne, ProgressBar barTwo, ProgressBar barThree, Label dayCounter) {	
+	public void progressUpdate(ProgressBar barOne, ProgressBar barTwo, ProgressBar barThree, Label dayCounter) {
+		inputRequired = (inputButtonCounterOne + inputButtonCounterTwo + inputButtonCounterThree);
 		
-		if(inputButtonCounter>0 && (textValueOne + textValueTwo + textValueThree) <=24) {
+		if((textValueOne + textValueTwo + textValueThree) <=24 && inputRequired>=3) {
 			
 		
 			if (!(progressOne>=1) && !( progressTwo>=1) && !(progressThree>=1) && textStringOne!="" && textStringTwo!="" && textStringThree!=""  && ErrorOne==false && ErrorTwo==false && ErrorThree==false ){ //day will not increase when all learning is finished
@@ -198,6 +235,8 @@ public class CodingSkill extends UIControl{
 				dayCounter.setText("DAY: "+day +"     Red means finished learning"); //
 				messageOne.setText(" Congratulations! Learning "+sOL+" is finished . No more losing XP");
 				barOne.setStyle("-fx-accent:red;");
+				textValueOne = 0;///
+				inputRequired--;
 			}
 			else {
 				barOne.setStyle("-fx-accent:blue;");
@@ -206,6 +245,8 @@ public class CodingSkill extends UIControl{
 				messageTwo.setText(" Congratulations! Learning "+sTL+" is finished. No more losing XP");
 				dayCounter.setText("DAY: "+day +"     Red means finished learning"); //
 				barTwo.setStyle("-fx-accent:red;");
+				textValueTwo = 0; ///
+				inputRequired--;
 			}
 			else {
 				barTwo.setStyle("-fx-accent:purple;");
@@ -214,6 +255,8 @@ public class CodingSkill extends UIControl{
 				messageThree.setText(" Congratulations! Learning "+sThL+" is finished. No more losing XP");
 				dayCounter.setText("DAY: "+day +"     Red means finished learning"); //
 				barThree.setStyle("-fx-accent:red;");
+				textValueThree=0;///
+				inputRequired--;
 			}
 			else {
 				barThree.setStyle("-fx-accent:brown;");
@@ -227,14 +270,36 @@ public class CodingSkill extends UIControl{
 			
 		}
 		else { 
-			if (inputButtonCounter==0) {
-			dayCounter.setText("Input a value first ");
+			if (inputRequired<3) {
+			dayCounter.setText("Enter the values and Press INPUT on all three skills for TODAY. ");
+			if (messageOne!=null && progressOne<1) {
+				messageOne.setText("Enter the values again and press input button.");
+			}
+			if (messageTwo!=null && progressTwo <1) {
+				messageTwo.setText("Enter the values again and press input button.");
+			}
+			if (messageThree!=null &&progressThree<1) {
+				messageThree.setText("Enter the values again and press input button.");
+			}
+								
 			}
 			if((textValueOne + textValueTwo + textValueThree) >24) {
-				dayCounter.setText("Total time spent on all skills must be less than 24 hours");
+				dayCounter.setText("ERROR! Total time spent on all skills must be less than 24 hours. Input aall three values again.");
+				if (messageOne!=null) {
+					messageOne.setText("Enter the values again and press input button.");
+				}
+				if (messageTwo!=null) {
+					messageTwo.setText("Enter the values again and press input button.");
+				}
+				if (messageThree!=null) {
+					messageThree.setText("Enter the values again and press input button.");
+				}
 			}
 			
 		}
+		inputButtonCounterOne=0; /// reseting input button counters to 0 so that they have to clicked again before they move on to the next day.
+		inputButtonCounterTwo=0; ///
+		inputButtonCounterThree=0; ///
 		
 	}
 	

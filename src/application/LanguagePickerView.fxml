@@ -14,7 +14,7 @@
             <Font name="Candara Italic" size="36.0" />
          </font>
          <VBox.margin>
-            <Insets left="400.0" />
+            <Insets left="70.0" />
          </VBox.margin>
       </Label>
       <HBox prefHeight="47.0" prefWidth="600.0">

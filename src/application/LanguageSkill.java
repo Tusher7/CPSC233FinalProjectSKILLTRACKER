@@ -9,15 +9,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class LanguageSkill extends UIControl{
-	
-	
-	
+public class LanguageSkill extends UIControl{	
 	
 	private int XP;
 	private int textValueOne;
-	private double progressOne=0.0;
-	
+	private double progressOne=0.0;	
 	private int textValueTwo;
 	private int textValueThree;
 	private double progressTwo=0.0;
@@ -37,7 +33,7 @@ public class LanguageSkill extends UIControl{
 	private boolean ErrorTwo;
 	private boolean ErrorThree;
 	
-	
+
 	public LanguageSkill(CheckBox Box1, CheckBox Box2,CheckBox Box3) {
 		super(Box1, Box2, Box3);
 	}
