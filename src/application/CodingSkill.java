@@ -205,7 +205,7 @@ public class CodingSkill extends UIControl{
 		if((textValueOne + textValueTwo + textValueThree) <=24 && errorOne==false && errorTwo==false && errorThree==false ) {
 			
 		
-			if (!(progressOne>=1) && !( progressTwo>=1) && !(progressThree>=1) && textStringOne!="" && textStringTwo!="" && textStringThree!=""  ){ //day will not increase when all learning is finished
+			if (!(progressOne>=1) || !( progressTwo>=1) || !(progressThree>=1) && textStringOne!="" && textStringTwo!="" && textStringThree!=""  ){ //day will not increase when all learning is finished
 				day++;//day increments as nextDay button is pressed
 			}
 			
@@ -249,7 +249,7 @@ public class CodingSkill extends UIControl{
 			
 			if (progressOne>=1) {
 				dayCounter.setText("DAY: "+day +"     Red means finished learning"); //
-				messageOne.setText(" Congratulations! Learning "+sOL+" is finished . No more losing XP");
+				messageOne.setText(" Congratulations! Learning "+sOL+" is finished . No more losing XP. TextField value will be ignored.");
 				barOne.setStyle("-fx-accent:red;");
 				textValueOne = 0;///
 				
@@ -258,7 +258,7 @@ public class CodingSkill extends UIControl{
 				barOne.setStyle("-fx-accent:blue;");
 			}
 			if (progressTwo>=1) {
-				messageTwo.setText(" Congratulations! Learning "+sTL+" is finished. No more losing XP");
+				messageTwo.setText(" Congratulations! Learning "+sTL+" is finished. No more losing XP. TextField value will be ignored.");
 				dayCounter.setText("DAY: "+day +"     Red means finished learning"); //
 				barTwo.setStyle("-fx-accent:red;");
 				textValueTwo = 0; ///
@@ -268,7 +268,7 @@ public class CodingSkill extends UIControl{
 				barTwo.setStyle("-fx-accent:purple;");
 			}
 			if (progressThree>=1) {
-				messageThree.setText(" Congratulations! Learning "+sThL+" is finished. No more losing XP");
+				messageThree.setText(" Congratulations! Learning "+sThL+" is finished. No more losing XP. TextField value will be ignored.");
 				dayCounter.setText("DAY: "+day +"     Red means finished learning"); //
 				barThree.setStyle("-fx-accent:red;");
 				textValueThree=0;///
@@ -286,7 +286,7 @@ public class CodingSkill extends UIControl{
 			
 		}
 		else if((textValueOne + textValueTwo + textValueThree)>24){ 					
-				dayCounter.setText("ERROR! Total time spent on all skills must be less than or equal to24 hours. Enter values again.");
+				dayCounter.setText("ERROR! Total time spent on all skills must be less than or equal to 24 hours. Enter values again.");
 				if (messageOne!=null) {
 					messageOne.setText("");
 				}
@@ -307,7 +307,7 @@ public class CodingSkill extends UIControl{
 		if((textValueOne + textValueTwo) <=24 && errorOne==false && errorTwo==false) {
 			
 		
-			if (!(progressOne>=1) && !( progressTwo>=1) && textStringOne!="" && textStringTwo!="" ){ //day will not increase when all learning is finished
+			if (!(progressOne>=1) || !( progressTwo>=1) && textStringOne!="" && textStringTwo!="" ){ //day will not increase when all learning is finished
 				day++;//day increments as nextDay button is pressed
 			}
 			
@@ -339,7 +339,7 @@ public class CodingSkill extends UIControl{
 			
 			if (progressOne>=1) {
 				dayCounter.setText("DAY: "+day +"     Red means finished learning"); //
-				messageOne.setText(" Congratulations! Learning "+sOL+" is finished . No more losing XP");
+				messageOne.setText(" Congratulations! Learning "+sOL+" is finished . No more losing XP. TextField value will be ignored.");
 				barOne.setStyle("-fx-accent:red;");
 				textValueOne = 0;///
 				
@@ -348,7 +348,7 @@ public class CodingSkill extends UIControl{
 				barOne.setStyle("-fx-accent:blue;");
 			}
 			if (progressTwo>=1) {
-				messageTwo.setText(" Congratulations! Learning "+sTL+" is finished. No more losing XP");
+				messageTwo.setText(" Congratulations! Learning "+sTL+" is finished. No more losing XP. TextField value will be ignored.");
 				dayCounter.setText("DAY: "+day +"     Red means finished learning"); //
 				barTwo.setStyle("-fx-accent:red;");
 				textValueTwo = 0; ///
@@ -403,7 +403,7 @@ public class CodingSkill extends UIControl{
 			
 			if (progressOne>=1) {
 				dayCounter.setText("DAY: "+day +"     Red means finished learning"); //
-				messageOne.setText(" Congratulations! Learning "+sOL+" is finished . No more losing XP");
+				messageOne.setText(" Congratulations! Learning "+sOL+" is finished . No more losing XP. TextField value will be ignored.");
 				barOne.setStyle("-fx-accent:red;");
 				textValueOne = 0;///
 				

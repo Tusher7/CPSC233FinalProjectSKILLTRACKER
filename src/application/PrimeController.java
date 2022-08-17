@@ -101,6 +101,7 @@ public class PrimeController{
 	private ArrayList<String> codingLanguagePickList = new ArrayList<String> (); //these are needed.
 	private ArrayList<String> LanguagePickList;
 	private ArrayList<String> musicPickList;
+	private int restartCounter = 0;
 	
 	
 	
@@ -172,7 +173,9 @@ public class PrimeController{
 		  changeLabel(musicLabel1, "You need to spend roughly 230 hours");
 		  changeLabel(musicLabel2, "on each instrument to achieve mastery.");
 		  changeLabel(musicLabel3, " ");
-		  musicView.clearPickedList();
+		  if(musicView!=null) {  // To error Handle the reset button.
+			  musicView.clearPickedList();
+		  }
 	  }
 	  @FXML
 	  public void languagePickResetButton(ActionEvent resetMusic){
@@ -183,8 +186,9 @@ public class PrimeController{
 		  changeLabel(languageLabelOne, "You need to spend roughly 300 hours");
 		  changeLabel(languageLabelTwo, "on each language to achieve basic understanding.");
 		  changeLabel(languageLabelThree, " ");	 
-		  languageView.clearPickedList();
-	  	  
+		  if(languageView!=null) { // To error Handle the reset button.
+			  languageView.clearPickedList();
+		  }
 	  }
 	  
 	  
@@ -197,7 +201,9 @@ public class PrimeController{
 		  changeLabel(codingLabelOne, "You need to spend roughly 250 hours");
 		  changeLabel(codingLabelTwo, "on each coding language to achieve basic knowledge.");
 		  changeLabel(codingLabelThree, " ");
-		  codingView.clearPickedList();
+		  if (codingView!=null) { // To error Handle the reset button.
+			  codingView.clearPickedList();
+		  }
 	  }
 		  	  
 	//resetButtonsEnd  
@@ -233,11 +239,16 @@ public class PrimeController{
 	  
 	  @FXML
 	  public void pickerViewBackButton(ActionEvent changeScene) throws IOException { 
+		  
+		  
 		  root = FXMLLoader.load(getClass().getResource("MainView.fxml"));
 		  applicationStage = (Stage)((Node)changeScene.getSource()).getScene().getWindow();
 		  mainScene = new Scene(root);
+		  
 		  applicationStage.setScene(mainScene);
 		  applicationStage.show();
+		  	  
+		  
 		  if (codingView!=null) {
 			  codingView.clearPickedList();
 		  }
@@ -251,6 +262,7 @@ public class PrimeController{
 		  
 		 
 	  } 
+	  
 	 
 	 
 	 //Second Scene CheckBox Logics 	  
@@ -316,6 +328,7 @@ public class PrimeController{
 	 
 	@FXML
 	 public void codePickNextButton(ActionEvent nextEventSecondScene) throws IOException {	
+		restartCounter=0;
 		if (pythonBox.isSelected() || htmlBox.isSelected() || javaBox.isSelected()) {
 		 codingLanguagePickList = codingView.getPickedList(); //Getting the list
 		 
@@ -356,8 +369,10 @@ public class PrimeController{
 		 Button restart = new Button("Restart EVERYTHING");			
 		 restart.setOnAction(restartEvent -> {
 			try {
-				pickerViewBackButton(nextEventSecondScene);	
+				
+				skillTrackerRestart(nextEventSecondScene);	
 				codingView.clearAllInfo();
+				
 				
 			} catch (IOException e) {			
 				System.out.println("Restart Button not working");
@@ -371,7 +386,7 @@ public class PrimeController{
 		
 		 
 		 HBox labelsHBox = new HBox();	
-		 Label nextDayErrorLabel = new Label();
+		
 		 		 		 
 		 
 		 
@@ -403,7 +418,7 @@ public class PrimeController{
     	
 	@FXML
 	 public void languagePickNextButtonPress(ActionEvent nextEventSecondScene) throws IOException {	
-		
+		restartCounter=0;
 		if(frenchBox.isSelected() || englishBox.isSelected() || arabicBox.isSelected()) {
 		 LanguagePickList = languageView.getPickedList(); //Getting the list
 		 
@@ -442,7 +457,7 @@ public class PrimeController{
 		 Button restart = new Button("Restart EVERYTHING");			
 		 restart.setOnAction(restartEvent -> {
 			try {
-				pickerViewBackButton(nextEventSecondScene);		
+				skillTrackerRestart(nextEventSecondScene);		
 				languageView.clearAllInfo();
 			} catch (IOException e) {			
 				System.out.println("Restart Button not working");
@@ -457,7 +472,7 @@ public class PrimeController{
 		 
 		 
 		 HBox labelsHBox = new HBox();	
-		 Label nextDayErrorLabel = new Label();
+		 
 		 		 		 			 			 			 			 
 		 Scene trackerScene = new Scene(trackerContainer);
 		 
@@ -481,7 +496,7 @@ public class PrimeController{
 	 }
 	 @FXML
 	 public void musicPickNextButtonPress(ActionEvent nextEventSecondScene) throws IOException {	
-		 
+		 restartCounter=0;
 		 if(guitarBox.isSelected() || pianoBox.isSelected() || drumsBox.isSelected()) {
 		 musicPickList = musicView.getPickedList(); //Getting the list
 		 
@@ -495,35 +510,39 @@ public class PrimeController{
 	
 		 
 		 TextField textOne = new TextField();
-		 Button inputOne = new Button("INPUT Hours Practiced");		
+		 Label inputOne = new Label(" Enter Hours Practiced ");		
 		 Label messageOne = new Label();
-		 inputOne.setOnAction(oneEvent-> musicView.calculateXPOne(textOne.getText(), messageOne)); 		 				 
+		 		 				 
 		 
 		 HBox skillTwoContainer = new HBox();
 		 Label skillTwoLabel = new Label();
 		 ProgressBar barTwo = new ProgressBar();
 		 
-		 Button inputTwo = new Button("INPUT Hours Practiced");
+		 Label inputTwo = new Label(" Enter Hours Practiced ");
 		 TextField textTwo = new TextField();		 	
 		 Label messageTwo = new Label();
-		 inputTwo.setOnAction(oneEvent-> musicView.calculateXPTwo(textTwo.getText(), messageTwo));		 
+		  
 		 		 
 		 HBox skillThreeContainer = new HBox();
 		 Label skillThreeLabel = new Label();
 		 ProgressBar barThree = new ProgressBar();
 		 
-		 Button inputThree = new Button("INPUT Hours Practiced");		
+		 Label inputThree = new Label(" Enter Hours Practiced ");		
 		 TextField textThree = new TextField();		 	
 		 Label messageThree = new Label();
-		 inputThree.setOnAction(oneEvent-> musicView.calculateXPThree(textThree.getText(), messageThree)); 	
+		 	
 		 
 		 HBox buttonsHBox = new HBox();
 		 
-		 Button restart = new Button("Restart EVERYTHING");			
-		 restart.setOnAction(restartEvent -> {
+		 Button restart = new Button("Restart EVERYTHING");		
+		 
+		 restart.setOnAction(restartEvent ->  {
 			try {
-				pickerViewBackButton(nextEventSecondScene);	
+				
+				skillTrackerRestart(nextEventSecondScene);	
 				musicView.clearAllInfo();
+				
+				 
 				
 			} catch (IOException e) {			
 				System.out.println("Restart Button not working");
@@ -532,11 +551,11 @@ public class PrimeController{
 		 });	
 		 Label dayCounter = new Label();
 		 Button nextDay = new Button("Next Day");
-		 nextDay.setOnAction(nextDayEvent -> musicView.progressUpdate(barOne, barTwo, barThree, dayCounter));
+		 nextDay.setOnAction(nextDayEvent -> musicView.progressUpdate(barOne, barTwo, barThree, dayCounter, textOne.getText(), messageOne, textTwo.getText(), messageTwo,
+				 textThree.getText(), messageThree));
 		 
 	
-		 HBox labelsHBox = new HBox();	
-		 Label nextDayErrorLabel = new Label();
+		 HBox labelsHBox = new HBox();			 
 		 		 		 			 			 			 			 
 		 Scene trackerScene = new Scene(trackerContainer);
 		 applicationStage.setScene(trackerScene);
@@ -568,7 +587,32 @@ public class PrimeController{
 		 label.setText(text); 
 
 } 
-	
+	 private void skillTrackerRestart(ActionEvent restart) throws IOException {
+		 
+		 if (restartCounter == 0) {
+			 root = FXMLLoader.load(getClass().getResource("MainView.fxml"));
+			 applicationStage = (Stage)((Node)restart.getSource()).getScene().getWindow();
+			 mainScene = new Scene(root);
+			  
+			 applicationStage.setScene(mainScene);
+			 applicationStage.show();
+			  
+			 
+			 if (codingView!=null) {
+				 codingView.clearPickedList();
+			 }
+			 if (musicView!=null) {
+				 musicView.clearPickedList();
+			 }
+			 if (languageView!=null) {
+				 languageView.clearPickedList();
+			 }
+	  }
+		 if (restartCounter==0) {
+			 restartCounter++;
+		 }
+	 }
+	 	
 	 
 	 
 	 }

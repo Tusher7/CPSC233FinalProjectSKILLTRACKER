@@ -37,7 +37,8 @@ public class LanguageSkill extends UIControl{
 	//Overriding // Polymorphism
 	public void makeTracker(HBox sOC, HBox sTC, HBox sThC, Label sOL, Label sTL, Label sThL, ProgressBar bO, 
 			ProgressBar bT,ProgressBar bTh, Label iO, Label iT, Label iTh, VBox tC, Button r, Button nD, 
-			TextField tO, Label mO, TextField tT, Label mT,TextField tTh, Label mTh, HBox bH, HBox lH, Label dC) {
+			TextField tO, Label mO, TextField tT, Label mT, 
+			TextField tTh, Label mTh, HBox bH, HBox lH, Label dC) {
 		 int counter=0; // skillNumber
 		 for (String element : getPickedList()) {			 
 			 
@@ -80,7 +81,7 @@ public class LanguageSkill extends UIControl{
 			if(errorOne==false) {
 				textValueOne = (int) Double.parseDouble(textStringOne);		// got the textValue from the input button	 	
 				if (textValueOne ==0 && progressOne>0) {
-					XP = 200;
+					XP = 300;
 					messageOne.setText("XP lost today: " + XP );
 				}
 				else if(progressOne==0 && textValueOne==0) {
@@ -105,8 +106,10 @@ public class LanguageSkill extends UIControl{
 			textValueOne=0;
 			messageOne.setText("Learning is finished");
 		}
-		 
+		
 	}
+		 
+	
 	public void calculateXPTwo(String textStringTwo, Label messageTwo) {
 		if (progressTwo<1) {
 			
@@ -117,7 +120,7 @@ public class LanguageSkill extends UIControl{
 			if(errorTwo==false) {
 				textValueTwo = (int) Double.parseDouble(textStringTwo);		// got the textValue from the input button	 	
 				if (textValueTwo ==0 && progressTwo>0) {
-					XP = 200;
+					XP = 300;
 					messageTwo.setText("XP lost today: " + XP );
 				}
 				else if(progressTwo==0 && textValueTwo==0) {
@@ -142,9 +145,42 @@ public class LanguageSkill extends UIControl{
 			
 		}
 	
-	public void calculateXPThree(ProgressBar barOne, ProgressBar barTwo, ProgressBar barThree, Label dayCounter, String textStringOne, Label messageOne,
-			String textStringTwo, Label messageTwo, String textStringThree, Label messageThree) {
-
+	public void calculateXPThree(String textStringThree, Label messageThree) {
+		if(progressThree<1) {
+			
+			
+			XP = 0;
+			
+			errorThree = oneError(textStringThree);//checks for error
+			if(errorThree==false ) {
+				textValueThree = (int) Double.parseDouble(textStringThree);		// got the textValue from the input button	 	
+				if (textValueThree ==0 && progressThree>0) {
+					XP = 00;
+					messageThree.setText("XP lost today: " + XP );
+				}
+				else if(progressThree==0 && textValueThree==0) {
+					messageThree.setText("Learning not started. No XP loss or gain.");
+				}
+				else if(progressThree>=1) {
+					messageThree.setText("Learning finished. No XP loss or gain. ");
+				}
+				else {
+					XP = (int)(setProgressXP(textValueThree) * 10000); // a proper XP to show.
+					messageThree.setText("XP earned today: " + XP);
+				}			 			 
+			}
+		 	else {
+		 		messageThree.setText("Enter valid number without alphabets or decimals that is between 0 and 24.");
+		 	}
+			}
+			else {
+				textValueThree=0;
+				messageThree.setText("Learning is finished");
+			}
+		}
+	public void progressUpdate(ProgressBar barOne, ProgressBar barTwo, ProgressBar barThree, Label dayCounter, String textStringOne, Label messageOne,
+			String textStringTwo, Label messageTwo, String textStringThree, Label messageThree) {	
+		
 		if (sOL!=null) {
 			calculateXPOne(textStringOne,messageOne);
 			
@@ -163,12 +199,12 @@ public class LanguageSkill extends UIControl{
 		if((textValueOne + textValueTwo + textValueThree) <=24 && errorOne==false && errorTwo==false && errorThree==false ) {
 			
 		
-			if (!(progressOne>=1) && !( progressTwo>=1) && !(progressThree>=1) && textStringOne!="" && textStringTwo!="" && textStringThree!=""  ){ //day will not increase when all learning is finished
+			if (!(progressOne>=1) || !( progressTwo>=1) || !(progressThree>=1) && textStringOne!="" && textStringTwo!="" && textStringThree!=""  ){ //day will not increase when all learning is finished
 				day++;//day increments as nextDay button is pressed
 			}
 			
 			if (textValueOne==0 && progressOne > 0 && progressOne<1 && textStringOne!="" && textStringTwo!="" && textStringThree!="" ) {
-				progressOne -= .03; //decrementing progress for not practicing;
+				progressOne -= .035; //decrementing progress for not practicing;
 				barOne.setProgress(progressOne); // actual XP that is lost.
 			}
 			else {
@@ -179,7 +215,7 @@ public class LanguageSkill extends UIControl{
 			}
 				
 			if (textValueTwo==0 && progressTwo>0 && progressTwo<1 && textStringOne!="" && textStringTwo!="" && textStringThree!="" )  {
-				progressTwo -= .03; //decrementing progress for not practicing;
+				progressTwo -= .035; //decrementing progress for not practicing;
 				barTwo.setProgress(progressTwo); // actual XP that is lost.
 			}
 			else {
@@ -192,7 +228,7 @@ public class LanguageSkill extends UIControl{
 				
 			
 			if (textValueThree==0 && progressThree>0 && progressThree<1 && textStringOne!="" && textStringTwo!="" && textStringThree!="" ) {
-				progressThree -= .03; //decrementing progress for not practicing;
+				progressThree -= .035; //decrementing progress for not practicing;
 				barThree.setProgress(progressThree); // actual XP that is lost.
 			}
 			else {
@@ -207,7 +243,7 @@ public class LanguageSkill extends UIControl{
 			
 			if (progressOne>=1) {
 				dayCounter.setText("DAY: "+day +"     Red means finished learning"); //
-				messageOne.setText(" Congratulations! Learning "+sOL+" is finished . No more losing XP");
+				messageOne.setText(" Congratulations! Learning "+sOL+" is finished . No more losing XP. TextField value will be ignored.");
 				barOne.setStyle("-fx-accent:red;");
 				textValueOne = 0;///
 				
@@ -216,7 +252,7 @@ public class LanguageSkill extends UIControl{
 				barOne.setStyle("-fx-accent:blue;");
 			}
 			if (progressTwo>=1) {
-				messageTwo.setText(" Congratulations! Learning "+sTL+" is finished. No more losing XP");
+				messageTwo.setText(" Congratulations! Learning "+sTL+" is finished. No more losing XP. TextField value will be ignored.");
 				dayCounter.setText("DAY: "+day +"     Red means finished learning"); //
 				barTwo.setStyle("-fx-accent:red;");
 				textValueTwo = 0; ///
@@ -226,7 +262,7 @@ public class LanguageSkill extends UIControl{
 				barTwo.setStyle("-fx-accent:purple;");
 			}
 			if (progressThree>=1) {
-				messageThree.setText(" Congratulations! Learning "+sThL+" is finished. No more losing XP");
+				messageThree.setText(" Congratulations! Learning "+sThL+" is finished. No more losing XP. TextField value will be ignored.");
 				dayCounter.setText("DAY: "+day +"     Red means finished learning"); //
 				barThree.setStyle("-fx-accent:red;");
 				textValueThree=0;///
@@ -244,7 +280,7 @@ public class LanguageSkill extends UIControl{
 			
 		}
 		else if((textValueOne + textValueTwo + textValueThree)>24){ 					
-				dayCounter.setText("ERROR! Total time spent on all skills must be less than or equal to24 hours. Enter values again.");
+				dayCounter.setText("ERROR! Total time spent on all skills must be less than or equal to 24 hours. Enter values again.");
 				if (messageOne!=null) {
 					messageOne.setText("");
 				}
@@ -265,12 +301,12 @@ public class LanguageSkill extends UIControl{
 		if((textValueOne + textValueTwo) <=24 && errorOne==false && errorTwo==false) {
 			
 		
-			if (!(progressOne>=1) && !( progressTwo>=1) && textStringOne!="" && textStringTwo!="" ){ //day will not increase when all learning is finished
+			if (!(progressOne>=1) || !( progressTwo>=1) && textStringOne!="" && textStringTwo!="" ){ //day will not increase when all learning is finished
 				day++;//day increments as nextDay button is pressed
 			}
 			
 			if (textValueOne==0 && progressOne > 0 && progressOne<1 && textStringOne!="" && textStringTwo!="") {
-				progressOne -= .03; //decrementing progress for not practicing;
+				progressOne -= .035; //decrementing progress for not practicing;
 				barOne.setProgress(progressOne); // actual XP that is lost.
 			}
 			else {
@@ -281,7 +317,7 @@ public class LanguageSkill extends UIControl{
 			}
 				
 			if (textValueTwo==0 && progressTwo>0 && progressTwo<1 && textStringOne!="" && textStringTwo!="")  {
-				progressTwo -= .03; //decrementing progress for not practicing;
+				progressTwo -= .035; //decrementing progress for not practicing;
 				barTwo.setProgress(progressTwo); // actual XP that is lost.
 			}
 			else {
@@ -297,7 +333,7 @@ public class LanguageSkill extends UIControl{
 			
 			if (progressOne>=1) {
 				dayCounter.setText("DAY: "+day +"     Red means finished learning"); //
-				messageOne.setText(" Congratulations! Learning "+sOL+" is finished . No more losing XP");
+				messageOne.setText(" Congratulations! Learning "+sOL+" is finished . No more losing XP. TextField value will be ignored.");
 				barOne.setStyle("-fx-accent:red;");
 				textValueOne = 0;///
 				
@@ -306,7 +342,7 @@ public class LanguageSkill extends UIControl{
 				barOne.setStyle("-fx-accent:blue;");
 			}
 			if (progressTwo>=1) {
-				messageTwo.setText(" Congratulations! Learning "+sTL+" is finished. No more losing XP");
+				messageTwo.setText(" Congratulations! Learning "+sTL+" is finished. No more losing XP. TextField value will be ignored.");
 				dayCounter.setText("DAY: "+day +"     Red means finished learning"); //
 				barTwo.setStyle("-fx-accent:red;");
 				textValueTwo = 0; ///
@@ -346,7 +382,7 @@ public class LanguageSkill extends UIControl{
 			}
 			
 			if (textValueOne==0 && progressOne > 0 && progressOne<1 && textStringOne!="" ) {
-				progressOne -= .03; //decrementing progress for not practicing;
+				progressOne -= .035; //decrementing progress for not practicing;
 				barOne.setProgress(progressOne); // actual XP that is lost.
 			}
 			else {
@@ -361,7 +397,7 @@ public class LanguageSkill extends UIControl{
 			
 			if (progressOne>=1) {
 				dayCounter.setText("DAY: "+day +"     Red means finished learning"); //
-				messageOne.setText(" Congratulations! Learning "+sOL+" is finished . No more losing XP");
+				messageOne.setText(" Congratulations! Learning "+sOL+" is finished . No more losing XP. TextField value will be ignored.");
 				barOne.setStyle("-fx-accent:red;");
 				textValueOne = 0;///
 				
@@ -389,6 +425,7 @@ public class LanguageSkill extends UIControl{
 		
 	}
 	}
+		
 
 public double setProgressXP(int textValue) {				
 	
