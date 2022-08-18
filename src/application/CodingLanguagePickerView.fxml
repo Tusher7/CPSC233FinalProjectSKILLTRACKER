@@ -55,7 +55,7 @@
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin></Button>
-            <Button mnemonicParsing="false" text="Next &gt;">
+            <Button mnemonicParsing="false" onAction="#codePickNextButton" text="Next &gt;">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin></Button>
@@ -78,7 +78,7 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="codingLabelOne" text="You need to spend roughly 1700 hours">
+                  <Label fx:id="codingLabelOne" text="You need to spend roughly 250 hours">
                      <font>
                         <Font name="Book Antiqua" size="22.0" />
                      </font>
@@ -86,12 +86,12 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="codingLabelTwo" text="on each coding language to achieve mastery.">
+                  <Label fx:id="codingLabelTwo" text="on each coding language to achieve basic knowledge.">
                      <font>
                         <Font name="Book Antiqua" size="22.0" />
                      </font>
                   </Label>
-                  <Label fx:id="codingLabelThree">
+                  <Label fx:id="codingLabelThree" textFill="#dd1515">
                      <font>
                         <Font size="22.0" />
                      </font>
